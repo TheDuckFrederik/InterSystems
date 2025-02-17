@@ -9,4 +9,4 @@ We will name the server: healthconnect
 - The database for this namespace will be named: PIRIS
 
 ## Exercises
-### - [Test 01](/Test01/test01.md)
+###- [Test 01](/Test01/test01.md)
