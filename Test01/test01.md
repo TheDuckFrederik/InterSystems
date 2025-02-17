@@ -66,7 +66,7 @@
     Property Allergies As %String;
 
     }
-```
+    ```
 ## Buisness Services
 - ### PatientIDService
 ## Buisness Processes
