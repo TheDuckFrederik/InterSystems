@@ -4,7 +4,7 @@
 We will name the server: healthconnect
 
 ## Namespaces
-### Namespace 01
+### pIRIS
 - The namespace in which we will create the productions will be named: pIRIS
 - The database for this namespace will be named: PIRIS
 
