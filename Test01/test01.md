@@ -12,14 +12,14 @@
 - OverAge %Boolean
 ## Messages
 - ### ProcessRequest
-```
-    Class test.msg.ProcessRequest Extends Ens.Request
-    {
+    ```
+        Class test.msg.ProcessRequest Extends Ens.Request
+        {
 
-    Property PatientID As %Integer;
+        Property PatientID As %Integer;
 
-    }
-```
+        }
+    ```
 - ### PatientDBRequest
 ```
     Class test.msg.PatientDBRequest Extends Ens.Request
