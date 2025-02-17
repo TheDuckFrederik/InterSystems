@@ -31,41 +31,41 @@
 ```
 - ### PatientDbResponse
 ```
-Class test.msg.PatientDBResponse Extends Ens.Response
-{
+    Class test.msg.PatientDBResponse Extends Ens.Response
+    {
 
-Property FirstName As %String;
+    Property FirstName As %String;
 
-Property MiddleName As %String;
+    Property MiddleName As %String;
 
-Property LastName As %String;
+    Property LastName As %String;
 
-Property Age As %Integer;
+    Property Age As %Integer;
 
-Property Allergies As %String;
+    Property Allergies As %String;
 
-Property OverAge As %Boolean;
+    Property OverAge As %Boolean;
 
-}
+    }
 ```
 - ### MakeFileRequest
 ```
-Class test.msg.MakeFileRequest Extends Ens.Request
-{
+    Class test.msg.MakeFileRequest Extends Ens.Request
+    {
 
-Property PatientID As %Integer;
+    Property PatientID As %Integer;
 
-Property FirstName As %String;
+    Property FirstName As %String;
 
-Property MiddleName As %String;
+    Property MiddleName As %String;
 
-Property LastName As %String;
+    Property LastName As %String;
 
-Property Age As %Integer;
+    Property Age As %Integer;
 
-Property Allergies As %String;
+    Property Allergies As %String;
 
-}
+    }
 ```
 ## Buisness Services
 - ### PatientIDService
