@@ -119,12 +119,12 @@
 - ### SQL Table: Patients
     ```
     CREATE TABLE Patients (
-    PatientID INT PRIMARY KEY,
-    FirstName VARCHAR(150),
-    MiddleName VARCHAR(150),
-    LastName VARCHAR(150),
-    Age INT,
-    Allergies VARCHAR(150)
+        PatientID INT PRIMARY KEY,
+        FirstName VARCHAR(150),
+        MiddleName VARCHAR(150),
+        LastName VARCHAR(150),
+        Age INT,
+        Allergies VARCHAR(150)
     )
     ```
 - ### SQL Rows
