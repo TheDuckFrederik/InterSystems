@@ -116,4 +116,19 @@
     ```
 - ### MakeFileOperation
 ## Data Base
-- ### SQL Table
+- ### SQL Table: Patients
+    ```
+    CREATE TABLE pts (
+    PatientID INT PRIMARY KEY,
+    FirstName VARCHAR(150),
+    MiddleName VARCHAR(150),
+    LastName VARCHAR(150),
+    Age INT,
+    Allergies VARCHAR(150)
+    )
+    ```
+- ### SQL Rows
+    ```
+    INSERT INTO pts (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
+    VALUES (1, 'Mrtin', 'L.' , 'Gore', 63, 'None');
+    ```
