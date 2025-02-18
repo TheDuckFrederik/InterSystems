@@ -118,7 +118,7 @@
 ## Data Base
 - ### SQL Table: Patients
     ```
-    CREATE TABLE pts (
+    CREATE TABLE Patients (
     PatientID INT PRIMARY KEY,
     FirstName VARCHAR(150),
     MiddleName VARCHAR(150),
@@ -129,6 +129,6 @@
     ```
 - ### SQL Rows
     ```
-    INSERT INTO pts (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
+    INSERT INTO Patients (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
     VALUES (1, 'Mrtin', 'L.' , 'Gore', 63, 'None');
     ```
