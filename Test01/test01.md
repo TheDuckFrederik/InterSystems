@@ -1,6 +1,6 @@
 # Test 01
 ## Namespace
-- This Production will be in the pIRIS namespace.
+- This Production will be in the pIRIS namespace and will be called: test01.
 ### ![Diagram](Test01.jpg)
 ## Variables
 - PatientID %Integer
@@ -29,7 +29,7 @@
 
     }
     ```
-- ### PatientDbResponse
+- ### PatientDBResponse
     ```
     Class test.msg.PatientDBResponse Extends Ens.Response
     {
