@@ -84,11 +84,11 @@
 
     Parameter INVOCATION = "Queue";
 
-    Method PatientInfo(pRequest As test.msg.PatientDBRequest, Output pResponse As test.msg.PatientDBResponse)
+    Method PatientInfo(pRequest As code.msg.PatientDBRequest, Output pResponse As code.msg.PatientDBResponse)
     {
-        set pResponse=##class(test.msg.PatientDBResponse).%New()
+        set pResponse=##class(code.msg.PatientDBResponse).%New()
         
-        set query = "Select FirstName, MiddleName, LastName, Age, Allergies from SQLUser.pts where PatientID = "_pRequest.PatientID
+        set query = "Select FirstName, MiddleName, LastName, Age, Allergies from SQLUser.Patients where PatientID = "_pRequest.PatientID
         set st =..Adapter.ExecuteQuery(.tResult,query)
         $$$TRACE("st = "_st) 
         do tResult.Next()
@@ -109,13 +109,14 @@
     XData MessageMap
     {
     <MapItems>
-            <MapItem MessageType="test.msg.PatientDBRequest">
+            <MapItem MessageType="code.msg.PatientDBRequest">
                 <Method>PatientInfo</Method>
             </MapItem>
         </MapItems>
     }
 
     }
+
     ```
 - ### MakeFileOperation
 ## Data Base
@@ -135,3 +136,11 @@
     INSERT INTO Patients (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
     VALUES (1, 'Mrtin', 'L.' , 'Gore', 63, 'None');
     ```
+- ### DSN
+	- Open ODBC 64 bits
+	- Under "System DSN" click "Add..."
+	![Action description](DSNAdd.png)
+	- Select the "InterSystems IRIS" then click "Finish"
+	![Action Despcription 2](DSNServer.png)
+	- Now fill the server info with the following details then click "Ok".
+	![Action Description 3](DSNInfo.png)
