@@ -13,6 +13,8 @@ Property Age As %Integer;
 
 Property Allergies As %String;
 
+Property FileName As %String;
+
 Storage Default
 {
 <Data name="MakeFileRequestDefaultData">
@@ -34,6 +36,9 @@ Storage Default
 </Value>
 <Value name="6">
 <Value>Allergies</Value>
+</Value>
+<Value name="7">
+<Value>FileName</Value>
 </Value>
 </Data>
 <DefaultData>MakeFileRequestDefaultData</DefaultData>
