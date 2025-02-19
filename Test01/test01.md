@@ -139,8 +139,8 @@
 - ### DSN
 	- Open ODBC 64 bits
 	- Under "System DSN" click "Add..."
-	![Action description](DSNAdd.png)
+	- ![Action description](DSNAdd.png)
 	- Select the "InterSystems IRIS" then click "Finish"
-	![Action Despcription 2](DSNServer.png)
+	- ![Action Despcription 2](DSNServer.png)
 	- Now fill the server info with the following details then click "Ok".
-	![Action Description 3](DSNInfo.png)
+	- ![Action Description 3](DSNInfo.png)
