@@ -1,4 +1,4 @@
-Class test.bo.PatientDBOperation Extends Ens.BusinessOperation
+Class code.bo.PatientDBOperation Extends Ens.BusinessOperation
 {
 
 Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";

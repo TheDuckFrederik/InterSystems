@@ -1,4 +1,4 @@
-Class test.msg.MakeFileRequest Extends Ens.Request
+Class code.msg.MakeFileRequest Extends Ens.Request
 {
 
 Property PatientID As %Integer;

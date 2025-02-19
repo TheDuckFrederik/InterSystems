@@ -1,4 +1,4 @@
-Class test.msg.PatientDBRequest Extends Ens.Request
+Class code.msg.PatientDBRequest Extends Ens.Request
 {
 
 Property PatientID As %Integer;

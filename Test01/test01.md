@@ -13,7 +13,7 @@
 ## Messages
 - ### ProcessRequest
     ```
-    Class test.msg.ProcessRequest Extends Ens.Request
+    Class code.msg.ProcessRequest Extends Ens.Request
     {
 
     Property PatientID As %Integer;
@@ -22,7 +22,7 @@
     ```
 - ### PatientDBRequest
     ```
-    Class test.msg.PatientDBRequest Extends Ens.Request
+    Class code.msg.PatientDBRequest Extends Ens.Request
     {
 
     Property PatientID As %Integer;
@@ -31,7 +31,7 @@
     ```
 - ### PatientDBResponse
     ```
-    Class test.msg.PatientDBResponse Extends Ens.Response
+    Class code.msg.PatientDBResponse Extends Ens.Response
     {
 
     Property FirstName As %String;
@@ -50,7 +50,7 @@
     ```
 - ### MakeFileRequest
     ```
-    Class test.msg.MakeFileRequest Extends Ens.Request
+    Class code.msg.MakeFileRequest Extends Ens.Request
     {
 
     Property PatientID As %Integer;
@@ -74,7 +74,7 @@
 ## Buisness Operations
 - ### PatientDBOperation
     ```
-    Class test.bo.PatientDBOperation Extends Ens.BusinessOperation
+    Class code.bo.PatientDBOperation Extends Ens.BusinessOperation
     {
 
     Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";

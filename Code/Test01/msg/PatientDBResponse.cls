@@ -1,4 +1,4 @@
-Class test.msg.PatientDBResponse Extends Ens.Response
+Class code.msg.PatientDBResponse Extends Ens.Response
 {
 
 Property FirstName As %String;
