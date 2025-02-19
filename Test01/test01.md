@@ -143,4 +143,8 @@
 	- Select the "InterSystems IRIS" then click "Finish"
 	- ![Action Despcription 2](DSNServer.png)
 	- Now fill the server info with the following details then click "Ok".
+<<<<<<< HEAD
 	- ![Action Description 3](DSNInfo.png)
+=======
+	- ![Action Description 3](DSNInfo.png)
+>>>>>>> 135f3f43a4ce82efa3581237b300db6dca3a7599
