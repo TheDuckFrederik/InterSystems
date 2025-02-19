@@ -15,8 +15,8 @@ Property Allergies As %String;
 
 Storage Default
 {
-<Data name="SendFileRequestDefaultData">
-<Subscript>"SendFileRequest"</Subscript>
+<Data name="MakeFileRequestDefaultData">
+<Subscript>"MakeFileRequest"</Subscript>
 <Value name="1">
 <Value>PatientID</Value>
 </Value>
@@ -36,7 +36,7 @@ Storage Default
 <Value>Allergies</Value>
 </Value>
 </Data>
-<DefaultData>SendFileRequestDefaultData</DefaultData>
+<DefaultData>MakeFileRequestDefaultData</DefaultData>
 <Type>%Storage.Persistent</Type>
 }
 
