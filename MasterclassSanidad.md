@@ -1,0 +1,91 @@
+# Fomacion Eugenio
+
+## Sistemas
+- ### Sistemas 
+	- Entrada
+	- Transformacion
+	- Salida
+- ### Sistema de Informacion
+	- Datos
+	- Transformacion (Persistencia)
+	- Informacion
+- ### Sistema de Informacion Sanitario
+- ### Sistema Sanitario
+	- Persona enferma
+		- Entrada
+			- Hospital - Admisiones Hospitalarias
+			- Consultas Extrernas (Pedir Cita, CAP, CIP (Codigo de Identificacion de Paciente)) - Admision de CCEE
+			- Urgencias - Admision de Urgecias
+	- Transformacion
+	- Persona sana
+- ### Especialidades Medicas
+	- En el CAP no hay muchas especialidades (pocas como pediatria, el hospital las tiene (IDEA: En el CAP se va para diagnosticar (primer contacto, atencion primaria), y luego se manda al hospital y ahi se manda a la especialidad.))
+- ### Ejercicio 7-2-25
+	- Como es ir al medico en el hospital?
+		- En el hospital, normalmente ya tienes cita previa. Antes, has ido al CAP o a urgencias, donde han evaluado tu problema y te han derivado a la especialidad adecuada dentro del hospital, donde hay más variedad de especialidades.
+			- 1. Tener un sintoma o enfermedad.
+			- 2. Tener cita, en un hospital normalmente se refiere a la gente para una especialidad. O eres transportado al hospital por una urgencia, con lo cual prosigue al paso 2.5.
+			- 2.5. En caso de emergencia especifica se lleva directamente al un BOX o a un quirofano. (se salta los siguientes).
+			- 3. Negociacion de cuando, con quien y donde.
+			- 4. El paciente va al hospital.5. Se identifica en Admisiones Hospitalarias.
+			- 5. Se identifica en Admisiones Hospitalarias.
+			- 6. Espera a su turno en la sala de espera.
+			- 7. Cuando llega su turno lo recibe el medico.
+- ### Un Hospital tine muchas admisiones:
+	- Operacion.
+		- Alta en el mismo dia.
+		- Recuperacion post operacion.
+	- Ingreso.
+	- Para pruebas.
+		- Radiografia.
+		- Analisis de sangre.
+	- Etc.
+- ### Ejercicio 12-2-25
+	- Como es la admision con el SEM (Sistema de Emergencias Medicas) consciente e inconsciente.
+		- Cuando estas consciente. 
+			- 1. Tengo un sintoma severo y repentino, conservando la consciencia.
+			- 2. Sigo orientado y tengo las capacidad de llamar a Urgencias (091 o 112).
+			- 3. Facilito mi sintoma, datos, ubicacion y la situacion.
+			- 4. Espero en la llamada mientras la ambulancia viene y me aconseja (dependiendo de mi estado).
+			- 5. Llega la ambulancia.
+			- 6. Me dan primeros auxilios y comienza el transporte.
+			- 7. Durante el viaje, se monitorean mis contantes vitales.
+			- 8. Llego al hospital mas cercano.
+			- 9. Se evealua la gravedad de mi estado.
+			- 10. Se me asigna prioridad en base a la gravedad de mi estado.
+		- Cuando una persona esta inconsciente.
+			- 1. Tengo un sintoma severo y repentino, no consrvando la consciencia.
+			- 2. Una persona que te encuentre inconciente llamara al 112 o 091 para que venga una ambulancia
+			- 3. facilita datos mios, de mi ubicacion y si pueden de mi estado.
+			- 4. Se quedan en la linea.
+			- 5. Llega la ambulancia.
+			- 6. Me dan primeros auxilios y comienza el transporte.
+			- 7. Durante el viaje, se monitorean mis contantes vitales.
+			- 8. Llego al hospital mas cercano.
+			- 9. Se atiende mas rapido debido a que estoy inconsciente.
+- ### 3 tipos de atencion sanitaria.
+	- 1. Hospitales (Atencion de "agudos").
+	- 2. CAP (Centro de Atencion Primaria).
+	- 3. Urgencias.
+- ### Hospital
+	- Admisiones
+	- Urgencias
+	- Hospitalizacion
+	- Quirofano
+	- Cuidados Intesivos
+	- Rehabilitacion
+	- Curas
+	- Aparte (Nombre + Nombre del sistema)
+		- Laboratorio - LIS
+		- Farmacia - Farmacia
+		- Enfermeria - Turnos de Enfermeria
+		- Radiologia - RIS
+
+		- Por lo general no tienen el mismo registo de pacientes.
+- ### Sistemas Informaticos en los hospitales
+	- HIS - Healthcare Information System (Electronic Health Record)
+- ### Sitemas
+	- Asistencial
+	- Administrativa
+
+	- En la realidad funcionan como uno. Es mas organizado y asi la experiencia del paciente es mejor si no se entera de que el sistema existe. Que es lo que tiene que pasar.
