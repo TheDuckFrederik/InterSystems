@@ -76,6 +76,8 @@
 - ### PatientIDService
 ## Buisness Processes
 - ### PatientInfoProcess
+	- ### ![Diagram](Process1.png)
+	- 
 ## Buisness Operations
 - ### PatientDBOperation
     ```
