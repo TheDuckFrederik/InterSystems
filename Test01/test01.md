@@ -97,9 +97,11 @@
 - ### PatientInfoProcess
 	- ### ![Diagram](Process1.png)
 	- ### ![Context](Context.png)
+	- ### ![Get Patient Info](GetpatientInfo.png)
 	- ### ![Get Patient Info Request Builder](GPIRequestBuilder.png)
 	- ### ![Get Patient Info Response Builder](GPIResponseBuilder.png)
-	- 
+	- ### ![Make File](MakeFile.png)
+	- ### ![Make File Request Builder](MFRequestBuilder.png)
 ## Buisness Operations
 - ### PatientDBOperation
     ```
