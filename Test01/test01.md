@@ -74,9 +74,31 @@
     ```
 ## Buisness Services
 - ### PatientIDService
+    ```
+    Class Code.Test01.bs.PatientIDService Extends %RegisteredObject
+    {
+    Method OnProcessInput(pInput As code.msg.ProcessRequest, Output pOutput As %RegisteredObject) As %Status
+    {
+        set tSC = $$$OK
+        try {
+            //set tRequest = ##class(interop.msg.PatientInfoRequest).%New()
+            //set tRequest.PatientID = pInput.StringValue
+            set tSC = ..SendRequestSync("SalaryAdjustmentProcess", pInput, .tResponse)
+            $$$ThrowOnError(tSC)
+        }
+        catch ex {
+            set tSC = ex.AsStatus()
+        }
+        return tSC
+    }
+    }
+    ```
 ## Buisness Processes
 - ### PatientInfoProcess
 	- ### ![Diagram](Process1.png)
+	- ### ![Context](Context.png)
+	- ### ![Get Patient Info Request Builder](GPIRequestBuilder.png)
+	- ### ![Get Patient Info Response Builder](GPIResponseBuilder.png)
 	- 
 ## Buisness Operations
 - ### PatientDBOperation
