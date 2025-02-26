@@ -89,3 +89,6 @@
 	- Administrativa
 
 	- En la realidad funcionan como uno. Es mas organizado y asi la experiencia del paciente es mejor si no se entera de que el sistema existe. Que es lo que tiene que pasar.
+- ### [Organizacion Assistencial](OrganizacionAssistencial.canvas)
+	- "Maquina de curar"
+	- Como las diferentes especialidades estan todas conectadas a la parte administrativa y con el historial medico.
