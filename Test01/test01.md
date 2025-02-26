@@ -162,6 +162,7 @@
 	- ### ![Get Patient Info](GetPatientInfo.png)
 	- ### ![Get Patient Info Request Builder](GPIRequestBuilder.png)
 	- ### ![Get Patient Info Response Builder](GPIResponseBuilder.png)
+	- ### ![If](/Test01/If.png)
 	- ### ![Make File](MakeFile.png)
 	- ### ![Make File Request Builder](MFRequestBuilder.png)
 ## Buisness Operations
@@ -272,11 +273,17 @@
         Allergies VARCHAR(150)
     )
     ```
-- ### SQL Rows
+- ### SQL Insert Rows
     ```
     INSERT INTO Patients (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
     VALUES (1, 'Mrtin', 'L.' , 'Gore', 63, 'None');
     ```
+- ### SQL Update Rows
+```
+UPDATE Patients 
+SET FirstName = 'Martin' 
+WHERE PatientID = 1;
+```
 - ### DSN
 	- Open ODBC 64 bits
 	- Under "System DSN" click "Add..."
