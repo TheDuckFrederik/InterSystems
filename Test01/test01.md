@@ -121,7 +121,7 @@
 	- ### ![Web Application Application Roles](/Test01/WAARAS.png)
 	- ### ![Web Application Application Roles Selected](/Test01/WAAR.png)
 ## Buisness Services
-- ### FilePatientIDService
+- ### PatientIDService
 	```
 	Class code.bs.FilePatientIDService Extends Ens.BusinessService
     {
