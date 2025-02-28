@@ -82,7 +82,7 @@
     {
     <Routes>
     
-    <Route Url="/patientinfo/:PatientID/:RequestedOperation/:LikelyOutcome" Method="GET" Call="PatientInfoProcess" Cors="true"/>
+    <Route Url="/patientinfo/:PatientID" Method="GET" Call="GetPatientInfo" Cors="true"/>
     
     </Routes>
     }
@@ -91,14 +91,18 @@
     {
         set tSC = $$$OK
         try {
-            set tSC = ##class(Ens.Director).CreateBusinessService("OperationRestService",.tService)
+            set tSC = ##class(Ens.Director).CreateBusinessService("PatientIDService",.tService)
+
             $$$ThrowOnError(tSC)
 
             set request = ##class(code.msg.ProcessRequest).%New()
             set request.PatientID = PatientID
             set tSC = tService.ProcessInput(request, .output)
+
             $$$ThrowOnError(tSC)
+
             do %response.SetHeader("ContentType", "application/json")
+
             #Dim output As %Library.DynamicObject
             set output = {"status":"pending"}
 
@@ -112,6 +116,10 @@
 
     }
     ```
+- ### Web Application
+	- ### ![Web Application General](/Test01/WAG.png)
+	- ### ![Web Application Application Roles](/Test01/WAARAS.png)
+	- ### ![Web Application Application Roles Selected](/Test01/WAAR.png)
 ## Buisness Services
 - ### FilePatientIDService
 	```
@@ -135,17 +143,22 @@
 
     }
 	```
+- ## Postman
+	- ### `http://localhost:52773/csp/test01/patientinfo/:PatientID`
+    - ### ![Postman](/Test01/Postman.png)
 - ### PatientIDService
     ```
-    Class Code.Test01.bs.PatientIDService Extends %RegisteredObject
+    Class code.bs.PatientIDService Extends Ens.BusinessService
     {
+
     Method OnProcessInput(pInput As code.msg.ProcessRequest, Output pOutput As %RegisteredObject) As %Status
     {
         set tSC = $$$OK
         try {
-            //set tRequest = ##class(interop.msg.PatientInfoRequest).%New()
+            //set tRequest = ##class(code.msg.PatientDBRequest).%New()
             //set tRequest.PatientID = pInput.StringValue
-            set tSC = ..SendRequestSync("SalaryAdjustmentProcess", pInput, .tResponse)
+
+            set tSC = ..SendRequestSync("PatientInfoProcess", pInput, .tResponse)
             $$$ThrowOnError(tSC)
         }
         catch ex {
@@ -153,6 +166,7 @@
         }
         return tSC
     }
+
     }
     ```
 ## Buisness Processes

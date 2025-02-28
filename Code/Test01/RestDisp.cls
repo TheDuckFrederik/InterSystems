@@ -5,7 +5,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
 <Routes>
  
-<Route Url="/patients/:PatientID" Method="GET" Call="GetPatientInfo" Cors="true"/>
+<Route Url="/patientinfo/:PatientID" Method="GET" Call="GetPatientInfo" Cors="true"/>
  
 </Routes>
 }
