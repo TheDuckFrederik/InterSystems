@@ -111,4 +111,4 @@
 	- Tratamiento - Farmacologico, Fisioterapia, Cirucia, Quimico (Quimio), Radiologico (Rayos), Protesis (Huesos, corazon, riñon), Dialisis.
 	- Seguimiento - Curas, Ejercicios, Pruebas, Rehabilitacion, Observacion, Regular la Medicacion.
 	- Cuando el "seguimiento" es pe por vida, al paciente se le llama cronico. una etapa en la cura definitiva en algunas enfermedades es llegar a poder "CRONIFICARLAS"
-	- Para cada seccion hay partes de los sistemas assistenciales y administrativas, y todos tienen su sistema de datos, pero para la persona tiene que ser continuo.
+	- Para cada seccion hay partes de los sistemas assistenciales y administrativas, y todos tienen su sistema de datos, pero para la persona tiene que ser continuo (Patient Journey).
