@@ -8,7 +8,7 @@ Method OnProcessInput(pInput As code.msg.ProcessRequest, Output pOutput As %Regi
 		//set tRequest = ##class(code.msg.PatientDBRequest).%New()
 		//set tRequest.PatientID = pInput.StringValue
 
-		set tSC = ..SendRequestSync("GetPatientInfo", pInput, .tResponse)
+		set tSC = ..SendRequestSync("PatientInfoProcess", pInput, .tResponse)
 		$$$ThrowOnError(tSC)
 	}
 	catch ex {

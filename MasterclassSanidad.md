@@ -92,3 +92,23 @@
 - ### [Organizacion Assistencial](OrganizacionAssistencial.canvas)
 	- "Maquina de curar"
 	- Como las diferentes especialidades estan todas conectadas a la parte administrativa y con el historial medico.
+- ### Sistemas de informacion de la generalitat.
+	- Historia Clinica Compartida de Catalunya (HC3)
+	- Sistema de Interoperavilidad para gestionar en diferentes centros (iS3)
+	- Historial Electronic de Salut (HES (En desarollo para sustituir HC3, iS3))
+	- Sistema de Recepta Electronica (SIRE)
+	- Sistema d'Imatge Medica Digital de Catalunya (SIMDCAT)
+	- L'Anatomia Patologica - Sistema d'Imatge Medica Digital de Catalunya (Pat-SIMDCAT)
+	- mConnecta plataforma en desarrollo para soluciones para los ciudadanos
+	- La Meva Salut (LMS)
+	- ECAP para facilitar la gestion de las pacientes
+	- Conjunt Minim Basic de Dades (CMBD)
+	- Teleictus
+- El tiempo "Un" ciudadano "una" enfermedad
+	- Prevencion - Alimentacion, Habitos de vida, Vacunas, Informacion ("Prevenir es curar")
+	- Cibaje - Cancer de Mama, de Colon, de Piel, Retinopatia diab, Prueba del Talon, Amniocentesis
+	- Diagnosticao - Radiografia, Analisis, Exploracion Fisica, Auscultacion, Antecedentes, 85% del "diagnostico por la imagen", Radiologia = "DPI", Diagnostico "precoz".
+	- Tratamiento - Farmacologico, Fisioterapia, Cirucia, Quimico (Quimio), Radiologico (Rayos), Protesis (Huesos, corazon, riñon), Dialisis.
+	- Seguimiento - Curas, Ejercicios, Pruebas, Rehabilitacion, Observacion, Regular la Medicacion.
+	- Cuando el "seguimiento" es pe por vida, al paciente se le llama cronico. una etapa en la cura definitiva en algunas enfermedades es llegar a poder "CRONIFICARLAS"
+	- Para cada seccion hay partes de los sistemas assistenciales y administrativas, y todos tienen su sistema de datos, pero para la persona tiene que ser continuo.
