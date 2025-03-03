@@ -4,7 +4,7 @@
 	- This production will be in the pIRIS namespace and will be called: test01.
 - ### Production:
 	- This production will be in the test01 package and will be called: PatientInfo.
-### ![Diagram](/Test01/Test01.jpg)
+### ![Diagram](/Test02/Test02.jpg)
 ## Variables
 - PatientID %Integer
 - FirstName %String
