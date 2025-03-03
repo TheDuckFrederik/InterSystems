@@ -1,4 +1,4 @@
-# Test 01
+# Test 02
 ## Namespace
 - ### Package:
 	- This production will be in the pIRIS namespace and will be called: test01.
@@ -12,7 +12,6 @@
 - LastName %String
 - Age %Integer
 - Allergies %String
-- OverAge %Boolean
 ## Messages
 - ### ProcessRequest
     ```

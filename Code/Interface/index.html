@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        img {
+            max-width: 200px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005a9e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/InterSystems_logo_%282016%29.svg/2560px-InterSystems_logo_%282016%29.svg.png" alt="InterSystems Logo">
+    </header>
+    <div class="container">
+        <h1>Enter Patient ID</h1>
+        <input type="text" id="PatientID" placeholder="Patient ID">
+        <button onclick="sendRequest()">Submit</button>
+    </div>
+    <script>
+        function sendRequest() {
+            const PatientID = document.getElementById('PatientID').value;
+            const url = `http://localhost:52773/csp/test01/patientinfo/${PatientID}`;
+            
+            fetch(url, {
+                method: 'GET',
+                mode: 'cors', // Added CORS mode
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert('Request sent successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(`Error sending request: ${error.message}`);
+            });
+        }
+    </script>
+</body>
+</html>
