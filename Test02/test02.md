@@ -250,60 +250,60 @@
     ```
 - ### MakeFileOperation
     ```
-    Class code.bo.MakeFileOperation Extends Ens.BusinessOperation
-    {
-
-    Parameter ADAPTER = "EnsLib.File.OutboundAdapter";
-
-    Parameter INVOCACION = "Queue";
-
-    /*
-    Method DecisionFile(pRequest As code.msg.MakeFileRequest, Output pResponse As Ens.Response)
-    {
-            set tData = $ZDATETIME($H)_$$$NL_
-                        pRequest.InsuranceCompany_$$$NL_
-                        pRequest.Contents.PatientID_$$$NL_
-                        pRequest.Contents.RequestedOperation_$$$NL_
-                        pRequest.Contents.LikelyOutcome_$$$NL
-            set st = ..Adapter.PutString(pRequest.FileName, tData)
-            $$$TRACE("st = "_$system.Status.DisplayError(st))
-
-            Quit $$$OK
-    }
-    */
-    Method NotifyFile(pRequest As code.msg.MakeFileRequest, Output pResponse As Ens.Response)
-    {
-            set tData = $ZDATETIME($H)_$$$NL_
-                        pRequest.PatientID_" "_
-                        pRequest.FirstName_" "_
-                        pRequest.MiddleName_" "_
-                        pRequest.LastName_" "_
-                        pRequest.Age_" "_
-                        pRequest.Allergies_" "
-            set sc = ..Adapter.PutString(pRequest.FileName, tData)
-            $$$TRACE("st = "_$system.Status.DisplayError(sc))
-
-            Quit $$$OK
-    }
-
-    XData MessageMap
-    {
-    <MapItems>
-                <!-- <MapItem MessageType="code.msg.MakeFileRequest">
-                <Method>DecisionFile</Method>
-            </MapItem> -->
-                <MapItem MessageType="code.msg.MakeFileRequest">
-                <Method>NotifyFile</Method>
-            </MapItem>
-        </MapItems>
-    }
-
-    }
+	Class code.bo.MakeFileOperation Extends Ens.BusinessOperation
+	{
+	
+	Parameter ADAPTER = "EnsLib.File.OutboundAdapter";
+	
+	Parameter INVOCACION = "Queue";
+	
+	/*
+	Method DecisionFile(pRequest As code.msg.MakeFileRequest, Output pResponse As Ens.Response)
+	{
+			set tData = $ZDATETIME($H)_$$$NL_
+						pRequest.InsuranceCompany_$$$NL_
+						pRequest.Contents.PatientID_$$$NL_
+						pRequest.Contents.RequestedOperation_$$$NL_
+						pRequest.Contents.LikelyOutcome_$$$NL
+			set st = ..Adapter.PutString(pRequest.FileName, tData)
+			$$$TRACE("st = "_$system.Status.DisplayError(st))
+	
+			Quit $$$OK
+	}
+	*/
+	Method NotifyFile(pRequest As code.msg.MakeFileRequest, Output pResponse As Ens.Response)
+	{
+			set tData = $ZDATETIME($H)_$$$NL_
+						pRequest.PatientID_" "_
+						pRequest.FirstName_" "_
+						pRequest.MiddleName_" "_
+						pRequest.LastName_" "_
+						pRequest.Age_" "_
+						pRequest.Allergies_" "
+			set sc = ..Adapter.PutString(pRequest.FileName, tData)
+			$$$TRACE("st = "_$system.Status.DisplayError(sc))
+	
+			Quit $$$OK
+	}
+	
+	XData MessageMap
+	{
+	<MapItems>
+				<!-- <MapItem MessageType="code.msg.MakeFileRequest">
+				<Method>DecisionFile</Method>
+			</MapItem> -->
+				<MapItem MessageType="code.msg.MakeFileRequest">
+				<Method>NotifyFile</Method>
+			</MapItem>
+		</MapItems>
+	}
+	
+	}
     ```
 ## Data Base
 - ### SQL Table: Patients
     ```
-    CREATE TABLE Patients (
+    CREATE TABLE PatientData (
         PatientID INT PRIMARY KEY,
         FirstName VARCHAR(150),
         MiddleName VARCHAR(150),
@@ -314,12 +314,12 @@
     ```
 - ### SQL Insert Rows
     ```
-    INSERT INTO Patients (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
+    INSERT INTO PatientData (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
     VALUES (1, 'Mrtin', 'L.' , 'Gore', 63, 'None');
     ```
 - ### SQL Update Rows
 ```
-UPDATE Patients 
+UPDATE PatientData 
 SET FirstName = 'Martin' 
 WHERE PatientID = 1;
 ```
