@@ -3,7 +3,7 @@ Class code.bs.PatientIDService Extends Ens.BusinessService
 
 Method OnProcessInput(pInput As code.msg.ProcessRequest, Output pOutput As %RegisteredObject) As %Status
 {
-    set tSC = $$$OK
+	set tSC = $$$OK
 	try {
 		//set tRequest = ##class(code.msg.PatientDBRequest).%New()
 		//set tRequest.PatientID = pInput.StringValue

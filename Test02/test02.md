@@ -13,16 +13,26 @@
 - Age %Integer
 - Allergies %String
 ## Messages
-- ### ProcessRequest
+- ### PatientDataProcessRequest
     ```
-    Class code.msg.ProcessRequest Extends Ens.Request
+    Class code.msg.PatientDataProcessRequest Extends Ens.Request
     {
 
-    Property PatientID As %Integer;
+    Property PatientDataID As %Integer;
+
+    Property FirstName As %String;
+
+    Property MiddleName As %String;
+
+    Property LastName As %String;
+
+    Property Age As %Integer;
+
+    Property Allergies As %String;
 
     }
     ```
-- ### PatientDBRequest
+- ### PatientDataDBRequest
     ```
     Class code.msg.PatientDBRequest Extends Ens.Request
     {
@@ -31,71 +41,55 @@
 
     }
     ```
-- ### PatientDBResponse
+- ### PatientDataDBResponse
     ```
-    Class code.msg.PatientDBResponse Extends Ens.Response
+    Class code.msg.PatientDataDBResponse Extends Ens.Response
     {
 
-    Property FirstName As %String;
-
-    Property MiddleName As %String;
-
-    Property LastName As %String;
-
-    Property Age As %Integer;
-
-    Property Allergies As %String;
-
-    Property OverAge As %Boolean;
-
-    }
-    ```
-- ### MakeFileRequest
-    ```
-    Class code.msg.MakeFileRequest Extends Ens.Request
-    {
-
-    Property PatientID As %Integer;
-
-    Property FirstName As %String;
-
-    Property MiddleName As %String;
-
-    Property LastName As %String;
-
-    Property Age As %Integer;
-
-    Property Allergies As %String;
-
-    Property FileName As %String;
-
-    }
+    Property PatientDataID As %Integer;
+	
+	Property FirstName As %String;
+	
+	Property MiddleName As %String; 
+	
+	Property LastName As %String; 
+	
+	Property Age As %Integer; 
+	
+	Property Allergies As %String;
+	
+	}
     ```
 ## Dispatch
-- ### RestDisp
+- ### RestDispTest02
     ```
-    Class code.RestDisp Extends %CSP.REST
+    Class code.RestDispTest02 Extends %CSP.REST
     {
 
     XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
     {
     <Routes>
     
-    <Route Url="/patientinfo/:PatientID" Method="GET" Call="GetPatientInfo" Cors="true"/>
+    <Route Url="/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies" Method="GET" Call="GetPatientData" Cors="true"/>
     
     </Routes>
     }
 
-    ClassMethod GetPatientInfo(PatientID As %Integer) As %Status
+    ClassMethod GetPatientData(PatientDataID As %Integer, FirstName As %String, MiddleName As %String, LastName As %String, Age As %Integer, Allergies As %String) As %Status
     {
         set tSC = $$$OK
         try {
-            set tSC = ##class(Ens.Director).CreateBusinessService("PatientIDService",.tService)
+            set tSC = ##class(Ens.Director).CreateBusinessService("PatientDataService",.tService)
 
             $$$ThrowOnError(tSC)
 
             set request = ##class(code.msg.ProcessRequest).%New()
             set request.PatientID = PatientID
+            set request.FirstName = FirstName
+	        set request.MiddleName = MiddleName
+	        set request.LastName = LastName
+	        set request.Age = Age
+	        set request.Allergies = Allergies
             set tSC = tService.ProcessInput(request, .output)
 
             $$$ThrowOnError(tSC)
@@ -122,25 +116,26 @@
 ## Buisness Services
 - ### PatientIDService
 	```
-	Class code.bs.FilePatientIDService Extends Ens.BusinessService
-    {
+    Class code.bs.PatientDataService Extends Ens.BusinessService
+    {
 
-    Parameter ADAPTER = "EnsLib.File.InboundAdapter";
+    Method OnProcessInput(pInput As code.msg.PatientDataProcessRequest, Output pOutput As %RegisteredObject) As %Status
+    {
+        set tSC = $$$OK
+        try {
+            //set tRequest = ##class(code.msg.PatientDataDBRequest).%New()
+            //set tRequest.PatientID = pInput.StringValue
 
-    Method OnProcessInput(pRequest As %Stream.Object, Output pResponse As %RegisteredObject) As %Status
-    {
-                set tLine = pRequest.ReadLine()
-                $$$TRACE("tLine = "_tLine)
-                set tRequest = ##class(code.msg.ProcessRequest).%New()
-                $$$TRACE("Created request.")
-                set tRequest.PatientID = $piece(tLine,":",1)
-                $$$TRACE("PatientID = "_ tRequest.PatientID)
-                set st = ..SendRequestAsync("PermissionToOperate",tRequest)
-                ///
-                Quit $$$OK
-    }
+            set tSC = ..SendRequestSync("PatientDataProcess", pInput, .tResponse)
+            $$$ThrowOnError(tSC)
+        }
+        catch ex {
+            set tSC = ex.AsStatus()
+        }
+        return tSC
+    }
 
-    }
+    }
 	```
 - ### FilePatientIDService
 	```

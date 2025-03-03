@@ -1,29 +1,35 @@
-Class code.RestDisp Extends %CSP.REST
+Class code.RestDispTest02 Extends %CSP.REST
 {
 
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
 <Routes>
-    <Route Url="/patientinfo/:PatientID" Method="GET" Call="GetPatientInfo" Cors="true"/>
+
+<Route Url="/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies" Method="GET" Call="GetPatientData" Cors="true"/>
+
 </Routes>
 }
 
-ClassMethod GetPatientInfo(PatientID As %Integer) As %Status
+ClassMethod GetPatientData(PatientDataID As %Integer, FirstName As %String, MiddleName As %String, LastName As %String, Age As %Integer, Allergies As %String) As %Status
 {
     set tSC = $$$OK
     try {
-        set tSC = ##class(Ens.Director).CreateBusinessService("PatientIDService",.tService)
+        set tSC = ##class(Ens.Director).CreateBusinessService("PatientDataService",.tService)
+
         $$$ThrowOnError(tSC)
 
         set request = ##class(code.msg.ProcessRequest).%New()
-        set request.PatientID = PatientID
+        set request.PatientDataID = PatientDataID
+        set request.FirstName = FirstName
+        set request.MiddleName = MiddleName
+        set request.LastName = LastName
+        set request.Age = Age
+        set request.Allergies = Allergies
         set tSC = tService.ProcessInput(request, .output)
+
         $$$ThrowOnError(tSC)
 
         do %response.SetHeader("ContentType", "application/json")
-        do %response.SetHeader("Access-Control-Allow-Origin", "*") // Allow all origins
-        do %response.SetHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-        do %response.SetHeader("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
         #Dim output As %Library.DynamicObject
         set output = {"status":"pending"}
