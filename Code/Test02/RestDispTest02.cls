@@ -5,7 +5,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
 <Routes>
 
-<Route Url="/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies" Method="GET" Call="GetPatientData" Cors="true"/>
+<Route Url="/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies" Method="PUT" Call="GetPatientData" Cors="true"/>
 
 </Routes>
 }
@@ -18,7 +18,7 @@ ClassMethod GetPatientData(PatientDataID As %Integer, FirstName As %String, Midd
 
         $$$ThrowOnError(tSC)
 
-        set request = ##class(code.msg.ProcessRequest).%New()
+        set request = ##class(code.msg.PatientDataProcessRequest).%New()
         set request.PatientDataID = PatientDataID
         set request.FirstName = FirstName
         set request.MiddleName = MiddleName
