@@ -6,7 +6,7 @@
 	- This production will be in the test01 package and will be called: PatientInfo.
 ### ![Diagram](/Test02/Test02.jpg)
 ## Variables
-- PatientID %Integer
+- PatientDataID %Integer
 - FirstName %String
 - MiddleName %String
 - LastName %String
@@ -20,24 +20,35 @@
 
     Property PatientDataID As %Integer;
 
-    Property FirstName As %String;
+    Property FirstName As %String;
 
-    Property MiddleName As %String;
+    Property MiddleName As %String;
 
-    Property LastName As %String;
+    Property LastName As %String;
 
-    Property Age As %Integer;
+    Property Age As %Integer;
 
-    Property Allergies As %String;
+    Property Allergies As %String;
 
+    Storage Default
     }
     ```
 - ### PatientDataDBRequest
     ```
-    Class code.msg.PatientDBRequest Extends Ens.Request
+    Class code.msg.PatientDataDBRequest Extends Ens.Request
     {
 
-    Property PatientID As %Integer;
+    Property PatientDataID As %Integer;
+
+    Property FirstName As %String;
+
+    Property MiddleName As %String;
+
+    Property LastName As %String;
+
+    Property Age As %Integer;
+
+    Property Allergies As %String;
 
     }
     ```
@@ -47,31 +58,40 @@
     {
 
     Property PatientDataID As %Integer;
-	
-	Property FirstName As %String;
-	
-	Property MiddleName As %String; 
-	
-	Property LastName As %String; 
-	
-	Property Age As %Integer; 
-	
-	Property Allergies As %String;
-	
-	}
+
+    Property FirstName As %String;
+
+    Property MiddleName As %String;
+
+    Property LastName As %String;
+
+    Property Age As %Integer;
+
+    Property Allergies As %String;
+
+    }
     ```
 ## Dispatch
 - ### RestDispTest02
     ```
+
+    ```
+- ### Web Application
+	- ### ![Web Application General](/Test01/WAG.png)
+	- ### ![Web Application Application Roles](/Test01/WAARAS.png)
+	- ### ![Web Application Application Roles Selected](/Test01/WAAR.png)
+## Buisness Services
+- ### PatientIDService
+	```
     Class code.RestDispTest02 Extends %CSP.REST
     {
 
     XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
     {
     <Routes>
-    
-    <Route Url="/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies" Method="GET" Call="GetPatientData" Cors="true"/>
-    
+
+    <Route Url="/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies" Method="PUT" Call="GetPatientData" Cors="true"/>
+
     </Routes>
     }
 
@@ -83,13 +103,13 @@
 
             $$$ThrowOnError(tSC)
 
-            set request = ##class(code.msg.ProcessRequest).%New()
-            set request.PatientID = PatientID
+            set request = ##class(code.msg.PatientDataProcessRequest).%New()
+            set request.PatientDataID = PatientDataID
             set request.FirstName = FirstName
-	        set request.MiddleName = MiddleName
-	        set request.LastName = LastName
-	        set request.Age = Age
-	        set request.Allergies = Allergies
+            set request.MiddleName = MiddleName
+            set request.LastName = LastName
+            set request.Age = Age
+            set request.Allergies = Allergies
             set tSC = tService.ProcessInput(request, .output)
 
             $$$ThrowOnError(tSC)
@@ -108,44 +128,32 @@
     }
 
     }
+	```
+- ### PatientDataService
     ```
-- ### Web Application
-	- ### ![Web Application General](/Test01/WAG.png)
-	- ### ![Web Application Application Roles](/Test01/WAARAS.png)
-	- ### ![Web Application Application Roles Selected](/Test01/WAAR.png)
-## Buisness Services
-- ### PatientIDService
-	```
-	    
-	```
-- ### FilePatientIDService
-	```
-	Class code.bs.FilePatientIDService Extends Ens.BusinessService
+    Class code.bs.PatientDataService Extends Ens.BusinessService
     {
 
-    Parameter ADAPTER = "EnsLib.File.InboundAdapter";
-
-    Method OnProcessInput(pRequest As %Stream.Object, Output pResponse As %RegisteredObject) As %Status
+    Method OnProcessInput(pInput As code.msg.PatientDataProcessRequest, Output pOutput As %RegisteredObject) As %Status
     {
-                set tLine = pRequest.ReadLine()
-                $$$TRACE("tLine = "_tLine)
-                set tRequest = ##class(code.msg.ProcessRequest).%New()
-                $$$TRACE("Created request.")
-                set tRequest.PatientID = $piece(tLine,":",1)
-                $$$TRACE("PatientID = "_ tRequest.PatientID)
-                set st = ..SendRequestAsync("PatientInfoProcess",tRequest)
-                ///
-                Quit $$$OK
+        set tSC = $$$OK
+        try {
+        //set tRequest = ##class(code.msg.PatientDataDBRequest).%New()
+        //set tRequest.PatientID = pInput.StringValue
+
+        set tSC = ..SendRequestSync("PatientDataProcess", pInput, .tResponse)
+        $$$ThrowOnError(tSC)
+        }
+        catch ex {
+            set tSC = ex.AsStatus()
+        }
+            return tSC
     }
 
     }
-	```
-    - #### File
-        ```
-        69
-        ```
+    ```
 - ## Postman
-	- ### `http://localhost:52773/csp/test01/patientinfo/:PatientID`
+	- ### `http://localhost:52773/csp/test02/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies`
     - ### ![Postman](/Test01/Postman.png)
 - ### PatientIDService
     ```
@@ -171,43 +179,40 @@
     }
     ```
 ## Buisness Processes
-- ### PatientInfoProcess
-	- ### ![Diagram](Process1.png)
-	- ### ![Context](Context.png)
-	- ### ![Get Patient Info](GetPatientInfo.png)
-	- ### ![Get Patient Info Request Builder](GPIRequestBuilder.png)
-	- ### ![Get Patient Info Response Builder](GPIResponseBuilder.png)
-	- ### ![If](/Test01/If.png)
-	- ### ![Make File](MakeFile.png)
-	- ### ![Make File Request Builder](MFRequestBuilder.png)
+- ### PatientDataProcess
+	- ### ![]()
+	- ### ![]()
+	- ### ![]()
+	- ### ![]()
+	- ### ![]()
+	- ### ![]()
+	- ### ![]()
+	- ### ![]()
 ## Buisness Operations
-- ### PatientDBOperation
+- ### PatientDataOperation
     ```
-    Class code.bo.PatientDBOperation Extends Ens.BusinessOperation
+    Class code.bo.PatientDataOperation Extends Ens.BusinessOperation
     {
 
     Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
     Parameter INVOCATION = "Queue";
 
-    Method PatientInfo(pRequest As code.msg.PatientDBRequest, Output pResponse As code.msg.PatientDBResponse)
+    Method PatientData(pRequest As code.msg.PatientDataDBRequest, Output pResponse As code.msg.PatientDataDBResponse) As %Status
     {
-        set pResponse=##class(code.msg.PatientDBResponse).%New()
+        set pResponse = ##class(code.msg.PatientDataDBResponse).%New()
         
-        set query = "Select FirstName, MiddleName, LastName, Age, Allergies from SQLUser.Patients where PatientID = "_pRequest.PatientID
-        set st =..Adapter.ExecuteQuery(.tResult,query)
-        $$$TRACE("st = "_st) 
-        do tResult.Next()
+        //set query = "INSERT INTO PatientData (PatientDataID, FirstName, MiddleName, LastName, Age, Allergies) VALUES ("_pRequest.PatientDataID_", "_pRequest.FirstName_", "_pRequest.MiddleName_", "_pRequest.LastName_", "_pRequest.Age_", "_pRequest.Allergies_")"
+        set query = "INSERT INTO PatientData VALUES ("_pRequest.PatientDataID_", "_pRequest.FirstName_", "_pRequest.MiddleName_", "_pRequest.LastName_", "_pRequest.Age_", "_pRequest.Allergies_")"
+        set st = ..Adapter.ExecuteQuery(.tResult, query)
+        $$$TRACE("st = "_st)
 
-        set pResponse.FirstName=tResult.Get("FirstName")    
-        set pResponse.MiddleName=tResult.Get("MiddleName")
-        set pResponse.LastName=tResult.Get("LastName")
-        set pResponse.Age=tResult.Get("Age")
-        set pResponse.Allergies=tResult.Get("Allergies")
-        set pResponse.OverAge=0
-        if (pResponse.Age >= 18) {
-            set pResponse.OverAge=1
-        }
+        set pResponse.PatientDataID=pRequest.PatientDataID
+        set pResponse.FirstName=pRequest.FirstName
+        set pResponse.MiddleName=pRequest.MiddleName
+        set pResponse.LastName=pRequest.LastName
+        set pResponse.Age=pRequest.Age
+        set pResponse.Allergies=pRequest.Allergies
 
         Quit $$$OK
     }
@@ -215,66 +220,13 @@
     XData MessageMap
     {
     <MapItems>
-            <MapItem MessageType="code.msg.PatientDBRequest">
-                <Method>PatientInfo</Method>
-            </MapItem>
-        </MapItems>
+        <MapItem MessageType="code.msg.PatientDataDBRequest">
+            <Method>PatientData</Method>
+        </MapItem>
+    </MapItems>
     }
 
     }
-
-    ```
-- ### MakeFileOperation
-    ```
-	Class code.bo.MakeFileOperation Extends Ens.BusinessOperation
-	{
-	
-	Parameter ADAPTER = "EnsLib.File.OutboundAdapter";
-	
-	Parameter INVOCACION = "Queue";
-	
-	/*
-	Method DecisionFile(pRequest As code.msg.MakeFileRequest, Output pResponse As Ens.Response)
-	{
-			set tData = $ZDATETIME($H)_$$$NL_
-						pRequest.InsuranceCompany_$$$NL_
-						pRequest.Contents.PatientID_$$$NL_
-						pRequest.Contents.RequestedOperation_$$$NL_
-						pRequest.Contents.LikelyOutcome_$$$NL
-			set st = ..Adapter.PutString(pRequest.FileName, tData)
-			$$$TRACE("st = "_$system.Status.DisplayError(st))
-	
-			Quit $$$OK
-	}
-	*/
-	Method NotifyFile(pRequest As code.msg.MakeFileRequest, Output pResponse As Ens.Response)
-	{
-			set tData = $ZDATETIME($H)_$$$NL_
-						pRequest.PatientID_" "_
-						pRequest.FirstName_" "_
-						pRequest.MiddleName_" "_
-						pRequest.LastName_" "_
-						pRequest.Age_" "_
-						pRequest.Allergies_" "
-			set sc = ..Adapter.PutString(pRequest.FileName, tData)
-			$$$TRACE("st = "_$system.Status.DisplayError(sc))
-	
-			Quit $$$OK
-	}
-	
-	XData MessageMap
-	{
-	<MapItems>
-				<!-- <MapItem MessageType="code.msg.MakeFileRequest">
-				<Method>DecisionFile</Method>
-			</MapItem> -->
-				<MapItem MessageType="code.msg.MakeFileRequest">
-				<Method>NotifyFile</Method>
-			</MapItem>
-		</MapItems>
-	}
-	
-	}
     ```
 ## Data Base
 - ### SQL Table: Patients
@@ -288,22 +240,19 @@
         Allergies VARCHAR(150)
     )
     ```
-- ### SQL Insert Rows
+- ### SQL Select Rows
     ```
-    INSERT INTO PatientData (PatientID, FirstName, MiddleName, LastName, Age, Allergies) 
-    VALUES (1, 'Mrtin', 'L.' , 'Gore', 63, 'None');
+    SELECT * from SQLUser.Patientdata
     ```
-- ### SQL Update Rows
-```
-UPDATE PatientData 
-SET FirstName = 'Martin' 
-WHERE PatientID = 1;
-```
+- ### SQL Drop Table
+    ```
+    DROP TABLE PatientData;
+    ```
 - ### DSN
 	- Open ODBC 64 bits
 	- Under "System DSN" click "Add..."
-	- ![Action description](DSNAdd.png)
+	- ![Action description]()
 	- Select the "InterSystems IRIS" then click "Finish"
-	- ![Action Despcription 2](DSNServer.png)
+	- ![Action Despcription 2]()
 	- Now fill the server info with the following details then click "Ok".
-	- ![Action Description 3](DSNInfo.png)
+	- ![Action Description 3]()
