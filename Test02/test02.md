@@ -74,15 +74,6 @@
 ## Dispatch
 - ### RestDispTest02
     ```
-
-    ```
-- ### Web Application
-	- ### ![Web Application General]()
-	- ### ![Web Application Application Roles](/Test01/WAARAS.png)
-	- ### ![Web Application Application Roles Selected](/Test01/WAAR.png)
-## Buisness Services
-- ### PatientIDService
-	```
     Class code.RestDispTest02 Extends %CSP.REST
     {
 
@@ -128,7 +119,12 @@
     }
 
     }
-	```
+    ```
+- ### Web Application
+	- ### ![Web Application General]()
+	- ### ![Web Application Application Roles](/Test01/WAARAS.png)
+	- ### ![Web Application Application Roles Selected](/Test01/WAAR.png)
+## Buisness Services
 - ### PatientDataService
     ```
     Class code.bs.PatientDataService Extends Ens.BusinessService
