@@ -1,9 +1,9 @@
 # Test 02
 ## Namespace
 - ### Package:
-	- This production will be in the pIRIS namespace and will be called: test01.
+	- This production will be in the pIRIS namespace and will be in the package: test02.
 - ### Production:
-	- This production will be in the test01 package and will be called: PatientInfo.
+	- This production will be in the test02 package and will be called: PatientData.
 ### ![Diagram](/Test02/Test02.jpg)
 ## Variables
 - PatientDataID %Integer
