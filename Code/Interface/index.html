@@ -25,6 +25,8 @@
             padding: 10px;
             width: 300px;
             margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         button {
             padding: 10px 20px;
@@ -32,9 +34,21 @@
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
         }
         button:hover {
             background-color: #005a9e;
+        }
+        #response {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -45,35 +59,41 @@
     <div class="container">
         <h1>Enter Patient ID</h1>
         <input type="text" id="PatientID" placeholder="Patient ID">
-        <button onclick="sendRequest()">Submit</button>
+        <button id="submitButton">Submit</button>
+        <pre id="response"></pre>
     </div>
+
     <script>
+        // Function to send the request to the backend
         function sendRequest() {
-            const PatientID = document.getElementById('PatientID').value;
-            const url = `http://localhost:52773/csp/test01/patientinfo/${PatientID}`;
-            
+            const patientID = document.getElementById('PatientID').value.trim();
+            if (!patientID) {
+                document.getElementById("response").innerText = "Please enter a valid Patient ID.";
+                return;
+            }
+
+            // const url = `http://localhost:52773/csp/test01/patientinfo/${patientID}`;
+            const url = `https://reqres.in/api/users?page=2`;
+
             fetch(url, {
                 method: 'GET',
-                mode: 'cors', // Added CORS mode
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log(data);
-                alert('Request sent successfully!');
+                // Display the response as formatted JSON
+                document.getElementById("response").innerText = JSON.stringify(data, null, 2);
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert(`Error sending request: ${error.message}`);
+                // Display error if request fails
+                document.getElementById("response").innerText = "Error: " + error.message;
             });
         }
+
+        // Event listener for button click
+        document.getElementById('submitButton').addEventListener('click', sendRequest);
     </script>
 </body>
 </html>

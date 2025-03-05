@@ -12,6 +12,10 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 
 ClassMethod GetPatientInfo(PatientID As %Integer) As %Status
 {
+    do %response.SetHeader("Access-Control-Allow-Origin", "*")
+    do %response.SetHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+    do %response.SetHeader("Access-Control-Allow-Headers", "Content-Type")
+    //
     set tSC = $$$OK
     try {
         set tSC = ##class(Ens.Director).CreateBusinessService("PatientIDService",.tService)
