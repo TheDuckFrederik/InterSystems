@@ -1,0 +1,12 @@
+{
+	"nodes":[
+		{"id":"f58999a8ede29540","x":-220,"y":-340,"width":140,"height":50,"color":"4","type":"text","text":"Metodo"},
+		{"id":"e04072154a420646","type":"text","text":"Negocio (Procesos)","x":40,"y":-86,"width":140,"height":66,"color":"2"},
+		{"id":"f6c3b2bf7c3d9463","type":"text","text":"Tecnologia","x":-400,"y":-78,"width":140,"height":50,"color":"6"}
+	],
+	"edges":[
+		{"id":"eeb116c202264cf7","fromNode":"f58999a8ede29540","fromSide":"bottom","toNode":"f6c3b2bf7c3d9463","toSide":"top","color":"4","label":"Para aplicar"},
+		{"id":"0f75ba14037545c0","fromNode":"f58999a8ede29540","fromSide":"bottom","toNode":"e04072154a420646","toSide":"top","color":"4","label":"Para ayudar a mejorar"},
+		{"id":"0a54dc43a9f229b3","fromNode":"f6c3b2bf7c3d9463","fromSide":"right","toNode":"e04072154a420646","toSide":"left","color":"6","label":"Para ayudar a mejorar"}
+	]
+}

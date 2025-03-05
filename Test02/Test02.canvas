@@ -1,0 +1,18 @@
+{
+	"nodes":[
+		{"id":"5183c10a0f91cd8f","type":"text","text":"PatientDataService","x":-860,"y":-400,"width":250,"height":580,"color":"4"},
+		{"id":"1daeae4d2070808b","type":"text","text":"DB","x":660,"y":-170,"width":108,"height":120,"color":"1"},
+		{"id":"057ee2cee361657c","type":"text","text":"","x":-260,"y":-400,"width":250,"height":290,"color":"3"},
+		{"id":"81b491985aed3c6d","type":"text","text":"","x":-260,"y":-110,"width":250,"height":290,"color":"3"},
+		{"id":"e301172c9641ca36","type":"text","text":"","x":340,"y":-400,"width":250,"height":290,"color":"2"},
+		{"id":"a48adf680145d41d","type":"text","text":"","x":340,"y":-110,"width":250,"height":290,"color":"2"},
+		{"id":"799b33af779775c2","type":"text","text":"PatientDataOperation","x":340,"y":-400,"width":250,"height":580,"color":"2"},
+		{"id":"d2d65c33a3134808","type":"text","text":"PatientDataProcess","x":-260,"y":-400,"width":250,"height":580,"color":"3"}
+	],
+	"edges":[
+		{"id":"692229466c321667","fromNode":"799b33af779775c2","fromSide":"right","toNode":"1daeae4d2070808b","toSide":"left","fromEnd":"arrow","color":"1"},
+		{"id":"fb89e1b742e00b7b","fromNode":"5183c10a0f91cd8f","fromSide":"right","toNode":"d2d65c33a3134808","toSide":"left","color":"4","label":"PatientDataProcessReqeust"},
+		{"id":"07a886afa5d3d2f3","fromNode":"057ee2cee361657c","fromSide":"right","toNode":"e301172c9641ca36","toSide":"left","color":"3","label":"PatientDataDBRequest"},
+		{"id":"ea11b446e8819313","fromNode":"a48adf680145d41d","fromSide":"left","toNode":"81b491985aed3c6d","toSide":"right","color":"2","label":"PatientDataDBResponse"}
+	]
+}

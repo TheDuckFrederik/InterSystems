@@ -112,3 +112,14 @@
 	- Seguimiento - Curas, Ejercicios, Pruebas, Rehabilitacion, Observacion, Regular la Medicacion.
 	- Cuando el "seguimiento" es pe por vida, al paciente se le llama cronico. una etapa en la cura definitiva en algunas enfermedades es llegar a poder "CRONIFICARLAS"
 	- Para cada seccion hay partes de los sistemas assistenciales y administrativas, y todos tienen su sistema de datos, pero para la persona tiene que ser continuo (Patient Journey).
+- [Partes de la sanidad](/Masterclass/partesDeLaSanidad.canvas)
+	- Metodo
+	- Tecnologia
+	- Negocio (procesos) - Es lo que estamos haciendo ahora
+
+	- El metodo se usa para aplicar la tecnologia
+	- El metodo se usa para para ayudar a mejorar el negocio
+	- La tecnologia se usa para para ayudar a mejorar el negocio
+	- Es un sistema de simbiosis
+- Deberes 7-3-2025
+	- Atrefactos basicos del estandard FHIR.

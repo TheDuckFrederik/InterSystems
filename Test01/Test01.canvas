@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"5183c10a0f91cd8f","type":"text","text":"PatientIDService","x":-740,"y":-400,"width":250,"height":290,"color":"4"},
+		{"id":"ebe650a837dc5832","type":"text","text":"","x":-280,"y":-400,"width":250,"height":290},
+		{"id":"57ae88374e7d1d97","type":"text","text":"","x":-280,"y":-110,"width":250,"height":290},
+		{"id":"ea7cb36b12299164","type":"text","text":"FilePatientIDService","x":-740,"y":-110,"width":250,"height":290,"color":"4"},
+		{"id":"68c474b3f9dc6f05","type":"text","text":"MakeFileOperation","x":180,"y":-97,"width":250,"height":265,"color":"2"},
+		{"id":"aa2c4635f3d8bc25","type":"text","text":"PatientDBOperation","x":180,"y":-385,"width":250,"height":260,"color":"2"},
+		{"id":"1daeae4d2070808b","type":"text","text":"DB","x":520,"y":-315,"width":108,"height":120,"color":"1"},
+		{"id":"21a31044d841f7d6","type":"text","text":"File","x":520,"y":-24,"width":108,"height":120,"color":"5"},
+		{"id":"27c574cabf9a937d","type":"text","text":"","x":-280,"y":-400,"width":250,"height":70},
+		{"id":"d78121b565cf1e0d","type":"text","text":"PatientInfoProcess","x":-280,"y":-400,"width":250,"height":580,"color":"3"}
+	],
+	"edges":[
+		{"id":"68c5bab10faa15ab","fromNode":"57ae88374e7d1d97","fromSide":"right","toNode":"68c474b3f9dc6f05","toSide":"left","color":"3","label":"MakeFileRequest"},
+		{"id":"b67ca00395d24e49","fromNode":"aa2c4635f3d8bc25","fromSide":"right","toNode":"1daeae4d2070808b","toSide":"left","fromEnd":"arrow","color":"1"},
+		{"id":"79935c63b4b834c6","fromNode":"68c474b3f9dc6f05","fromSide":"right","toNode":"21a31044d841f7d6","toSide":"left","color":"5"},
+		{"id":"381161325a612967","fromNode":"aa2c4635f3d8bc25","fromSide":"left","toNode":"d78121b565cf1e0d","toSide":"right","color":"2","label":"PatientDBResponse"},
+		{"id":"0b5cddc031e27750","fromNode":"5183c10a0f91cd8f","fromSide":"right","toNode":"ebe650a837dc5832","toSide":"left","color":"4","label":"ProcessRequest"},
+		{"id":"bfbc6abd08bba1cd","fromNode":"ea7cb36b12299164","fromSide":"right","toNode":"57ae88374e7d1d97","toSide":"left","color":"4","label":"ProcessRequest"},
+		{"id":"006f67c50a033531","fromNode":"27c574cabf9a937d","fromSide":"right","toNode":"aa2c4635f3d8bc25","toSide":"left","color":"3","label":"PatientDBRequest"}
+	]
+}
