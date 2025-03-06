@@ -201,7 +201,7 @@
 - ### SQL Table: Patients
     ```
     CREATE TABLE PatientData (
-        PatientID INT PRIMARY KEY,
+        PatientDataID INT PRIMARY KEY,
         FirstName VARCHAR(150),
         MiddleName VARCHAR(150),
         LastName VARCHAR(150),
