@@ -196,14 +196,14 @@
     ```
 ## Buisness Processes
 - ### PatientInfoProcess
-	- ### ![Diagram](Test01/Process1.png)
-	- ### ![Context](Test01/Context.png)
-	- ### ![Get Patient Info](GetPatientInfo.png)
-	- ### ![Get Patient Info Request Builder](GPIRequestBuilder.png)
-	- ### ![Get Patient Info Response Builder](GPIResponseBuilder.png)
+	- ### ![Diagram](/Test01/Process1.png)
+	- ### ![Context](/Test01/Context.png)
+	- ### ![Get Patient Info](/Test01/GetPatientInfo.png)
+	- ### ![Get Patient Info Request Builder](/Test01/GPIRequestBuilder.png)
+	- ### ![Get Patient Info Response Builder](/Test01/GPIResponseBuilder.png)
 	- ### ![If](/Test01/If.png)
-	- ### ![Make File](MakeFile.png)
-	- ### ![Make File Request Builder](MFRequestBuilder.png)
+	- ### ![Make File](/Test01/MakeFile.png)
+	- ### ![Make File Request Builder](/Test01/MFRequestBuilder.png)
 ## Buisness Operations
 - ### PatientDBOperation
     ```
@@ -318,16 +318,16 @@
     VALUES (1, 'Mrtin', 'L.' , 'Gore', 63, 'None');
     ```
 - ### SQL Update Rows
-```
-UPDATE Patients 
-SET FirstName = 'Martin' 
-WHERE PatientID = 1;
-```
+    ```
+    UPDATE Patients 
+    SET FirstName = 'Martin' 
+    WHERE PatientID = 1;
+    ```
 - ### DSN
 	- Open ODBC 64 bits
 	- Under "System DSN" click "Add..."
-	- ![Action description](DSNAdd.png)
+	- ![Action description](/Test01/DSNAdd.png)
 	- Select the "InterSystems IRIS" then click "Finish"
-	- ![Action Despcription 2](DSNServer.png)
+	- ![Action Despcription 2](/Test01/DSNServer.png)
 	- Now fill the server info with the following details then click "Ok".
-	- ![Action Description 3](Test01/DSNInfo.png)
+	- ![Action Description 3](/Test01/DSNInfo.png)
