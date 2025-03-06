@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-06 12:29:27">
+<Project name="EnsExportItem_2025-03-06 12-29-03_513+1" LastModified="2025-03-06 12:29:27.4900599">
+  <ProjectDescription>Studio Project generated starting from Production Configuration Item 'test02.PatientData : PatientDataProcess' at 2025-03-06 11:29:03.513 UTC</ProjectDescription>
+  <Items>
+    <ProjectItem name="code.bo.PatientDataOperation" type="CLS"></ProjectItem>
+    <ProjectItem name="code.bs.PatientDataService" type="CLS"></ProjectItem>
+    <ProjectItem name="code.msg.PatientDataDBRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="code.msg.PatientDataDBResponse" type="CLS"></ProjectItem>
+    <ProjectItem name="code.msg.PatientDataProcessRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test02.PatientDataProcess" type="CLS"></ProjectItem>
+    <ProjectItem name="Settings:PatientDataOperation.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:PatientDataProcess.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:PatientDataService.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportItem_2025-03-06 12-29-03_513+1.PTD" type="PTD"></ProjectItem>
+  </Items>
+</Project>
+
+
+<Class name="code.bo.PatientDataOperation">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67270,40235.7244421</TimeChanged>
+<TimeCreated>67267,41179.1422548</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.SQL.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCATION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="PatientData">
+<FormalSpec>pRequest:code.msg.PatientDataDBRequest,*pResponse:code.msg.PatientDataDBResponse</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set pResponse = ##class(code.msg.PatientDataDBResponse).%New()
+    
+    set query = "INSERT INTO SQLUser.PatientData (PatientDataID, FirstName, MiddleName, LastName, Age, Allergies) VALUES ("_pRequest.PatientDataID_", '"_pRequest.FirstName_"', '"_pRequest.MiddleName_"', '"_pRequest.LastName_"', "_pRequest.Age_", '"_pRequest.Allergies_"')"
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+
+    set pResponse.PatientDataID=pRequest.PatientDataID
+    set pResponse.FirstName=pRequest.FirstName
+    set pResponse.MiddleName=pRequest.MiddleName
+    set pResponse.LastName=pRequest.LastName
+    set pResponse.Age=pRequest.Age
+    set pResponse.Allergies=pRequest.Allergies
+
+    Quit $$$OK
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+    <MapItem MessageType="code.msg.PatientDataDBRequest">
+        <Method>PatientData</Method>
+    </MapItem>
+</MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="code.bs.PatientDataService">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>67267,60920.0547619</TimeChanged>
+<TimeCreated>67267,60920.0547619</TimeCreated>
+
+<Method name="OnProcessInput">
+<FormalSpec>pInput:code.msg.PatientDataProcessRequest,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set tSC = $$$OK
+    try {
+    //set tRequest = ##class(code.msg.PatientDataDBRequest).%New()
+    //set tRequest.PatientID = pInput.StringValue
+
+    set tSC = ..SendRequestSync("PatientDataProcess", pInput, .tResponse)
+    $$$ThrowOnError(tSC)
+    }
+    catch ex {
+        set tSC = ex.AsStatus()
+    }
+        return tSC
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="code.msg.PatientDataDBRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67267,43427.5150809</TimeChanged>
+<TimeCreated>67267,40107.5522912</TimeCreated>
+
+<Property name="PatientDataID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName">
+<Type>%String</Type>
+</Property>
+
+<Property name="Age">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>PatientDataDBRequestDefaultData</DefaultData>
+<Data name="PatientDataDBRequestDefaultData">
+<Subscript>"PatientDataDBRequest"</Subscript>
+<Value name="1">
+<Value>PatientDataID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName</Value>
+</Value>
+<Value name="5">
+<Value>Age</Value>
+</Value>
+<Value name="6">
+<Value>Allergies</Value>
+</Value>
+<Value name="7">
+<Value>FileName</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="code.msg.PatientDataDBResponse">
+<Super>Ens.Response</Super>
+<TimeChanged>67267,51349.651045</TimeChanged>
+<TimeCreated>67267,50958.7355081</TimeCreated>
+
+<Property name="PatientDataID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName">
+<Type>%String</Type>
+</Property>
+
+<Property name="Age">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>PatientDataDBResponseDefaultData</DefaultData>
+<Data name="PatientDataDBResponseDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"PatientDataDBResponse"</Subscript>
+<Value name="1">
+<Value>PatientDataID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName</Value>
+</Value>
+<Value name="5">
+<Value>Age</Value>
+</Value>
+<Value name="6">
+<Value>Allergies</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="code.msg.PatientDataProcessRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67267,60052.4102522</TimeChanged>
+<TimeCreated>67267,39857.2429744</TimeCreated>
+
+<Property name="PatientDataID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName">
+<Type>%String</Type>
+</Property>
+
+<Property name="Age">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>PatientDataProcessRequestDefaultData</DefaultData>
+<Data name="PatientDataProcessRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"PatientDataProcessRequest"</Subscript>
+<Value name="1">
+<Value>PatientDataID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName</Value>
+</Value>
+<Value name="5">
+<Value>Age</Value>
+</Value>
+<Value name="6">
+<Value>Allergies</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test02.PatientDataProcess">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>67270,42339.9080093</TimeChanged>
+<TimeCreated>67267,58276.0433974</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='code.msg.PatientDataDBRequest' response='code.msg.PatientDataDBResponse' height='2000' width='2000' >
+<context>
+<property name='PatientDataID' type='%Integer' instantiate='0' />
+<property name='FirstName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='MiddleName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='Age' type='%Integer' instantiate='0' />
+<property name='Allergies' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+</context>
+<sequence xend='200' yend='350' >
+<call name='PatientData' target='PatientDataOperation' async='0' xpos='200' ypos='250' >
+<request type='code.msg.PatientDataDBRequest' >
+<assign property="callrequest.PatientDataID" value="request.PatientDataID" action="set" languageOverride="" />
+<assign property="callrequest.FirstName" value="request.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="request.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName" value="request.LastName" action="set" languageOverride="" />
+<assign property="callrequest.Age" value="request.Age" action="set" languageOverride="" />
+<assign property="callrequest.Allergies" value="request.Allergies" action="set" languageOverride="" />
+</request>
+<response type='code.msg.PatientDataDBResponse' >
+<assign property="response.PatientDataID" value="callresponse.PatientDataID" action="set" languageOverride="" />
+<assign property="response.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="response.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="response.LastName" value="callresponse.LastName" action="set" languageOverride="" />
+<assign property="response.Age" value="callresponse.Age" action="set" languageOverride="" />
+<assign property="response.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+</response>
+</call>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportItem_2025-03-06 12-29-03_513+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportItem_2025-03-06 12-29-03_513+1" description="Export Notes for export EnsExportItem_2025-03-06 12-29-03_513+1">
+<![CDATA[<Deployment>
+<Creation>
+<Machine>ITMESPC13SEFL</Machine>
+<Instance>IRISHEALTH</Instance>
+<Namespace>PIRIS</Namespace>
+<SourceProduction>test02.PatientData</SourceProduction>
+<Username>_SYSTEM</Username>
+<UTC>2025-03-06 11:29:27.487</UTC>
+</Creation>
+<Notes>
+</Notes>
+<Contents>
+<ExportProject>EnsExportItem_2025-03-06 12-29-03_513+1</ExportProject>
+<Item num="1">Settings:PatientDataOperation.PTD</Item>
+<Item num="2">Settings:PatientDataProcess.PTD</Item>
+<Item num="3">Settings:PatientDataService.PTD</Item>
+<Item num="4">code.bo.PatientDataOperation.CLS</Item>
+<Item num="5">code.bs.PatientDataService.CLS</Item>
+<Item num="6">code.msg.PatientDataDBRequest.CLS</Item>
+<Item num="7">code.msg.PatientDataDBResponse.CLS</Item>
+<Item num="8">code.msg.PatientDataProcessRequest.CLS</Item>
+<Item num="9">test02.PatientDataProcess.CLS</Item>
+</Contents>
+<ProductionClassInExport></ProductionClassInExport>
+</Deployment>
+
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:PatientDataOperation.PTD"><ProjectTextDocument name="Settings:PatientDataOperation" description="Settings for PatientDataOperation in Production test02.PatientData">
+<![CDATA[<Item Name="PatientDataOperation" Category="" ClassName="code.bo.PatientDataOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="DSN">PatientData</Setting></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:PatientDataProcess.PTD"><ProjectTextDocument name="Settings:PatientDataProcess" description="Settings for PatientDataProcess in Production test02.PatientData">
+<![CDATA[<Item Name="PatientDataProcess" Category="" ClassName="test02.PatientDataProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:PatientDataService.PTD"><ProjectTextDocument name="Settings:PatientDataService" description="Settings for PatientDataService in Production test02.PatientData">
+<![CDATA[<Item Name="PatientDataService" Category="" ClassName="code.bs.PatientDataService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""></Item>
+]]></ProjectTextDocument>
+</Document></Export>

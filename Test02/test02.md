@@ -29,8 +29,6 @@
     Property Age As %Integer;
 
     Property Allergies As %String;
-
-    Storage Default
     }
     ```
 - ### PatientDataDBRequest
