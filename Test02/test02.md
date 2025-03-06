@@ -4,7 +4,7 @@
 	- This production will be in the pIRIS namespace and will be in the package: test02.
 - ### Production:
 	- This production will be in the test02 package and will be called: PatientData.
-### ![Diagram](/Test02/Test02.jpg)
+### ![Diagram](/Test02/Test02.png)
 ## Variables
 - PatientDataID %Integer
 - FirstName %String
@@ -121,7 +121,7 @@
     }
     ```
 - ### Web Application
-	- ### ![Web Application General]()
+	- ### ![Web Application General](/Test02/WAG.png)
 	- ### ![Web Application Application Roles](/Test01/WAARAS.png)
 	- ### ![Web Application Application Roles Selected](/Test01/WAAR.png)
 ## Buisness Services
@@ -150,40 +150,14 @@
     ```
 - ## Postman
 	- ### `http://localhost:52773/csp/test02/patientdata/:PatientDataID/:FirstName/:MiddleName/:LastName/:Age/:Allergies`
-    - ### ![Postman](/Test01/Postman.png)
-- ### PatientIDService
-    ```
-    Class code.bs.PatientIDService Extends Ens.BusinessService
-    {
-
-    Method OnProcessInput(pInput As code.msg.ProcessRequest, Output pOutput As %RegisteredObject) As %Status
-    {
-        set tSC = $$$OK
-        try {
-            //set tRequest = ##class(code.msg.PatientDBRequest).%New()
-            //set tRequest.PatientID = pInput.StringValue
-
-            set tSC = ..SendRequestSync("PatientInfoProcess", pInput, .tResponse)
-            $$$ThrowOnError(tSC)
-        }
-        catch ex {
-            set tSC = ex.AsStatus()
-        }
-        return tSC
-    }
-
-    }
-    ```
+    - ### ![Postman](/Test02/Postman.png)
 ## Buisness Processes
 - ### PatientDataProcess
-	- ### ![]()
-	- ### ![]()
-	- ### ![]()
-	- ### ![]()
-	- ### ![]()
-	- ### ![]()
-	- ### ![]()
-	- ### ![]()
+	- ### ![Diagram](/Test02/Process1.png)
+	- ### ![Context](/Test02/Context.png)
+	- ### ![Patient Data](/Test02/PatientData.png)
+	- ### ![Patient Data Request Builder](/Test02/PDRequestBuilder.png)
+	- ### ![Patient Data Response Builder](/Test02/PDResponseBuilder.png)
 ## Buisness Operations
 - ### PatientDataOperation
     ```
@@ -198,8 +172,7 @@
     {
         set pResponse = ##class(code.msg.PatientDataDBResponse).%New()
         
-        //set query = "INSERT INTO PatientData (PatientDataID, FirstName, MiddleName, LastName, Age, Allergies) VALUES ("_pRequest.PatientDataID_", "_pRequest.FirstName_", "_pRequest.MiddleName_", "_pRequest.LastName_", "_pRequest.Age_", "_pRequest.Allergies_")"
-        set query = "INSERT INTO PatientData VALUES ("_pRequest.PatientDataID_", "_pRequest.FirstName_", "_pRequest.MiddleName_", "_pRequest.LastName_", "_pRequest.Age_", "_pRequest.Allergies_")"
+        set query = "INSERT INTO SQLUser.PatientData (PatientDataID, FirstName, MiddleName, LastName, Age, Allergies) VALUES ("_pRequest.PatientDataID_", '"_pRequest.FirstName_"', '"_pRequest.MiddleName_"', '"_pRequest.LastName_"', "_pRequest.Age_", '"_pRequest.Allergies_"')"
         set st = ..Adapter.ExecuteQuery(.tResult, query)
         $$$TRACE("st = "_st)
 
@@ -247,8 +220,8 @@
 - ### DSN
 	- Open ODBC 64 bits
 	- Under "System DSN" click "Add..."
-	- ![Action description]()
+	- ![Action description](DSNAdd.png)
 	- Select the "InterSystems IRIS" then click "Finish"
-	- ![Action Despcription 2]()
+	- ![Action Despcription 2](DSNServer.png)
 	- Now fill the server info with the following details then click "Ok".
-	- ![Action Description 3]()
+	- ![Action Description 3](/Test02/DSNInfo.png)

@@ -196,8 +196,8 @@
     ```
 ## Buisness Processes
 - ### PatientInfoProcess
-	- ### ![Diagram](Process1.png)
-	- ### ![Context](Context.png)
+	- ### ![Diagram](Test01/Process1.png)
+	- ### ![Context](Test01/Context.png)
 	- ### ![Get Patient Info](GetPatientInfo.png)
 	- ### ![Get Patient Info Request Builder](GPIRequestBuilder.png)
 	- ### ![Get Patient Info Response Builder](GPIResponseBuilder.png)
@@ -330,4 +330,4 @@ WHERE PatientID = 1;
 	- Select the "InterSystems IRIS" then click "Finish"
 	- ![Action Despcription 2](DSNServer.png)
 	- Now fill the server info with the following details then click "Ok".
-	- ![Action Description 3](DSNInfo.png)
+	- ![Action Description 3](Test01/DSNInfo.png)

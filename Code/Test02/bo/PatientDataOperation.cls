@@ -9,9 +9,7 @@ Method PatientData(pRequest As code.msg.PatientDataDBRequest, Output pResponse A
 {
     set pResponse = ##class(code.msg.PatientDataDBResponse).%New()
     
-    #; //set query = "INSERT INTO PatientData (PatientDataID, FirstName, MiddleName, LastName, Age, Allergies) VALUES ("_pRequest.PatientDataID_", "_pRequest.FirstName_", "_pRequest.MiddleName_", "_pRequest.LastName_", "_pRequest.Age_", "_pRequest.Allergies_")"
-    #; set query = "INSERT INTO PatientData VALUES ("_pRequest.PatientDataID_", "_pRequest.FirstName_", "_pRequest.MiddleName_", "_pRequest.LastName_", "_pRequest.Age_", "_pRequest.Allergies_")"
-    set query = "INSERT INTO PatientData VALUES ("_pRequest.PatientDataID_", "_pRequest.FirstName_", "_pRequest.MiddleName_", "_pRequest.LastName_", "_pRequest.Age_", "_pRequest.Allergies_")"
+    set query = "INSERT INTO SQLUser.PatientData (PatientDataID, FirstName, MiddleName, LastName, Age, Allergies) VALUES ("_pRequest.PatientDataID_", '"_pRequest.FirstName_"', '"_pRequest.MiddleName_"', '"_pRequest.LastName_"', "_pRequest.Age_", '"_pRequest.Allergies_"')"
     set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
 
