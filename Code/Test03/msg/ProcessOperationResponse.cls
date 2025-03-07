@@ -1,17 +1,17 @@
-Class code.msg.ServiceProcess Extends Ens.Request
+Class code.msg.ProcessOperationResponse Extends Ens.Response
 {
 
-Property PatientDataID As %Integer;
+Property PatientID As %Integer;
 
 Property FirstName As %String;
 
 Property MiddleName As %String;
 
-Property LastName1 As %String;
+Property FirstLastName As %String;
 
-Property LastName2 As %String;
+Property SecondLastName As %String;
 
-Property BirthDate As %String;
+Property BirthDate As %Date;
 
 Property DNI As %String;
 
@@ -19,10 +19,10 @@ Property Allergies As %String;
 
 Storage Default
 {
-<Data name="ServiceProcessDefaultData">
-<Subscript>"ServiceProcess"</Subscript>
+<Data name="ProcessOperationResponseDefaultData">
+<Subscript>"ProcessOperationResponse"</Subscript>
 <Value name="1">
-<Value>PatientDataID</Value>
+<Value>PatientID</Value>
 </Value>
 <Value name="2">
 <Value>FirstName</Value>
@@ -31,10 +31,10 @@ Storage Default
 <Value>MiddleName</Value>
 </Value>
 <Value name="4">
-<Value>LastName1</Value>
+<Value>FirstLastName</Value>
 </Value>
 <Value name="5">
-<Value>LastName2</Value>
+<Value>SecondLastName</Value>
 </Value>
 <Value name="6">
 <Value>BirthDate</Value>
@@ -46,7 +46,7 @@ Storage Default
 <Value>Allergies</Value>
 </Value>
 </Data>
-<DefaultData>ServiceProcessDefaultData</DefaultData>
+<DefaultData>ProcessOperationResponseDefaultData</DefaultData>
 <Type>%Storage.Persistent</Type>
 }
 
