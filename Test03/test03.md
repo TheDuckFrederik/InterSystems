@@ -16,8 +16,7 @@
         SecondLastName VARCHAR(150),
         BirthDate VARCHAR(150),
         DNI VARCHAR(150),
-        Allergies VARCHAR(150),
-        CreateFile VARCHAR(150)
+        Allergies VARCHAR(150)
     )
     ```
 ## Select Route
