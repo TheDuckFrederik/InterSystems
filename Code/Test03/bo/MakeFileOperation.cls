@@ -5,10 +5,9 @@ Parameter ADAPTER = "EnsLib.File.OutboundAdapter";
 
 Parameter INVOCACION = "Queue";
 
-Method DataFile(pRequest As code.msg.MakeFileRequest, Output pResponse As Ens.Response)
+Method DataFile(pRequest As code.msg.CreateFileRequest, Output pResponse As Ens.Response)
 {
-        set tData = $ZDATETIME($H)_$$$NL_
-                    pRequest.PatientID_" "_
+        set tData = pRequest.PatientID_" "_
                     pRequest.FirstName_" "_
                     pRequest.MiddleName_" "_
                     pRequest.LastName_" "_

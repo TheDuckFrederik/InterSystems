@@ -3,7 +3,7 @@
 		{"id":"cf8ac0e57ad2bdc1","type":"text","text":"","x":200,"y":-169,"width":250,"height":60},
 		{"id":"6ccd305a45710b49","type":"text","text":"","x":200,"y":-40,"width":250,"height":60},
 		{"id":"01491b44909d6323","type":"text","text":"SelectOperation","x":200,"y":-169,"width":250,"height":189,"color":"2"},
-		{"id":"787b80b37de3d65a","type":"text","text":"MakeFileOperation","x":200,"y":236,"width":250,"height":189,"color":"2"},
+		{"id":"787b80b37de3d65a","type":"text","text":"CreateFileOperation","x":200,"y":236,"width":250,"height":189,"color":"2"},
 		{"id":"ab0fb88c3770caaa","type":"text","text":"DB","x":540,"y":-124,"width":100,"height":100,"color":"1"},
 		{"id":"72ac36e4467a3451","type":"text","text":"File","x":540,"y":280,"width":100,"height":100,"color":"5"},
 		{"id":"fa4fae48ea4b4977","type":"text","text":"","x":-380,"y":-169,"width":250,"height":60},
