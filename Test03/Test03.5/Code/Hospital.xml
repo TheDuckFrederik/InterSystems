@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-10 11:43:59">
-<Project name="EnsExportItem_2025-03-10 11-43-52_175+1" LastModified="2025-03-10 11:43:59.8917607">
-  <ProjectDescription>Studio Project generated starting from Production Configuration Item 'test0305.Hospital : SelectPathProcess' at 2025-03-10 10:43:52.175 UTC</ProjectDescription>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-10 13:03:40">
+<Project name="EnsExportProduction_2025-03-10 13-03-01_869+1" LastModified="2025-03-10 13:03:40.0040882">
+  <ProjectDescription>Studio Project generated from Production 'test0305.Hospital' at 2025-03-10 12:03:01.869 UTC</ProjectDescription>
   <Items>
+    <ProjectItem name="test0305.Hospital" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.SelectPathProcess" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.SelectPathDB" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.SelectPathFile" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bs.SelectPathService" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectDBRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectDBResponse" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectFileRequest" type="CLS"></ProjectItem>
-    <ProjectItem name="Settings:SelectPathDB.PTD" type="PTD"></ProjectItem>
-    <ProjectItem name="Settings:SelectPathFile.PTD" type="PTD"></ProjectItem>
-    <ProjectItem name="Settings:SelectPathProcess.PTD" type="PTD"></ProjectItem>
-    <ProjectItem name="EnsExportNotes.EnsExportItem_2025-03-10 11-43-52_175+1.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="test0305.msg.SelectProcessRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportProduction_2025-03-10 13-03-01_869+1.PTD" type="PTD"></ProjectItem>
   </Items>
 </Project>
+
+
+<Class name="test0305.Hospital">
+<Super>Ens.Production</Super>
+<TimeChanged>67274,45532.6680719</TimeChanged>
+<TimeCreated>67271,54411.8578173</TimeCreated>
+
+<XData name="ProductionDefinition">
+<Data><![CDATA[
+<Production Name="test0305.Hospital" TestingEnabled="true" LogGeneralTraceEvents="false">
+  <Description></Description>
+  <ActorPoolSize>2</ActorPoolSize>
+  <Item Name="SelectPathDB" Category="SELECT" ClassName="test0305.bo.SelectPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="DSN">MedicalHistory</Setting>
+  </Item>
+  <Item Name="SelectPathFile" Category="SELECT" ClassName="test0305.bo.SelectPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.5\Files\OUT</Setting>
+  </Item>
+  <Item Name="SelectPathProcess" Category="SELECT" ClassName="test0305.SelectPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="SelectPathService" Category="SELECT" ClassName="test0305.bs.SelectPathService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+</Production>
+]]></Data>
+</XData>
+</Class>
 
 
 <Class name="test0305.SelectPathProcess">
@@ -224,6 +250,32 @@ BPL Definition</Description>
 </Class>
 
 
+<Class name="test0305.bs.SelectPathService">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>67274,45887.5835269</TimeChanged>
+<TimeCreated>67274,45492.4339615</TimeCreated>
+
+<Method name="OnProcessInput">
+<FormalSpec>pInput:test0305.msg.SelectProcessRequest,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set tSC = $$$OK
+	try {
+		//set tRequest = ##class(code.msg.PatientDBRequest).%New()
+		//set tRequest.PatientID = pInput.StringValue
+
+		set tSC = ..SendRequestSync("SelectPathProcess", pInput, .tResponse)
+		$$$ThrowOnError(tSC)
+	}
+	catch ex {
+		set tSC = ex.AsStatus()
+	}
+	return tSC
+]]></Implementation>
+</Method>
+</Class>
+
+
 <Class name="test0305.msg.SelectDBRequest">
 <Super>Ens.Request</Super>
 <TimeChanged>67274,41730.573498</TimeChanged>
@@ -419,7 +471,37 @@ BPL Definition</Description>
 </Class>
 
 
-<Document name="EnsExportNotes.EnsExportItem_2025-03-10 11-43-52_175+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportItem_2025-03-10 11-43-52_175+1" description="Export Notes for export EnsExportItem_2025-03-10 11-43-52_175+1">
+<Class name="test0305.msg.SelectProcessRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67274,41402.2760721</TimeChanged>
+<TimeCreated>67271,54995.7574054</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>SelectProcessRequestDefaultData</DefaultData>
+<Data name="SelectProcessRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"SelectProcessRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportProduction_2025-03-10 13-03-01_869+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportProduction_2025-03-10 13-03-01_869+1" description="Export Notes for export EnsExportProduction_2025-03-10 13-03-01_869+1">
 <![CDATA[<Deployment>
 <Creation>
 <Machine>ITMESPC13SEFL</Machine>
@@ -427,39 +509,24 @@ BPL Definition</Description>
 <Namespace>PIRIS</Namespace>
 <SourceProduction>test0305.Hospital</SourceProduction>
 <Username>_SYSTEM</Username>
-<UTC>2025-03-10 10:43:59.888</UTC>
+<UTC>2025-03-10 12:03:40.001</UTC>
 </Creation>
 <Notes>
 </Notes>
 <Contents>
-<ExportProject>EnsExportItem_2025-03-10 11-43-52_175+1</ExportProject>
-<Item num="1">Settings:SelectPathDB.PTD</Item>
-<Item num="2">Settings:SelectPathFile.PTD</Item>
-<Item num="3">Settings:SelectPathProcess.PTD</Item>
-<Item num="4">test0305.SelectPathProcess.CLS</Item>
-<Item num="5">test0305.bo.SelectPathDB.CLS</Item>
-<Item num="6">test0305.bo.SelectPathFile.CLS</Item>
-<Item num="7">test0305.msg.SelectDBRequest.CLS</Item>
-<Item num="8">test0305.msg.SelectDBResponse.CLS</Item>
-<Item num="9">test0305.msg.SelectFileRequest.CLS</Item>
+<ExportProject>EnsExportProduction_2025-03-10 13-03-01_869+1</ExportProject>
+<Item num="1">test0305.Hospital.CLS</Item>
+<Item num="2">test0305.SelectPathProcess.CLS</Item>
+<Item num="3">test0305.bo.SelectPathDB.CLS</Item>
+<Item num="4">test0305.bo.SelectPathFile.CLS</Item>
+<Item num="5">test0305.bs.SelectPathService.CLS</Item>
+<Item num="6">test0305.msg.SelectDBRequest.CLS</Item>
+<Item num="7">test0305.msg.SelectDBResponse.CLS</Item>
+<Item num="8">test0305.msg.SelectFileRequest.CLS</Item>
+<Item num="9">test0305.msg.SelectProcessRequest.CLS</Item>
 </Contents>
-<ProductionClassInExport></ProductionClassInExport>
+<ProductionClassInExport>test0305.Hospital</ProductionClassInExport>
 </Deployment>
 
-]]></ProjectTextDocument>
-</Document>
-
-<Document name="Settings:SelectPathDB.PTD"><ProjectTextDocument name="Settings:SelectPathDB" description="Settings for SelectPathDB in Production test0305.Hospital">
-<![CDATA[<Item Name="SelectPathDB" Category="SELECT" ClassName="test0305.bo.SelectPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="DSN">MedicalHistory</Setting></Item>
-]]></ProjectTextDocument>
-</Document>
-
-<Document name="Settings:SelectPathFile.PTD"><ProjectTextDocument name="Settings:SelectPathFile" description="Settings for SelectPathFile in Production test0305.Hospital">
-<![CDATA[<Item Name="SelectPathFile" Category="SELECT" ClassName="test0305.bo.SelectPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.5\Files\OUT</Setting></Item>
-]]></ProjectTextDocument>
-</Document>
-
-<Document name="Settings:SelectPathProcess.PTD"><ProjectTextDocument name="Settings:SelectPathProcess" description="Settings for SelectPathProcess in Production test0305.Hospital">
-<![CDATA[<Item Name="SelectPathProcess" Category="SELECT" ClassName="test0305.SelectPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""></Item>
 ]]></ProjectTextDocument>
 </Document></Export>
