@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-10 11:26:49">
+<Project name="EnsExportItem_2025-03-10 11-26-00_685+1" LastModified="2025-03-10 11:26:49.45831">
+  <ProjectDescription>Studio Project generated starting from Production Configuration Item 'test0305.Hospital : SelectPathProcess' at 2025-03-10 10:26:00.685 UTC</ProjectDescription>
+  <Items>
+    <ProjectItem name="test0305.SelectPathProcess" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bo.SelectPathDB" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bo.SelectPathFile" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.SelectDBRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.SelectDBResponse" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.SelectFileRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="Settings:SelectPathDB.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:SelectPathFile.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:SelectPathProcess.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportItem_2025-03-10 11-26-00_685+1.PTD" type="PTD"></ProjectItem>
+  </Items>
+</Project>
+
+
+<Class name="test0305.SelectPathProcess">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>67274,40912.0672814</TimeChanged>
+<TimeCreated>67274,32899.4217043</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='test0305.msg.SelectDBRequest' response='test0305.msg.SelectDBResponse' height='2000' width='2000' >
+<context>
+<property name='FirstName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='MiddleName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='BirthDate' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='DNI' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='Allergies' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName1' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName2' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+</context>
+<sequence xend='200' yend='450' >
+<call name='SelectPathDB' target='SelectPathDB' async='0' xpos='200' ypos='250' >
+<request type='test0305.msg.SelectDBRequest' >
+<assign property="callrequest.PatientID" value="request.PatientID" action="set" languageOverride="" />
+</request>
+<response type='test0305.msg.SelectDBResponse' >
+<assign property="context.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="context.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="context.LastName1" value="callresponse.LastName1" action="set" languageOverride="" />
+<assign property="context.LastName2" value="callresponse.LastName2" action="set" languageOverride="" />
+<assign property="context.BirthDate" value="callresponse.BirthDate" action="set" languageOverride="" />
+<assign property="context.DNI" value="callresponse.DNI" action="set" languageOverride="" />
+<assign property="context.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+<assign property="context.LastName" value="callresponse.LastName1_&quot; &quot;_callresponse.LastName2" action="set" languageOverride="" />
+<assign property="response.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="response.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="response.LastName1" value="callresponse.LastName1" action="set" languageOverride="" />
+<assign property="response.LastName2" value="callresponse.LastName2" action="set" languageOverride="" />
+<assign property="response.BirthDate" value="callresponse.BirthDate" action="set" languageOverride="" />
+<assign property="response.DNI" value="callresponse.DNI" action="set" languageOverride="" />
+<assign property="response.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+</response>
+</call>
+<call name='SelectPathFile' target='SelectPathFile' async='1' xpos='200' ypos='350' >
+<request type='test0305.msg.SelectFileRequest' >
+<assign property="callrequest.PatientID" value="request.PatientID" action="set" languageOverride="" />
+<assign property="callrequest.FirstName" value="context.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="context.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName1" value="context.LastName1" action="set" languageOverride="" />
+<assign property="callrequest.LastName2" value="context.LastName2" action="set" languageOverride="" />
+<assign property="callrequest.LastName" value="context.LastName" action="set" languageOverride="" />
+<assign property="callrequest.BirthDate" value="context.BirthDate" action="set" languageOverride="" />
+<assign property="callrequest.DNI" value="context.DNI" action="set" languageOverride="" />
+<assign property="callrequest.Allergies" value="context.Allergies" action="set" languageOverride="" />
+<assign property="callrequest.FileName" value="request.PatientID_context.FirstName_context.LastName1_context.LastName2_&quot;.txt&quot;" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+
+
+<Class name="test0305.bo.SelectPathDB">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67274,40878.922018</TimeChanged>
+<TimeCreated>67271,70694.1129115</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.SQL.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCATION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="SelectData">
+<FormalSpec>pRequest:test0305.msg.SelectDBRequest,*pResponse:test0305.msg.SelectDBResponse</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set pResponse = ##class(test0305.msg.SelectDBResponse).%New()
+    
+    set query = "SELECT PatientID, FirstName, MiddleName, FirstLastName, SecondLastName, BirthDate, DNI, Allergies from SQLUser.MedicalHistory where PatientID = "_pRequest.PatientID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    set pResponse.FirstName=tResult.Get("FirstName")    
+    set pResponse.MiddleName=tResult.Get("MiddleName")
+    set pResponse.LastName1=tResult.Get("FirstLastName")
+    set pResponse.LastName2=tResult.Get("SecondLastName")
+    set pResponse.BirthDate=tResult.Get("BirthDate")
+    set pResponse.DNI=tResult.Get("DNI")
+    set pResponse.Allergies=tResult.Get("Allergies")
+
+    Quit $$$OK
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+    <MapItem MessageType="test0305.msg.SelectDBRequest">
+        <Method>SelectData</Method>
+    </MapItem>
+</MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="test0305.bo.SelectPathFile">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67274,40909.0709459</TimeChanged>
+<TimeCreated>67271,71458.1363241</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.File.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCACION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="SelectFile">
+<FormalSpec>pRequest:test0305.msg.SelectFileRequest,*pResponse:Ens.Response</FormalSpec>
+<Implementation><![CDATA[
+        set tData = "Patient ID: "_pRequest.PatientID_$CHAR(13,10)_
+            "First Name: "_pRequest.FirstName_$CHAR(13,10)_
+            "Middle Name: "_pRequest.MiddleName_$CHAR(13,10)_
+            "Last Name: "_pRequest.LastName_$CHAR(13,10)_
+            "Birth Date: "_pRequest.BirthDate_$CHAR(13,10)_
+            "DNI: "_pRequest.DNI_$CHAR(13,10)_
+            "Allergies: "_pRequest.Allergies_$CHAR(13,10)
+        set sc = ..Adapter.PutString(pRequest.FileName, tData)
+        $$$TRACE("st = "_$system.Status.DisplayError(sc))
+
+        Quit $$$OK
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+        <MapItem MessageType="test0305.msg.SelectFileRequest">
+            <Method>SelectFile</Method>
+        </MapItem>
+    </MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="test0305.msg.SelectDBRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67274,33164.0116132</TimeChanged>
+<TimeCreated>67271,55170.9875774</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>SelectDBRequestDefaultData</DefaultData>
+<Data name="SelectDBRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"SelectDBRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0305.msg.SelectDBResponse">
+<Super>Ens.Response</Super>
+<TimeChanged>67274,33349.7672667</TimeChanged>
+<TimeCreated>67271,55835.7937888</TimeCreated>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>SelectDBResponseDefaultData</DefaultData>
+<Data name="SelectDBResponseDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"SelectDBResponse"</Subscript>
+<Value name="1">
+<Value>FirstName</Value>
+</Value>
+<Value name="2">
+<Value>MiddleName</Value>
+</Value>
+<Value name="3">
+<Value>LastName1</Value>
+</Value>
+<Value name="4">
+<Value>LastName2</Value>
+</Value>
+<Value name="5">
+<Value>BirthDate</Value>
+</Value>
+<Value name="6">
+<Value>DNI</Value>
+</Value>
+<Value name="7">
+<Value>Allergies</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0305.msg.SelectFileRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67274,33270.4243792</TimeChanged>
+<TimeCreated>67271,55507.6801606</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="FileName">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>SelectFileRequestDefaultData</DefaultData>
+<Data name="SelectFileRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"SelectFileRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>LastName</Value>
+</Value>
+<Value name="7">
+<Value>BirthDate</Value>
+</Value>
+<Value name="8">
+<Value>DNI</Value>
+</Value>
+<Value name="9">
+<Value>Allergies</Value>
+</Value>
+<Value name="10">
+<Value>FileName</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportItem_2025-03-10 11-26-00_685+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportItem_2025-03-10 11-26-00_685+1" description="Export Notes for export EnsExportItem_2025-03-10 11-26-00_685+1">
+<![CDATA[<Deployment>
+<Creation>
+<Machine>ITMESPC13SEFL</Machine>
+<Instance>IRISHEALTH</Instance>
+<Namespace>PIRIS</Namespace>
+<SourceProduction>test0305.Hospital</SourceProduction>
+<Username>_SYSTEM</Username>
+<UTC>2025-03-10 10:26:49.359</UTC>
+</Creation>
+<Notes>
+</Notes>
+<Contents>
+<ExportProject>EnsExportItem_2025-03-10 11-26-00_685+1</ExportProject>
+<Item num="1">Settings:SelectPathDB.PTD</Item>
+<Item num="2">Settings:SelectPathFile.PTD</Item>
+<Item num="3">Settings:SelectPathProcess.PTD</Item>
+<Item num="4">test0305.SelectPathProcess.CLS</Item>
+<Item num="5">test0305.bo.SelectPathDB.CLS</Item>
+<Item num="6">test0305.bo.SelectPathFile.CLS</Item>
+<Item num="7">test0305.msg.SelectDBRequest.CLS</Item>
+<Item num="8">test0305.msg.SelectDBResponse.CLS</Item>
+<Item num="9">test0305.msg.SelectFileRequest.CLS</Item>
+</Contents>
+<ProductionClassInExport></ProductionClassInExport>
+</Deployment>
+
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:SelectPathDB.PTD"><ProjectTextDocument name="Settings:SelectPathDB" description="Settings for SelectPathDB in Production test0305.Hospital">
+<![CDATA[<Item Name="SelectPathDB" Category="SELECT" ClassName="test0305.bo.SelectPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="DSN">MedicalHistory</Setting></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:SelectPathFile.PTD"><ProjectTextDocument name="Settings:SelectPathFile" description="Settings for SelectPathFile in Production test0305.Hospital">
+<![CDATA[<Item Name="SelectPathFile" Category="SELECT" ClassName="test0305.bo.SelectPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.5\Files\OUT</Setting></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:SelectPathProcess.PTD"><ProjectTextDocument name="Settings:SelectPathProcess" description="Settings for SelectPathProcess in Production test0305.Hospital">
+<![CDATA[<Item Name="SelectPathProcess" Category="SELECT" ClassName="test0305.SelectPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""></Item>
+]]></ProjectTextDocument>
+</Document></Export>
