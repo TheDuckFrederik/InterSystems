@@ -14,10 +14,10 @@ Method SelectData(pRequest As test0305.msg.SelectDBRequest, Output pResponse As 
     $$$TRACE("st = "_st)
     do tResult.Next()
 
-    set pResponse.PatientID=tResult.Get("PatientID")  
     set pResponse.FirstName=tResult.Get("FirstName")    
     set pResponse.MiddleName=tResult.Get("MiddleName")
-    set pResponse.LastName=tResult.Get("FirstLastName")_" "_tResult.Get("SecondLastName")
+    set pResponse.LastName1=tResult.Get("FirstLastName")
+    set pResponse.LastName2=tResult.Get("SecondLastName")
     set pResponse.BirthDate=tResult.Get("BirthDate")
     set pResponse.DNI=tResult.Get("DNI")
     set pResponse.Allergies=tResult.Get("Allergies")

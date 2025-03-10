@@ -1,0 +1,7 @@
+Patient ID: 69
+First Name: Unai
+Middle Name: 
+Last Name: Pujol Ovejero
+Birth Date: 24/11/2006
+DNI: 25727019E
+Allergies: Aloevera
