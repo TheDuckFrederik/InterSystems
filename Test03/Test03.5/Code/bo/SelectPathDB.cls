@@ -14,6 +14,7 @@ Method SelectData(pRequest As test0305.msg.SelectDBRequest, Output pResponse As 
     $$$TRACE("st = "_st)
     do tResult.Next()
 
+    set pResponse.PatientID=pRequest.PatientID
     set pResponse.FirstName=tResult.Get("FirstName")    
     set pResponse.MiddleName=tResult.Get("MiddleName")
     set pResponse.LastName1=tResult.Get("FirstLastName")
@@ -21,6 +22,7 @@ Method SelectData(pRequest As test0305.msg.SelectDBRequest, Output pResponse As 
     set pResponse.BirthDate=tResult.Get("BirthDate")
     set pResponse.DNI=tResult.Get("DNI")
     set pResponse.Allergies=tResult.Get("Allergies")
+    set pResponse.CreateFile=pRequest.CreateFile
 
     Quit $$$OK
 }

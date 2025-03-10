@@ -1,6 +1,8 @@
 Class test0305.msg.SelectDBResponse Extends Ens.Response
 {
 
+Property PatientID As %Integer;
+
 Property FirstName As %String;
 
 Property MiddleName As %String;
@@ -15,30 +17,38 @@ Property DNI As %String;
 
 Property Allergies As %String;
 
+Property CreateFile As %Boolean;
+
 Storage Default
 {
 <Data name="SelectDBResponseDefaultData">
 <Subscript>"SelectDBResponse"</Subscript>
 <Value name="1">
-<Value>FirstName</Value>
+<Value>PatientID</Value>
 </Value>
 <Value name="2">
-<Value>MiddleName</Value>
+<Value>FirstName</Value>
 </Value>
 <Value name="3">
-<Value>LastName1</Value>
+<Value>MiddleName</Value>
 </Value>
 <Value name="4">
-<Value>LastName2</Value>
+<Value>LastName1</Value>
 </Value>
 <Value name="5">
-<Value>BirthDate</Value>
+<Value>LastName2</Value>
 </Value>
 <Value name="6">
-<Value>DNI</Value>
+<Value>BirthDate</Value>
 </Value>
 <Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
 <Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
 </Value>
 </Data>
 <DefaultData>SelectDBResponseDefaultData</DefaultData>

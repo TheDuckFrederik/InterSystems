@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-10 11:26:49">
-<Project name="EnsExportItem_2025-03-10 11-26-00_685+1" LastModified="2025-03-10 11:26:49.45831">
-  <ProjectDescription>Studio Project generated starting from Production Configuration Item 'test0305.Hospital : SelectPathProcess' at 2025-03-10 10:26:00.685 UTC</ProjectDescription>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-10 11:43:59">
+<Project name="EnsExportItem_2025-03-10 11-43-52_175+1" LastModified="2025-03-10 11:43:59.8917607">
+  <ProjectDescription>Studio Project generated starting from Production Configuration Item 'test0305.Hospital : SelectPathProcess' at 2025-03-10 10:43:52.175 UTC</ProjectDescription>
   <Items>
     <ProjectItem name="test0305.SelectPathProcess" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.SelectPathDB" type="CLS"></ProjectItem>
@@ -12,7 +12,7 @@
     <ProjectItem name="Settings:SelectPathDB.PTD" type="PTD"></ProjectItem>
     <ProjectItem name="Settings:SelectPathFile.PTD" type="PTD"></ProjectItem>
     <ProjectItem name="Settings:SelectPathProcess.PTD" type="PTD"></ProjectItem>
-    <ProjectItem name="EnsExportNotes.EnsExportItem_2025-03-10 11-26-00_685+1.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportItem_2025-03-10 11-43-52_175+1.PTD" type="PTD"></ProjectItem>
   </Items>
 </Project>
 
@@ -21,7 +21,7 @@
 <Description>
 </Description>
 <Super>Ens.BusinessProcessBPL</Super>
-<TimeChanged>67274,40912.0672814</TimeChanged>
+<TimeChanged>67274,42187.196518</TimeChanged>
 <TimeCreated>67274,32899.4217043</TimeCreated>
 
 <XData name="BPL">
@@ -71,11 +71,13 @@ BPL Definition</Description>
 <parameter name='MAXLEN'  value='150' />
 </parameters>
 </property>
+<property name='CreateFile' type='%Boolean' instantiate='0' />
 </context>
-<sequence xend='200' yend='450' >
+<sequence xend='200' yend='700' >
 <call name='SelectPathDB' target='SelectPathDB' async='0' xpos='200' ypos='250' >
 <request type='test0305.msg.SelectDBRequest' >
 <assign property="callrequest.PatientID" value="request.PatientID" action="set" languageOverride="" />
+<assign property="callrequest.CreateFile" value="request.CreateFile" action="set" languageOverride="" />
 </request>
 <response type='test0305.msg.SelectDBResponse' >
 <assign property="context.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
@@ -93,9 +95,16 @@ BPL Definition</Description>
 <assign property="response.BirthDate" value="callresponse.BirthDate" action="set" languageOverride="" />
 <assign property="response.DNI" value="callresponse.DNI" action="set" languageOverride="" />
 <assign property="response.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+<assign property="request.CreateFile" value="callresponse.CreateFile" action="set" languageOverride="" />
+<assign property="request.PatientID" value="callresponse.PatientID" action="set" languageOverride="" />
+<assign property="context.CreateFile" value="callresponse.CreateFile" action="set" languageOverride="" />
+<assign property="response.PatientID" value="callresponse.PatientID" action="set" languageOverride="" />
+<assign property="response.CreateFile" value="callresponse.CreateFile" action="set" languageOverride="" />
 </response>
 </call>
-<call name='SelectPathFile' target='SelectPathFile' async='1' xpos='200' ypos='350' >
+<if name='CreateFile' condition='context.CreateFile = 1' xpos='200' ypos='350' xend='200' yend='600' >
+<true>
+<call name='SelectPathFile' target='SelectPathFile' async='1' xpos='335' ypos='500' >
 <request type='test0305.msg.SelectFileRequest' >
 <assign property="callrequest.PatientID" value="request.PatientID" action="set" languageOverride="" />
 <assign property="callrequest.FirstName" value="context.FirstName" action="set" languageOverride="" />
@@ -110,6 +119,8 @@ BPL Definition</Description>
 </request>
 <response type='Ens.Response' />
 </call>
+</true>
+</if>
 </sequence>
 </process>
 ]]></Data>
@@ -123,7 +134,7 @@ BPL Definition</Description>
 
 <Class name="test0305.bo.SelectPathDB">
 <Super>Ens.BusinessOperation</Super>
-<TimeChanged>67274,40878.922018</TimeChanged>
+<TimeChanged>67274,41896.8623597</TimeChanged>
 <TimeCreated>67271,70694.1129115</TimeCreated>
 
 <Parameter name="ADAPTER">
@@ -145,6 +156,7 @@ BPL Definition</Description>
     $$$TRACE("st = "_st)
     do tResult.Next()
 
+    set pResponse.PatientID=pRequest.PatientID
     set pResponse.FirstName=tResult.Get("FirstName")    
     set pResponse.MiddleName=tResult.Get("MiddleName")
     set pResponse.LastName1=tResult.Get("FirstLastName")
@@ -152,6 +164,7 @@ BPL Definition</Description>
     set pResponse.BirthDate=tResult.Get("BirthDate")
     set pResponse.DNI=tResult.Get("DNI")
     set pResponse.Allergies=tResult.Get("Allergies")
+    set pResponse.CreateFile=pRequest.CreateFile
 
     Quit $$$OK
 ]]></Implementation>
@@ -213,11 +226,15 @@ BPL Definition</Description>
 
 <Class name="test0305.msg.SelectDBRequest">
 <Super>Ens.Request</Super>
-<TimeChanged>67274,33164.0116132</TimeChanged>
+<TimeChanged>67274,41730.573498</TimeChanged>
 <TimeCreated>67271,55170.9875774</TimeCreated>
 
 <Property name="PatientID">
 <Type>%Integer</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
 </Property>
 
 <Storage name="Default">
@@ -229,6 +246,9 @@ BPL Definition</Description>
 <Value name="1">
 <Value>PatientID</Value>
 </Value>
+<Value name="2">
+<Value>CreateFile</Value>
+</Value>
 </Data>
 </Storage>
 </Class>
@@ -236,8 +256,12 @@ BPL Definition</Description>
 
 <Class name="test0305.msg.SelectDBResponse">
 <Super>Ens.Response</Super>
-<TimeChanged>67274,33349.7672667</TimeChanged>
+<TimeChanged>67274,41745.7668778</TimeChanged>
 <TimeCreated>67271,55835.7937888</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
 
 <Property name="FirstName">
 <Type>%String</Type>
@@ -267,6 +291,10 @@ BPL Definition</Description>
 <Type>%String</Type>
 </Property>
 
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
 <Storage name="Default">
 <Type>%Storage.Persistent</Type>
 <DefaultData>SelectDBResponseDefaultData</DefaultData>
@@ -274,25 +302,31 @@ BPL Definition</Description>
 <Structure>listnode</Structure>
 <Subscript>"SelectDBResponse"</Subscript>
 <Value name="1">
-<Value>FirstName</Value>
+<Value>PatientID</Value>
 </Value>
 <Value name="2">
-<Value>MiddleName</Value>
+<Value>FirstName</Value>
 </Value>
 <Value name="3">
-<Value>LastName1</Value>
+<Value>MiddleName</Value>
 </Value>
 <Value name="4">
-<Value>LastName2</Value>
+<Value>LastName1</Value>
 </Value>
 <Value name="5">
-<Value>BirthDate</Value>
+<Value>LastName2</Value>
 </Value>
 <Value name="6">
-<Value>DNI</Value>
+<Value>BirthDate</Value>
 </Value>
 <Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
 <Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
 </Value>
 </Data>
 </Storage>
@@ -385,7 +419,7 @@ BPL Definition</Description>
 </Class>
 
 
-<Document name="EnsExportNotes.EnsExportItem_2025-03-10 11-26-00_685+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportItem_2025-03-10 11-26-00_685+1" description="Export Notes for export EnsExportItem_2025-03-10 11-26-00_685+1">
+<Document name="EnsExportNotes.EnsExportItem_2025-03-10 11-43-52_175+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportItem_2025-03-10 11-43-52_175+1" description="Export Notes for export EnsExportItem_2025-03-10 11-43-52_175+1">
 <![CDATA[<Deployment>
 <Creation>
 <Machine>ITMESPC13SEFL</Machine>
@@ -393,12 +427,12 @@ BPL Definition</Description>
 <Namespace>PIRIS</Namespace>
 <SourceProduction>test0305.Hospital</SourceProduction>
 <Username>_SYSTEM</Username>
-<UTC>2025-03-10 10:26:49.359</UTC>
+<UTC>2025-03-10 10:43:59.888</UTC>
 </Creation>
 <Notes>
 </Notes>
 <Contents>
-<ExportProject>EnsExportItem_2025-03-10 11-26-00_685+1</ExportProject>
+<ExportProject>EnsExportItem_2025-03-10 11-43-52_175+1</ExportProject>
 <Item num="1">Settings:SelectPathDB.PTD</Item>
 <Item num="2">Settings:SelectPathFile.PTD</Item>
 <Item num="3">Settings:SelectPathProcess.PTD</Item>
