@@ -1,6 +1,8 @@
 Class test0307.bo.SelectPathDB Extends Ens.BusinessOperation
 {
+
 Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
+
 Parameter INVOCATION = "Queue";
 
 Method SelectData(pRequest As test0305.msg.SelectDBRequest, Output pResponse As test0305.msg.SelectDBResponse) As %Status
@@ -49,4 +51,5 @@ XData MessageMap
     </MapItem>
 </MapItems>
 }
+
 }
