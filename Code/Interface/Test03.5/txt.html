@@ -28,16 +28,13 @@
         #response {
             margin-top: 20px;
             white-space: pre-wrap;
-            text-align: center;
+            text-align: left;
             max-width: 600px;
             background: #f4f4f4;
             padding: 10px;
             border-radius: 5px;
             display: none; /* Initially hidden */
-        }
-        iframe {
-            width: 100%;
-            border: none;
+            overflow-x: auto;
         }
         .back-button, .load-button {
             margin-top: 20px;
@@ -52,12 +49,6 @@
         .back-button:hover, .load-button:hover {
             background-color: #004080;
         }
-        .back-button {
-            border-radius: 0;
-        }
-        .load-button {
-            border-radius: 0;
-        }
     </style>
 </head>
 <body>
@@ -67,9 +58,7 @@
     <div class="container">
         <input type="number" id="patientIdInput" placeholder="Enter Patient ID">
         <button class="load-button" onclick="loadFile()">Load File</button>
-        <div id="response">
-            <iframe id="fileFrame" src="" onload="resizeIframe(this)"></iframe>
-        </div>
+        <pre id="response"></pre> <!-- Used for better text display -->
         <a href="../../../index.html" class="back-button">Back</a>
     </div>
 
@@ -77,18 +66,23 @@
         function loadFile() {
             patientId = document.getElementById('patientIdInput').value;
             if (patientId) {
-                //filePath = `../../../Test03/Test03.5/Files/OUT/${patientId}.txt`;
-                // filePath = `../../../Test03/Test03.5/Files/OUT/${patientId}.html`;
                 filePath = `https://theduckfrederik.github.io/InterSystems/Test03/Test03.5/Files/OUT/${patientId}.txt`;
-                document.getElementById('fileFrame').src = filePath;
-                document.getElementById('response').style.display = 'block';
+
+                fetch(filePath)
+                    .then(response => {
+                        if (!response.ok) throw new Error('File not found');
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('response').textContent = data; // Display text
+                        document.getElementById('response').style.display = 'block';
+                    })
+                    .catch(error => {
+                        alert('Error loading file: ' + error.message);
+                    });
             } else {
                 alert('Please enter a Patient ID');
             }
-        }
-
-        function resizeIframe(iframe) {
-            iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
         }
     </script>
 </body>
