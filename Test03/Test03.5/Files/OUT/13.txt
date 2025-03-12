@@ -1,0 +1,7 @@
+Patient ID: 13
+First Name: Anna
+Middle Name: M
+Last Name: Pujol Gutierrez
+Birth Date: 25/12/1977
+DNI: 49723410Y
+Allergies: Peniciline, Amoxicilin

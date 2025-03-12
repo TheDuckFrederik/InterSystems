@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        img {
+            max-width: 200px;
+        }
+        .container {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #response {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: center;
+            max-width: 600px;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
+        iframe {
+            width: 100%;
+            border: none;
+        }
+        .back-button, .load-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #005a9e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .back-button:hover, .load-button:hover {
+            background-color: #004080;
+        }
+        .back-button {
+            border-radius: 0;
+        }
+        .load-button {
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/InterSystems_logo_%282016%29.svg/2560px-InterSystems_logo_%282016%29.svg.png" alt="InterSystems Logo">
+    </header>
+    <div class="container">
+        <input type="number" id="patientIdInput" placeholder="Enter Patient ID">
+        <button class="load-button" onclick="loadFile()">Load File</button>
+        <div id="response">
+            <iframe id="fileFrame" src="" onload="resizeIframe(this)"></iframe>
+        </div>
+        <a href="your-back-page.html" class="back-button">Back</a>
+    </div>
+
+    <script>
+        function loadFile() {
+            patientId = document.getElementById('patientIdInput').value;
+            if (patientId) {
+                filePath = `/Test03/Test03.5/Files/OUT/${patientId}.txt`;
+                document.getElementById('fileFrame').src = filePath;
+                document.getElementById('response').style.display = 'block';
+            } else {
+                alert('Please enter a Patient ID');
+            }
+        }
+
+        function resizeIframe(iframe) {
+            iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+        }
+    </script>
+</body>
+</html>
