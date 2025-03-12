@@ -123,3 +123,9 @@
 	- Es un sistema de simbiosis
 - Deberes 7-3-2025
 	- Atrefactos basicos del estandard FHIR.
+		- Patient - Paciente.
+		- Practicioner - Profesional de la salud y medicos.
+		- Observation.
+		- Condition - Diagnosticos.
+		- Encounter.
+		- Medication - Tratamientos.
