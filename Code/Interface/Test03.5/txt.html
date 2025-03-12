@@ -78,8 +78,7 @@
             patientId = document.getElementById('patientIdInput').value;
             if (patientId) {
                 // filePath = `../../../Test03/Test03.5/Files/OUT/${patientId}.txt`;
-                //filePath = `/Test03/Test03.5/Files/OUT/${patientId}.txt`;
-                filePath = "https://github.com/TheDuckFrederik/InterSystems/blob/main/Test03/Test03.5/Files/OUT/69.txt";
+                filePath = `Test03/Test03.5/Files/OUT/${patientId}.txt`;
                 document.getElementById('fileFrame').src = filePath;
                 document.getElementById('response').style.display = 'block';
             } else {
