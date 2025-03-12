@@ -70,15 +70,15 @@
         <div id="response">
             <iframe id="fileFrame" src="" onload="resizeIframe(this)"></iframe>
         </div>
-        <a href="your-back-page.html" class="back-button">Back</a>
+        <a href="/index.html" class="back-button">Back</a>
     </div>
 
     <script>
         function loadFile() {
             patientId = document.getElementById('patientIdInput').value;
             if (patientId) {
-                // filePath = `../../../Test03/Test03.5/Files/OUT/${patientId}.txt`;
-                filePath = `Test03/Test03.5/Files/OUT/${patientId}.txt`;
+                //filePath = `../../../Test03/Test03.5/Files/OUT/${patientId}.txt`;
+                filePath = `../../../Test03/Test03.5/Files/OUT/8032.json`;
                 document.getElementById('fileFrame').src = filePath;
                 document.getElementById('response').style.display = 'block';
             } else {
