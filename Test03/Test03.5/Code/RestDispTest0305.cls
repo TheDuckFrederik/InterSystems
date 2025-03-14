@@ -4,8 +4,9 @@ Class test0305.RestDispTest0305 Extends %CSP.REST
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
 <Routes>
-<Route Url="/hospital/:PatientID/:CreateFile" Method="GET" Call="SelectPath" Cors="true"/>
-<Route Url="/hospital/:PatientID/:FirstName/:MiddleName/:LastName1/:LastName2/:BirthDate/:DNI/:Allergies/:CreateFile" Method="PUT" Call="InsertPath" Cors="true"/>
+<Route Url="/selectpath/:PatientID/:CreateFile" Method="GET" Call="SelectPath" Cors="true"/>
+<Route Url="/insertpath/:PatientID/:FirstName/:MiddleName/:LastName1/:LastName2/:BirthDate/:DNI/:Allergies/:CreateFile" Method="PUT" Call="InsertPath" Cors="true"/>
+
 </Routes>
 }
 
@@ -67,6 +68,13 @@ ClassMethod InsertPath(PatientID As %Integer, FirstName As %String, MiddleName A
 		#Dim output As %Library.DynamicObject
 		set output = {}
         set output.PatientID = request.PatientID
+		set output.FirstName = request.FirstName
+		set output.MiddleName = request.MiddleName
+		set output.LastName1 = request.LastName1
+		set output.LastName2 = request.LastName2
+		set output.BirthDate = request.BirthDate
+		set output.DNI = request.DNI
+		set output.Allergies = request.Allergies
         set output.CreateFile = request.CreateFile
 
 
