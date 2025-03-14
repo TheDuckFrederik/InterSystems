@@ -5,9 +5,6 @@ Method OnProcessInput(pInput As test0305.msg.SelectProcessRequest, Output pOutpu
 {
 	set tSC = $$$OK
 	try {
-		//set tRequest = ##class(code.msg.PatientDBRequest).%New()
-		//set tRequest.PatientID = pInput.StringValue
-
 		set tSC = ..SendRequestSync("SelectPathProcess", pInput, .tResponse)
 		$$$ThrowOnError(tSC)
 	}
