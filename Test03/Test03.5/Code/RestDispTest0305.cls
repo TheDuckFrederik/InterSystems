@@ -77,7 +77,6 @@ ClassMethod InsertPath(PatientID As %Integer, FirstName As %String, MiddleName A
 		set output.Allergies = request.Allergies
         set output.CreateFile = request.CreateFile
 
-
 		write output.%ToJSON()
 	}
 	catch ex {
