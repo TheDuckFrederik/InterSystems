@@ -32,4 +32,13 @@ ClassMethod SelectPath(PatientID As %Integer, CreateFile As %Boolean) As %Status
     return tSC
 }
 
+ClassMethod BuildJSONResponse(request As %RegisteredObject) As %Library.DynamicObject
+{
+    set output = {}
+    set output.PatientID = request.PatientID
+    set output.CreateFile = request.CreateFile
+
+    Quit output
+}
+
 }
