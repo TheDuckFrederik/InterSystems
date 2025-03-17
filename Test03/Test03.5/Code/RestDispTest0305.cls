@@ -4,9 +4,8 @@ Class test0305.RestDispTest0305 Extends %CSP.REST
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
 <Routes>
-<Route Url="/selectpath/:PatientID/:CreateFile" Method="GET" Call="SelectPath" Cors="true"/>
-<Route Url="/insertpath/:PatientID/:FirstName/:MiddleName/:LastName1/:LastName2/:BirthDate/:DNI/:Allergies/:CreateFile" Method="PUT" Call="InsertPath" Cors="true"/>
-
+	<Route Url="/selectpath/:PatientID/:CreateFile" Method="GET" Call="SelectPath" Cors="true"/>
+	<Route Url="/insertpath/:PatientID/:FirstName/:MiddleName/:LastName1/:LastName2/:BirthDate/:DNI/:Allergies/:CreateFile" Method="PUT" Call="InsertPath" Cors="true"/>
 </Routes>
 }
 
