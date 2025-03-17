@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-17 16:16:17">
+<Project name="EnsExportItem_2025-03-17 16-15-43_309+1" LastModified="2025-03-17 16:16:17.9097005">
+  <ProjectDescription>Studio Project generated starting from Production Configuration Item 'test0307.Hospital : InsertPathProcess' at 2025-03-17 15:15:43.309 UTC</ProjectDescription>
+  <Items>
+    <ProjectItem name="test0307.InsertPathProcess" type="CLS"></ProjectItem>
+    <ProjectItem name="test0307.bo.InsertPathDB" type="CLS"></ProjectItem>
+    <ProjectItem name="test0307.bo.InsertPathFile" type="CLS"></ProjectItem>
+    <ProjectItem name="test0307.bs.InsertPathService" type="CLS"></ProjectItem>
+    <ProjectItem name="test0307.msg.InsertDBRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test0307.msg.InsertDBResponse" type="CLS"></ProjectItem>
+    <ProjectItem name="test0307.msg.InsertFileRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test0307.msg.InsertProcessRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="Settings:InsertPathDB.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:InsertPathFile.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:InsertPathProcess.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="Settings:InsertPathService.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportItem_2025-03-17 16-15-43_309+1.PTD" type="PTD"></ProjectItem>
+  </Items>
+</Project>
+
+
+<Class name="test0307.InsertPathProcess">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>67281,54930.986641</TimeChanged>
+<TimeCreated>67281,54389.7991598</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='test0307.msg.InsertDBRequest' response='test0307.msg.InsertDBResponse' height='2000' width='2000' >
+<context>
+<property name='PatientID' type='%Integer' instantiate='0' />
+<property name='FirstName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='MiddleName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName1' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName2' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='BirthDate' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='DNI' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='Allergies' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='CreateFile' type='%Boolean' instantiate='0' />
+</context>
+<sequence xend='200' yend='700' >
+<call name='InsertPathDB' target='InsertPathDB' async='0' xpos='200' ypos='250' >
+<request type='test0307.msg.InsertDBRequest' >
+<assign property="callrequest.PatientID" value="request.PatientID" action="set" languageOverride="" />
+<assign property="callrequest.FirstName" value="request.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="request.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName1" value="request.LastName1" action="set" languageOverride="" />
+<assign property="callrequest.LastName2" value="request.LastName2" action="set" languageOverride="" />
+<assign property="callrequest.BirthDate" value="request.BirthDate" action="set" languageOverride="" />
+<assign property="callrequest.DNI" value="request.DNI" action="set" languageOverride="" />
+<assign property="callrequest.Allergies" value="request.Allergies" action="set" languageOverride="" />
+<assign property="callrequest.CreateFile" value="request.CreateFile" action="set" languageOverride="" />
+</request>
+<response type='test0307.msg.InsertDBResponse' >
+<assign property="context.PatientID" value="callresponse.PatientID" action="set" languageOverride="" />
+<assign property="context.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="context.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="context.LastName1" value="callresponse.LastName1" action="set" languageOverride="" />
+<assign property="context.LastName2" value="callresponse.LastName2" action="set" languageOverride="" />
+<assign property="context.BirthDate" value="callresponse.BirthDate" action="set" languageOverride="" />
+<assign property="context.DNI" value="callresponse.DNI" action="set" languageOverride="" />
+<assign property="context.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+<assign property="context.CreateFile" value="callresponse.CreateFile" action="set" languageOverride="" />
+<assign property="context.LastName" value="callresponse.LastName1_&quot; &quot;_callresponse.LastName2" action="set" languageOverride="" />
+<assign property="response.PatientID" value="callresponse.PatientID" action="set" languageOverride="" />
+<assign property="response.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="response.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="response.LastName1" value="callresponse.LastName1" action="set" languageOverride="" />
+<assign property="response.LastName2" value="callresponse.LastName2" action="set" languageOverride="" />
+<assign property="response.BirthDate" value="callresponse.BirthDate" action="set" languageOverride="" />
+<assign property="response.DNI" value="callresponse.DNI" action="set" languageOverride="" />
+<assign property="response.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+<assign property="response.CreateFile" value="callresponse.CreateFile" action="set" languageOverride="" />
+</response>
+</call>
+<if name='CreateFile' condition='context.CreateFile = 1' xpos='200' ypos='350' xend='200' yend='600' >
+<true>
+<call name='InsertPathFile' target='InsertPathFile' async='1' xpos='335' ypos='500' >
+<request type='test0307.msg.InsertFileRequest' >
+<assign property="callrequest.PatientID" value="context.PatientID" action="set" languageOverride="" />
+<assign property="callrequest.FirstName" value="context.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="context.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName1" value="context.LastName1" action="set" languageOverride="" />
+<assign property="callrequest.LastName2" value="context.LastName2" action="set" languageOverride="" />
+<assign property="callrequest.LastName" value="context.LastName" action="set" languageOverride="" />
+<assign property="callrequest.BirthDate" value="context.BirthDate" action="set" languageOverride="" />
+<assign property="callrequest.DNI" value="context.DNI" action="set" languageOverride="" />
+<assign property="callrequest.Allergies" value="context.Allergies" action="set" languageOverride="" />
+<assign property="callrequest.FileName" value="context.PatientID_&quot;.json&quot;" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+</true>
+</if>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+
+
+<Class name="test0307.bo.InsertPathDB">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67281,53958.3482426</TimeChanged>
+<TimeCreated>67281,53958.3482426</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.SQL.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCATION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="ExecuteSQLQuery">
+<FormalSpec>query:%String</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set tResult = ""
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("SQL Execution Status: "_st)
+    Quit st
+]]></Implementation>
+</Method>
+
+<Method name="MapRequestToResponse">
+<FormalSpec>pRequest:test0307.msg.InsertDBRequest,pResponse:test0307.msg.InsertDBResponse</FormalSpec>
+<Implementation><![CDATA[
+    set pResponse.PatientID = pRequest.PatientID
+    set pResponse.FirstName = pRequest.FirstName
+    set pResponse.MiddleName = pRequest.MiddleName
+    set pResponse.LastName1 = pRequest.LastName1
+    set pResponse.LastName2 = pRequest.LastName2
+    set pResponse.BirthDate = pRequest.BirthDate
+    set pResponse.DNI = pRequest.DNI
+    set pResponse.Allergies = pRequest.Allergies
+    set pResponse.CreateFile = pRequest.CreateFile
+]]></Implementation>
+</Method>
+
+<Method name="InsertData">
+<FormalSpec>pRequest:test0307.msg.InsertDBRequest,*pResponse:test0307.msg.InsertDBResponse</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set pResponse = ##class(test0307.msg.InsertDBResponse).%New()
+
+    set query = "INSERT INTO SQLUser.MedicalHistory (PatientID, FirstName, MiddleName, FirstLastName, SecondLastName, BirthDate, DNI, Allergies) VALUES ("_pRequest.PatientID_", '"_pRequest.FirstName_"', '"_pRequest.MiddleName_"', '"_pRequest.LastName1_"', '"_pRequest.LastName2_"', '"_pRequest.BirthDate_"', '"_pRequest.DNI_"', '"_pRequest.Allergies_"')"
+    set st = ..ExecuteSQLQuery(query)
+
+    Do ..MapRequestToResponse(pRequest, pResponse)
+
+    Quit $$$OK
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+    <MapItem MessageType="test0307.msg.InsertDBRequest">
+        <Method>InsertData</Method>
+    </MapItem>
+</MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="test0307.bo.InsertPathFile">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67281,54275.2409853</TimeChanged>
+<TimeCreated>67281,54275.2409853</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.File.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCACION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="InsertFile">
+<FormalSpec>pRequest:test0307.msg.InsertFileRequest,*pResponse:Ens.Response</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set tData = ..FormatPatientData(pRequest)
+    set sc = ..Adapter.PutString(pRequest.FileName, tData)
+    $$$TRACE("Status: "_$system.Status.DisplayError(sc))
+
+    Quit $$$OK
+]]></Implementation>
+</Method>
+
+<Method name="FormatPatientData">
+<FormalSpec>pRequest:test0307.msg.InsertFileRequest</FormalSpec>
+<ReturnType>%String</ReturnType>
+<Implementation><![CDATA[
+    set tJSON = {}
+    set tJSON.PatientID = pRequest.PatientID
+    set tJSON.FirstName = pRequest.FirstName
+    set tJSON.MiddleName = pRequest.MiddleName
+    set tJSON.LastName = pRequest.LastName
+    set tJSON.BirthDate = pRequest.BirthDate
+    set tJSON.DNI = pRequest.DNI
+    set tJSON.Allergies = pRequest.Allergies
+
+    set tJSONString = tJSON.%ToJSON()
+
+    Quit tJSONString
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+        <MapItem MessageType="test0307.msg.InsertFileRequest">
+            <Method>InsertFile</Method>
+        </MapItem>
+    </MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="test0307.bs.InsertPathService">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>67281,55147.2361825</TimeChanged>
+<TimeCreated>67281,55147.2361825</TimeCreated>
+
+<Method name="ProcessInput">
+<FormalSpec>pInput:test0307.msg.InsertProcessRequest,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set tSC = $$$OK
+    try {
+        // Create a new InsertProcessRequest object to handle the process
+        set tRequest = ##class(test0307.msg.InsertProcessRequest).%New()
+
+        // Send the request synchronously to InsertPathProcess
+        set tSC = ..SendRequestSync("InsertPathProcess", pInput, .tResponse)
+        $$$ThrowOnError(tSC)
+    }
+    catch ex {
+        // Catch any errors and convert them to a status
+        set tSC = ex.AsStatus()
+    }
+    return tSC
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="test0307.msg.InsertDBRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67281,48740.8488207</TimeChanged>
+<TimeCreated>67281,48740.4658352</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>InsertDBRequestDefaultData</DefaultData>
+<Data name="InsertDBRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"InsertDBRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>BirthDate</Value>
+</Value>
+<Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
+<Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0307.msg.InsertDBResponse">
+<Super>Ens.Response</Super>
+<TimeChanged>67281,48771.6986088</TimeChanged>
+<TimeCreated>67281,48759.3952644</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>InsertDBResponseDefaultData</DefaultData>
+<Data name="InsertDBResponseDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"InsertDBResponse"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>BirthDate</Value>
+</Value>
+<Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
+<Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0307.msg.InsertFileRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67281,48767.8120875</TimeChanged>
+<TimeCreated>67281,48767.6671105</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="FileName">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>InsertFileRequestDefaultData</DefaultData>
+<Data name="InsertFileRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"InsertFileRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>LastName</Value>
+</Value>
+<Value name="7">
+<Value>BirthDate</Value>
+</Value>
+<Value name="8">
+<Value>DNI</Value>
+</Value>
+<Value name="9">
+<Value>Allergies</Value>
+</Value>
+<Value name="10">
+<Value>FileName</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0307.msg.InsertProcessRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67281,48778.6219197</TimeChanged>
+<TimeCreated>67281,48778.5223063</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>InsertProcessRequestDefaultData</DefaultData>
+<Data name="InsertProcessRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"InsertProcessRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>BirthDate</Value>
+</Value>
+<Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
+<Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportItem_2025-03-17 16-15-43_309+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportItem_2025-03-17 16-15-43_309+1" description="Export Notes for export EnsExportItem_2025-03-17 16-15-43_309+1">
+<![CDATA[<Deployment>
+<Creation>
+<Machine>ITMESPC13SEFL</Machine>
+<Instance>IRISHEALTH</Instance>
+<Namespace>PIRIS</Namespace>
+<SourceProduction>test0307.Hospital</SourceProduction>
+<Username>_SYSTEM</Username>
+<UTC>2025-03-17 15:16:17.906</UTC>
+</Creation>
+<Notes>
+</Notes>
+<Contents>
+<ExportProject>EnsExportItem_2025-03-17 16-15-43_309+1</ExportProject>
+<Item num="1">Settings:InsertPathDB.PTD</Item>
+<Item num="2">Settings:InsertPathFile.PTD</Item>
+<Item num="3">Settings:InsertPathProcess.PTD</Item>
+<Item num="4">Settings:InsertPathService.PTD</Item>
+<Item num="5">test0307.InsertPathProcess.CLS</Item>
+<Item num="6">test0307.bo.InsertPathDB.CLS</Item>
+<Item num="7">test0307.bo.InsertPathFile.CLS</Item>
+<Item num="8">test0307.bs.InsertPathService.CLS</Item>
+<Item num="9">test0307.msg.InsertDBRequest.CLS</Item>
+<Item num="10">test0307.msg.InsertDBResponse.CLS</Item>
+<Item num="11">test0307.msg.InsertFileRequest.CLS</Item>
+<Item num="12">test0307.msg.InsertProcessRequest.CLS</Item>
+</Contents>
+<ProductionClassInExport></ProductionClassInExport>
+</Deployment>
+
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:InsertPathDB.PTD"><ProjectTextDocument name="Settings:InsertPathDB" description="Settings for InsertPathDB in Production test0307.Hospital">
+<![CDATA[<Item Name="InsertPathDB" Category="INSERT" ClassName="test0307.bo.InsertPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="DSN">MedicalHistory</Setting></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:InsertPathFile.PTD"><ProjectTextDocument name="Settings:InsertPathFile" description="Settings for InsertPathFile in Production test0307.Hospital">
+<![CDATA[<Item Name="InsertPathFile" Category="INSERT" ClassName="test0307.bo.InsertPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""><Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.7\Files\OUT</Setting></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:InsertPathProcess.PTD"><ProjectTextDocument name="Settings:InsertPathProcess" description="Settings for InsertPathProcess in Production test0307.Hospital">
+<![CDATA[<Item Name="InsertPathProcess" Category="INSERT" ClassName="test0307.InsertPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""></Item>
+]]></ProjectTextDocument>
+</Document>
+
+<Document name="Settings:InsertPathService.PTD"><ProjectTextDocument name="Settings:InsertPathService" description="Settings for InsertPathService in Production test0307.Hospital">
+<![CDATA[<Item Name="InsertPathService" Category="INSERT" ClassName="test0307.bs.InsertPathService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule=""></Item>
+]]></ProjectTextDocument>
+</Document></Export>

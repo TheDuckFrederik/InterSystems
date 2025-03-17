@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-14 13:56:42">
-<Project name="EnsExportProduction_2025-03-14 13-56-06_089+1" LastModified="2025-03-14 13:56:42.0373904">
-  <ProjectDescription>Studio Project generated from Production 'test0305.Hospital' at 2025-03-14 12:56:06.089 UTC</ProjectDescription>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-17 16:18:58">
+<Project name="EnsExportProduction_2025-03-17 16-18-41_386+1" LastModified="2025-03-17 16:18:58.9807169">
+  <ProjectDescription>Studio Project generated from Production 'test0305.Hospital' at 2025-03-17 15:18:41.386 UTC</ProjectDescription>
   <Items>
     <ProjectItem name="test0305.Hospital" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.InsertPathProcess" type="CLS"></ProjectItem>
@@ -10,22 +10,24 @@
     <ProjectItem name="test0305.bo.InsertPathFile" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.SelectPathDB" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.SelectPathFile" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bs.InsertPathService" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bs.SelectPathService" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.InsertDBRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.InsertDBResponse" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.InsertFileRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.InsertProcessRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectDBRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectDBResponse" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectFileRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectProcessRequest" type="CLS"></ProjectItem>
-    <ProjectItem name="EnsExportNotes.EnsExportProduction_2025-03-14 13-56-06_089+1.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportProduction_2025-03-17 16-18-41_386+1.PTD" type="PTD"></ProjectItem>
   </Items>
 </Project>
 
 
 <Class name="test0305.Hospital">
 <Super>Ens.Production</Super>
-<TimeChanged>67278,49808.3433862</TimeChanged>
+<TimeChanged>67278,50864.1174727</TimeChanged>
 <TimeCreated>67271,54411.8578173</TimeCreated>
 
 <XData name="ProductionDefinition">
@@ -50,6 +52,8 @@
     <Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.5\Files\OUT\</Setting>
   </Item>
   <Item Name="InsertPathProcess" Category="INSERT" ClassName="test0305.InsertPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="InsertPathService" Category="INSERT" ClassName="test0305.bs.InsertPathService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
 </Production>
 ]]></Data>
@@ -300,7 +304,7 @@ BPL Definition</Description>
 
 <Class name="test0305.bo.InsertPathDB">
 <Super>Ens.BusinessOperation</Super>
-<TimeChanged>67278,43135.0216397</TimeChanged>
+<TimeChanged>67281,53846.9323227</TimeChanged>
 <TimeCreated>67278,39661.7096292</TimeCreated>
 
 <Parameter name="ADAPTER">
@@ -481,9 +485,35 @@ BPL Definition</Description>
 </Class>
 
 
+<Class name="test0305.bs.InsertPathService">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>67281,41309.0084406</TimeChanged>
+<TimeCreated>67278,50776.5097423</TimeCreated>
+
+<Method name="ProcessInput">
+<FormalSpec>pInput:test0305.msg.InsertProcessRequest,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set tSC = $$$OK
+	try {
+		set tRequest = ##class(test0305.msg.InsertProcessRequest).%New()
+    	//set tRequest.PatientID = pInput.StringValue
+
+        set tSC = ..SendRequestSync("InsertPathProcess", pInput, .tResponse)
+		$$$ThrowOnError(tSC)
+	}
+	catch ex {
+		set tSC = ex.AsStatus()
+	}
+	return tSC
+]]></Implementation>
+</Method>
+</Class>
+
+
 <Class name="test0305.bs.SelectPathService">
 <Super>Ens.BusinessService</Super>
-<TimeChanged>67274,45887.5835269</TimeChanged>
+<TimeChanged>67278,50782.6116937</TimeChanged>
 <TimeCreated>67274,45492.4339615</TimeCreated>
 
 <Method name="OnProcessInput">
@@ -492,9 +522,6 @@ BPL Definition</Description>
 <Implementation><![CDATA[
 	set tSC = $$$OK
 	try {
-		//set tRequest = ##class(code.msg.PatientDBRequest).%New()
-		//set tRequest.PatientID = pInput.StringValue
-
 		set tSC = ..SendRequestSync("SelectPathProcess", pInput, .tResponse)
 		$$$ThrowOnError(tSC)
 	}
@@ -588,7 +615,7 @@ BPL Definition</Description>
 
 <Class name="test0305.msg.InsertDBResponse">
 <Super>Ens.Response</Super>
-<TimeChanged>67278,38493.3347121</TimeChanged>
+<TimeChanged>67281,48744.5491757</TimeChanged>
 <TimeCreated>67278,38492.7107533</TimeCreated>
 
 <Property name="PatientID">
@@ -667,7 +694,7 @@ BPL Definition</Description>
 
 <Class name="test0305.msg.InsertFileRequest">
 <Super>Ens.Request</Super>
-<TimeChanged>67278,48995.9646178</TimeChanged>
+<TimeChanged>67281,48749.3553575</TimeChanged>
 <TimeCreated>67278,38978.0113433</TimeCreated>
 
 <Property name="PatientID">
@@ -751,6 +778,85 @@ BPL Definition</Description>
 </Class>
 
 
+<Class name="test0305.msg.InsertProcessRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67281,48753.4859678</TimeChanged>
+<TimeCreated>67278,37761.5398472</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>InsertProcessRequestDefaultData</DefaultData>
+<Data name="InsertProcessRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"InsertProcessRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>BirthDate</Value>
+</Value>
+<Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
+<Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
 <Class name="test0305.msg.SelectDBRequest">
 <Super>Ens.Request</Super>
 <TimeChanged>67274,41730.573498</TimeChanged>
@@ -783,7 +889,7 @@ BPL Definition</Description>
 
 <Class name="test0305.msg.SelectDBResponse">
 <Super>Ens.Response</Super>
-<TimeChanged>67274,41745.7668778</TimeChanged>
+<TimeChanged>67281,43682.0330742</TimeChanged>
 <TimeCreated>67271,55835.7937888</TimeCreated>
 
 <Property name="PatientID">
@@ -976,7 +1082,7 @@ BPL Definition</Description>
 </Class>
 
 
-<Document name="EnsExportNotes.EnsExportProduction_2025-03-14 13-56-06_089+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportProduction_2025-03-14 13-56-06_089+1" description="Export Notes for export EnsExportProduction_2025-03-14 13-56-06_089+1">
+<Document name="EnsExportNotes.EnsExportProduction_2025-03-17 16-18-41_386+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportProduction_2025-03-17 16-18-41_386+1" description="Export Notes for export EnsExportProduction_2025-03-17 16-18-41_386+1">
 <![CDATA[<Deployment>
 <Creation>
 <Machine>ITMESPC13SEFL</Machine>
@@ -984,12 +1090,12 @@ BPL Definition</Description>
 <Namespace>PIRIS</Namespace>
 <SourceProduction>test0305.Hospital</SourceProduction>
 <Username>_SYSTEM</Username>
-<UTC>2025-03-14 12:56:42.033</UTC>
+<UTC>2025-03-17 15:18:58.977</UTC>
 </Creation>
 <Notes>
 </Notes>
 <Contents>
-<ExportProject>EnsExportProduction_2025-03-14 13-56-06_089+1</ExportProject>
+<ExportProject>EnsExportProduction_2025-03-17 16-18-41_386+1</ExportProject>
 <Item num="1">test0305.Hospital.CLS</Item>
 <Item num="2">test0305.InsertPathProcess.CLS</Item>
 <Item num="3">test0305.SelectPathProcess.CLS</Item>
@@ -997,14 +1103,16 @@ BPL Definition</Description>
 <Item num="5">test0305.bo.InsertPathFile.CLS</Item>
 <Item num="6">test0305.bo.SelectPathDB.CLS</Item>
 <Item num="7">test0305.bo.SelectPathFile.CLS</Item>
-<Item num="8">test0305.bs.SelectPathService.CLS</Item>
-<Item num="9">test0305.msg.InsertDBRequest.CLS</Item>
-<Item num="10">test0305.msg.InsertDBResponse.CLS</Item>
-<Item num="11">test0305.msg.InsertFileRequest.CLS</Item>
-<Item num="12">test0305.msg.SelectDBRequest.CLS</Item>
-<Item num="13">test0305.msg.SelectDBResponse.CLS</Item>
-<Item num="14">test0305.msg.SelectFileRequest.CLS</Item>
-<Item num="15">test0305.msg.SelectProcessRequest.CLS</Item>
+<Item num="8">test0305.bs.InsertPathService.CLS</Item>
+<Item num="9">test0305.bs.SelectPathService.CLS</Item>
+<Item num="10">test0305.msg.InsertDBRequest.CLS</Item>
+<Item num="11">test0305.msg.InsertDBResponse.CLS</Item>
+<Item num="12">test0305.msg.InsertFileRequest.CLS</Item>
+<Item num="13">test0305.msg.InsertProcessRequest.CLS</Item>
+<Item num="14">test0305.msg.SelectDBRequest.CLS</Item>
+<Item num="15">test0305.msg.SelectDBResponse.CLS</Item>
+<Item num="16">test0305.msg.SelectFileRequest.CLS</Item>
+<Item num="17">test0305.msg.SelectProcessRequest.CLS</Item>
 </Contents>
 <ProductionClassInExport>test0305.Hospital</ProductionClassInExport>
 </Deployment>
