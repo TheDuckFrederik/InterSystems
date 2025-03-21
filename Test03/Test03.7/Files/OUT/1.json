@@ -1,1 +1,9 @@
-{"PatientID":1,"FirstName":"John","MiddleName":"L","LastName":"Smith Doe","BirthDate":"22-2-1969","DNI":"85142536T","Allergies":"Peanuts"}
+{
+  "PatientID": 1,
+  "FirstName": "John",
+  "MiddleName": "L",
+  "LastName": "Smith Doe",
+  "BirthDate": "22-2-1969",
+  "DNI": "85142536T",
+  "Allergies": "Peanuts"
+}

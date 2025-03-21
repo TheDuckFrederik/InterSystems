@@ -1,0 +1,7 @@
+Patient ID: 1
+First Name: John
+Middle Name: L
+Last Name: Smith Doe
+Birth Date: 22-02-1969
+DNI: 92650110T
+Allergies: None
