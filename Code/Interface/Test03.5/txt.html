@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
     <style>
         body {
-            font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -25,6 +25,9 @@
             align-items: center;
             flex-direction: column;
         }
+        header {
+            text-align: left;
+        }
         #response {
             margin-top: 20px;
             white-space: pre-wrap;
@@ -36,37 +39,44 @@
             display: none; /* Initially hidden */
             overflow-x: auto;
         }
-        .back-button, .load-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #005a9e;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .back-button:hover, .load-button:hover {
-            background-color: #004080;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/InterSystems_logo_%282016%29.svg/2560px-InterSystems_logo_%282016%29.svg.png" alt="InterSystems Logo">
+    <header class="header">
+        <div class="window">
+            <div class="title-bar">
+              <h1 class="title">.txt Page</h1>
+            </div>
+          </div>
+        <ul role="menu-bar" text-align="left">
+            <li role="menu-item" tabindex="0" aria-haspopup="true">
+                Pages
+                <ul role="menu" text-align="left">
+                <li role="menu-item" class="divider" text-align="left"><a href="../../../index.html">Home</a></li>
+                <li role="menu-item" text-align="left"><a href="https://github.com/TheDuckFrederik/InterSystems">GitHub</a></li>
+                </ul>
+            </li>
+        </ul>
     </header>
-    <div class="container">
-        <input type="number" id="patientIdInput" placeholder="Enter Patient ID">
-        <button class="load-button" onclick="loadFile()">Load File</button>
-        <pre id="response"></pre> <!-- Used for better text display -->
-        <a href="../../../index.html" class="back-button">Back</a>
+
+    <div class="modal-dialog outer-border" style="width: 30rem; position: absolute; top: 160px; left: 50%; transform: translateX(-50%);">
+        <div class="inner-border center">
+            <div class="modal-contents">
+                <h1 class="modal-text">Search by PatientID</h1>
+                <input type="number" id="patientIdInput" placeholder="Enter PatientID"/>
+                <div style="text-align: center; padding: 20px;">
+                    <button class="btn" onclick="loadFile()">Load File</button>
+                </div>
+                <pre class="dialog-text" id="response"></pre>
+            </div>
+        </div>
     </div>
 
     <script>
         function loadFile() {
-            patientId = document.getElementById('patientIdInput').value;
+            const patientId = document.getElementById('patientIdInput').value;
             if (patientId) {
-                filePath = `https://theduckfrederik.github.io/InterSystems/Test03/Test03.5/Files/OUT/${patientId}.txt`;
+                const filePath = `https://theduckfrederik.github.io/InterSystems/Test03/Test03.5/Files/OUT/${patientId}.txt`;
 
                 fetch(filePath)
                     .then(response => {
