@@ -39,6 +39,11 @@
             display: none; /* Initially hidden */
             overflow-x: auto;
         }
+        .standard-dialog {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -65,9 +70,11 @@
                 <h1 class="modal-text">Search by PatientID</h1>
                 <input type="number" id="patientIdInput" placeholder="Enter PatientID"/>
                 <div style="text-align: center; padding: 20px;">
+                    <div class="standard-dialog center scale-down" style="width:auto; margin-bottom: 40px;" id="response">
+                        <pre class="dialog-text" id="response"></pre>
+                    </div>
                     <button class="btn" onclick="loadFile()">Load File</button>
                 </div>
-                <pre class="dialog-text" id="response"></pre>
             </div>
         </div>
     </div>
