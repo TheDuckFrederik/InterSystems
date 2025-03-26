@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        img {
+            max-width: 200px;
+        }
+        .container {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        header {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="window">
+            <div class="title-bar">
+              <h1 class="title">InterSystems</h1>
+            </div>
+          </div>
+        <ul role="menu-bar" text-align="left">
+            <li role="menu-item" tabindex="0" aria-haspopup="true">
+                Pages
+                <ul role="menu" text-align="left">
+                <li role="menu-item" class="divider" text-align="left"><a href="Code\Interface\Test03.5\txt.html">.txt Page</a></li>
+                <li role="menu-item" text-align="left"><a href="https://github.com/TheDuckFrederik/InterSystems">GitHub</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <div class="modal-dialog outer-border" style="width: 30rem; position: absolute; top: 160px; left: 50%; transform: translateX(-50%);">
+        <div class="inner-border center">
+            <div class="modal-contents">
+                <h1 class="modal-text">.txt Page</h1>
+                <div style="text-align: center; padding: 20px;">
+                    <a class="btn" style="width: 120px;" href="Code\Interface\Test03.5\myTxt.html">Go</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

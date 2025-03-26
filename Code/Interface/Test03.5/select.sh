@@ -1,1 +1,0 @@
-streamlit run C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Code\Interface\Test03.5\select.py

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.txt Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/@sakun/system.css" />
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        img {
+            max-width: 200px;
+        }
+        .container {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        header {
+            text-align: left;
+        }
+        #response {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: left;
+            max-width: 600px;
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+            overflow-x: auto;
+        }
+        .standard-dialog {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="window">
+            <div class="title-bar">
+              <h1 class="title">.txt Page</h1>
+            </div>
+          </div>
+        <ul role="menu-bar" text-align="left">
+            <li role="menu-item" tabindex="0" aria-haspopup="true">
+                Pages
+                <ul role="menu" text-align="left">
+                <li role="menu-item" class="divider" text-align="left"><a href="../../../myIndex.html">Home</a></li>
+                <li role="menu-item" text-align="left"><a href="https://github.com/TheDuckFrederik/InterSystems">GitHub</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <div class="modal-dialog outer-border" style="width: 30rem; position: absolute; top: 160px; left: 50%; transform: translateX(-50%);">
+        <div class="inner-border center">
+            <div class="modal-contents">
+                <h1 class="modal-text">Search by PatientID</h1>
+                <input type="number" id="patientIdInput" placeholder="Enter PatientID"/>
+                <div style="text-align: center; padding: 20px;">
+                    <div class="standard-dialog center scale-down" style="width:auto; margin-bottom: 40px;" id="response">
+                        <pre class="dialog-text" id="response"></pre>
+                    </div>
+                    <button class="btn" onclick="loadFile()">Load File</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadFile() {
+            const patientId = document.getElementById('patientIdInput').value;
+            if (patientId) {
+                const filePath = `https://theduckfrederik.github.io/InterSystems/Test03/Test03.5/Files/OUT/${patientId}.txt`;
+
+                fetch(filePath)
+                    .then(response => {
+                        if (!response.ok) throw new Error('File not found');
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('response').textContent = data; // Display text
+                        document.getElementById('response').style.display = 'block';
+                    })
+                    .catch(error => {
+                        alert('Error loading file: ' + error.message);
+                    });
+            } else {
+                alert('Please enter a Patient ID');
+            }
+        }
+    </script>
+</body>
+</html>
