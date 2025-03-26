@@ -26,6 +26,8 @@
             flex-direction: column;
         }
         #response {
+            margin-left: 100px;
+            margin-right: 100px;
             margin-top: 20px;
             white-space: pre-wrap;
             text-align: left;
@@ -49,6 +51,16 @@
         .back-button:hover, .load-button:hover {
             background-color: #004080;
         }
+        .box {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -56,17 +68,21 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/InterSystems_logo_%282016%29.svg/2560px-InterSystems_logo_%282016%29.svg.png" alt="InterSystems Logo">
     </header>
     <div class="container">
-        <input type="number" id="patientIdInput" placeholder="Enter Patient ID">
-        <button class="load-button" onclick="loadFile()">Load File</button>
-        <pre id="response"></pre> <!-- Used for better text display -->
+        <h1>.txt Page</h1>
+        <div class="box">
+            <input type="number" id="patientIdInput" placeholder="Enter Patient ID">
+            <br>
+            <pre id="response"></pre>
+            <button class="load-button" onclick="loadFile()">Load File</button>
+        </div>
         <a href="../../../index.html" class="back-button">Back</a>
     </div>
 
     <script>
         function loadFile() {
-            patientId = document.getElementById('patientIdInput').value;
+            const patientId = document.getElementById('patientIdInput').value;
             if (patientId) {
-                filePath = `https://theduckfrederik.github.io/InterSystems/Test03/Test03.5/Files/OUT/${patientId}.txt`;
+                const filePath = `https://theduckfrederik.github.io/InterSystems/Test03/Test03.5/Files/OUT/${patientId}.txt`;
 
                 fetch(filePath)
                     .then(response => {
