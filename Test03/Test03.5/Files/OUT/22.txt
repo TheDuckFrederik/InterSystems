@@ -1,0 +1,7 @@
+Patient ID: 22
+First Name: Arthur
+Middle Name: Kelly
+Last Name: Welch Griffith
+Birth Date: 2-06-1987
+DNI: 44461055V
+Allergies: Naproxen, Soy, Mustard, Eggs, Penicilin
