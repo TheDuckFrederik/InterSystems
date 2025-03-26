@@ -1,0 +1,7 @@
+Patient ID: 19
+First Name: Virginia
+Middle Name: Susan
+Last Name: Clay Shepherd
+Birth Date: 29-11-1977
+DNI: 32274984Y
+Allergies: Latex, Naproxen, Sesame, Eggs, Dust

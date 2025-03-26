@@ -1,0 +1,7 @@
+Patient ID: 20
+First Name: Xanthus
+Middle Name: Troy
+Last Name: Luna Hickman
+Birth Date: 13-11-1988
+DNI: 05546565I
+Allergies: Pollen, Eggs

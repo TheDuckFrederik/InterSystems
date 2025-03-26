@@ -1,0 +1,7 @@
+Patient ID: 13
+First Name: Jaime
+Middle Name: Noelani
+Last Name: Griffin Hendrix
+Birth Date: 8-09-2006
+DNI: 45856268E
+Allergies: Latex, Pollen, Amoxicilin, Mold, Soy

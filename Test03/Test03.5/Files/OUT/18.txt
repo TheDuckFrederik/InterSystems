@@ -1,0 +1,7 @@
+Patient ID: 18
+First Name: Angelica
+Middle Name: Clark
+Last Name: Leonard Donaldson
+Birth Date: 12-02-2018
+DNI: 51338030S
+Allergies: Sesame, Naproxen

@@ -1,0 +1,7 @@
+Patient ID: 16
+First Name: Sacha
+Middle Name: Malcolm
+Last Name: Bishop Bauer
+Birth Date: 2-03-1965
+DNI: 53845386V
+Allergies: Pollen

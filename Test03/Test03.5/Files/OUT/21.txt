@@ -1,0 +1,7 @@
+Patient ID: 21
+First Name: Wayne
+Middle Name: Brent
+Last Name: Alexander Estrada
+Birth Date: 22-01-1980
+DNI: 25626207A
+Allergies: Peanuts

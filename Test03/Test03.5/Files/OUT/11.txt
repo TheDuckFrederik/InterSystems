@@ -1,0 +1,7 @@
+Patient ID: 11
+First Name: Janna
+Middle Name: Dominic
+Last Name: Graves Berger
+Birth Date: 8-06-2017
+DNI: 62411453B
+Allergies: Dust, Shellfish, Soy, Naproxen, Iboprufen

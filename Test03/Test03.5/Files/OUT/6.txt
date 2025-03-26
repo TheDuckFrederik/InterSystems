@@ -1,0 +1,7 @@
+Patient ID: 6
+First Name: Olivia
+Middle Name: Catherine
+Last Name: Travis Cherry
+Birth Date: 27-01-2014
+DNI: 63346241V
+Allergies: Shellfish
