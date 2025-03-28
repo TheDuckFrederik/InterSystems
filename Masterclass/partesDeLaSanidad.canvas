@@ -1,8 +1,9 @@
 {
 	"nodes":[
-		{"id":"f58999a8ede29540","x":-220,"y":-340,"width":140,"height":50,"color":"4","type":"text","text":"Metodo"},
-		{"id":"e04072154a420646","type":"text","text":"Negocio (Procesos)","x":40,"y":-86,"width":140,"height":66,"color":"2"},
-		{"id":"f6c3b2bf7c3d9463","type":"text","text":"Tecnologia","x":-400,"y":-78,"width":140,"height":50,"color":"6"}
+		{"id":"f6c3b2bf7c3d9463","type":"text","text":"Tecnologia","x":-400,"y":-78,"width":140,"height":50,"color":"6"},
+		{"id":"e04072154a420646","type":"text","text":"Negocio (Procesos)","x":0,"y":-86,"width":140,"height":66,"color":"2"},
+		{"id":"f58999a8ede29540","type":"text","text":"Metodo","x":-200,"y":-340,"width":140,"height":50,"color":"4"},
+		{"id":"fc538a8ec4b88f6c","x":-188,"y":-146,"width":116,"height":60,"color":"1","type":"text","text":"ETICA!"}
 	],
 	"edges":[
 		{"id":"eeb116c202264cf7","fromNode":"f58999a8ede29540","fromSide":"bottom","toNode":"f6c3b2bf7c3d9463","toSide":"top","color":"4","label":"Para aplicar"},

@@ -107,15 +107,23 @@
 - El tiempo "Un" ciudadano "una" enfermedad
 	- Prevencion - Alimentacion, Habitos de vida, Vacunas, Informacion ("Prevenir es curar")
 	- Cibaje - Cancer de Mama, de Colon, de Piel, Retinopatia diab, Prueba del Talon, Amniocentesis
-	- Diagnosticao - Radiografia, Analisis, Exploracion Fisica, Auscultacion, Antecedentes, 85% del "diagnostico por la imagen", Radiologia = "DPI", Diagnostico "precoz".
+	- Diagnostico - Radiografia, Analisis, Exploracion Fisica, Auscultacion, Antecedentes, 85% del "diagnostico por la imagen", Radiologia = "DPI", Diagnostico "precoz".
 	- Tratamiento - Farmacologico, Fisioterapia, Cirucia, Quimico (Quimio), Radiologico (Rayos), Protesis (Huesos, corazon, riñon), Dialisis.
 	- Seguimiento - Curas, Ejercicios, Pruebas, Rehabilitacion, Observacion, Regular la Medicacion.
-	- Cuando el "seguimiento" es pe por vida, al paciente se le llama cronico. una etapa en la cura definitiva en algunas enfermedades es llegar a poder "CRONIFICARLAS"
+		- Cuando el "seguimiento" es pe por vida, al paciente se le llama cronico. una etapa en la cura definitiva en algunas enfermedades es llegar a poder "CRONIFICARLAS"
 	- Para cada seccion hay partes de los sistemas assistenciales y administrativas, y todos tienen su sistema de datos, pero para la persona tiene que ser continuo (Patient Journey).
+	
+	- Conclusiones - Aydan a mejorar cada etapa del patient journey para los sigueintes "afectados"
+	
+	- Uso Primario de datos (Prevencion - Seguimiento), uso de los datos de un paciente individual para su journey.
+	- Uso Secundario de datos (Conclusiones), se juntan los datos de todos los pacientes para dichas conclusiones.
+		- El estandar para la investigacion es O.M.O.P, se centra en la privacidad.
+		- La privacidad es importante para que las aseguradoras no puedan dejar de asegurar a alguien por riesgo.
 - [Partes de la sanidad](/Masterclass/partesDeLaSanidad.canvas)
 	- Metodo
 	- Tecnologia
 	- Negocio (procesos) - Es lo que estamos haciendo ahora
+		- Puede que aparezca la Etica en el medio de los 3.
 
 	- El metodo se usa para aplicar la tecnologia
 	- El metodo se usa para para ayudar a mejorar el negocio

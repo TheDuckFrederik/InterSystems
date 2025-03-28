@@ -9,7 +9,7 @@ Method UpdateData(pRequest As test0305.msg.UpdateDBRequest, Output pResponse As 
 {
     set pResponse = ##class(test0305.msg.UpdateDBResponse).%New()
     
-    set query = "UPDATE MedicalHistory SET FirstName = 'Un' WHERE PatientID = "_pRequest.PatientID
+    set query = "UPDATE MedicalHistory SET FirstName = '"_pRequest.FirstName_"', MiddleName = '"_pRequest.MiddleName_"', FirstLastName = '"_pRequest.LastName1_"', SecondLastName = '"_pRequest.LastName2_"', BirthDate = '"_pRequest.BirthDate_"', DNI = '"_pRequest.DNI_"', Allergies = '"_pRequest.Allergies_"' WHERE PatientID = "_pRequest.PatientID
     set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
 
