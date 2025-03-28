@@ -1,0 +1,7 @@
+Patient ID: 404
+First Name: User
+Middle Name: User
+Last Name: Not Found
+Birth Date: 4-0-4
+DNI: 40404040N
+Allergies: User, Not, Found
