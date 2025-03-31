@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-17 16:18:58">
-<Project name="EnsExportProduction_2025-03-17 16-18-41_386+1" LastModified="2025-03-17 16:18:58.9807169">
-  <ProjectDescription>Studio Project generated from Production 'test0305.Hospital' at 2025-03-17 15:18:41.386 UTC</ProjectDescription>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-31 11:34:33">
+<Project name="EnsExportProduction_2025-03-17 16-18-41_386+1" LastModified="2025-03-31 11:34:33.00579">
+  <ProjectDescription><![CDATA[Studio Project generated from Production &apos;test0305.Hospital&apos; at 2025-03-17 15:18:41.386 UTC]]></ProjectDescription>
   <Items>
     <ProjectItem name="test0305.Hospital" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.InsertPathProcess" type="CLS"></ProjectItem>
@@ -27,33 +27,50 @@
 
 <Class name="test0305.Hospital">
 <Super>Ens.Production</Super>
-<TimeChanged>67278,50864.1174727</TimeChanged>
+<TimeChanged>67295,39284.1081174</TimeChanged>
 <TimeCreated>67271,54411.8578173</TimeCreated>
 
 <XData name="ProductionDefinition">
 <Data><![CDATA[
-<Production Name="test0305.Hospital" TestingEnabled="true" LogGeneralTraceEvents="false">
+<Production Name="test0305.Hospital" TestingEnabled="true" LogGeneralTraceEvents="true">
   <Description></Description>
   <ActorPoolSize>2</ActorPoolSize>
-  <Item Name="SelectPathDB" Category="SELECT" ClassName="test0305.bo.SelectPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="SelectPathDB" Category="SELECT" ClassName="test0305.bo.SelectPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="DSN">MedicalHistory</Setting>
   </Item>
-  <Item Name="SelectPathFile" Category="SELECT" ClassName="test0305.bo.SelectPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="SelectPathFile" Category="SELECT" ClassName="test0305.bo.SelectPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.5\Files\OUT</Setting>
   </Item>
-  <Item Name="SelectPathProcess" Category="SELECT" ClassName="test0305.SelectPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="SelectPathProcess" Category="SELECT" ClassName="test0305.SelectPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
   </Item>
-  <Item Name="SelectPathService" Category="SELECT" ClassName="test0305.bs.SelectPathService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="SelectPathService" Category="SELECT" ClassName="test0305.bs.SelectPathService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
   </Item>
-  <Item Name="InsertPathDB" Category="INSERT" ClassName="test0305.bo.InsertPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="InsertPathDB" Category="INSERT" ClassName="test0305.bo.InsertPathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="DSN">MedicalHistory</Setting>
   </Item>
-  <Item Name="InsertPathFile" Category="INSERT" ClassName="test0305.bo.InsertPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="InsertPathFile" Category="INSERT" ClassName="test0305.bo.InsertPathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.5\Files\OUT\</Setting>
   </Item>
-  <Item Name="InsertPathProcess" Category="INSERT" ClassName="test0305.InsertPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="InsertPathProcess" Category="INSERT" ClassName="test0305.InsertPathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
   </Item>
-  <Item Name="InsertPathService" Category="INSERT" ClassName="test0305.bs.InsertPathService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="InsertPathService" Category="INSERT" ClassName="test0305.bs.InsertPathService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+  <Item Name="UpdatePathDB" Category="UPDATE" ClassName="test0305.bo.UpdatePathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="DSN">MedicalHistory</Setting>
+  </Item>
+  <Item Name="UpdatePathFile" Category="UPDATE" ClassName="test0305.bo.UpdatePathFile" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">C:\Users\unai.ovejero.ext\Documents\InterSystems\InterSystems\Test03\Test03.5\Files\OUT\</Setting>
+  </Item>
+  <Item Name="UpdatePathService" Category="UPDATE" ClassName="test0305.bs.UpdatePathService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+  <Item Name="UpdatePathProcess" Category="UPDATE" ClassName="test0305.UpdatePathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+  <Item Name="DeletePathDB" Category="DELETE" ClassName="test0305.bo.DeletePathDB" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="DSN">MedicalHistory</Setting>
+  </Item>
+  <Item Name="DeletePathProcess" Category="DELETE" ClassName="test0305.DeletePathProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  </Item>
+  <Item Name="DeletePathService" Category="DELETE" ClassName="test0305.bs.DeletePathService" PoolSize="0" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
   </Item>
 </Production>
 ]]></Data>
@@ -65,7 +82,7 @@
 <Description>
 </Description>
 <Super>Ens.BusinessProcessBPL</Super>
-<TimeChanged>67278,50118.2538908</TimeChanged>
+<TimeChanged>67292,41006.4822136</TimeChanged>
 <TimeCreated>67278,49095.4433313</TimeCreated>
 
 <XData name="BPL">
@@ -116,11 +133,7 @@ BPL Definition</Description>
 <parameter name='MAXLEN'  value='150' />
 </parameters>
 </property>
-<property name='CreateFile' type='%String' instantiate='0' >
-<parameters>
-<parameter name='MAXLEN'  value='150' />
-</parameters>
-</property>
+<property name='CreateFile' type='%Boolean' instantiate='0' />
 </context>
 <sequence xend='200' yend='700' >
 <call name='InsertPathDB' target='InsertPathDB' async='0' xpos='200' ypos='250' >
@@ -191,7 +204,7 @@ BPL Definition</Description>
 <Description>
 </Description>
 <Super>Ens.BusinessProcessBPL</Super>
-<TimeChanged>67278,49677.0173431</TimeChanged>
+<TimeChanged>67285,49621.724935</TimeChanged>
 <TimeCreated>67274,32899.4217043</TimeCreated>
 
 <XData name="BPL">
@@ -395,7 +408,7 @@ BPL Definition</Description>
 
 <Class name="test0305.bo.SelectPathDB">
 <Super>Ens.BusinessOperation</Super>
-<TimeChanged>67277,1024.0640423</TimeChanged>
+<TimeChanged>67295,38960.9282296</TimeChanged>
 <TimeCreated>67271,70694.1129115</TimeCreated>
 
 <Parameter name="ADAPTER">
@@ -487,7 +500,7 @@ BPL Definition</Description>
 
 <Class name="test0305.bs.InsertPathService">
 <Super>Ens.BusinessService</Super>
-<TimeChanged>67281,41309.0084406</TimeChanged>
+<TimeChanged>67295,33349.2848906</TimeChanged>
 <TimeCreated>67278,50776.5097423</TimeCreated>
 
 <Method name="ProcessInput">
@@ -1090,7 +1103,7 @@ BPL Definition</Description>
 <Namespace>PIRIS</Namespace>
 <SourceProduction>test0305.Hospital</SourceProduction>
 <Username>_SYSTEM</Username>
-<UTC>2025-03-17 15:18:58.977</UTC>
+<UTC>2025-03-31 09:34:33.003</UTC>
 </Creation>
 <Notes>
 </Notes>
