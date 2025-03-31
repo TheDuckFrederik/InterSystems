@@ -7,6 +7,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 	<Route Url="/selectpath/:PatientID/:CreateFile" Method="GET" Call="SelectPath" Cors="true"/>
 	<Route Url="/insertpath/:PatientID/:FirstName/:MiddleName/:LastName1/:LastName2/:BirthDate/:DNI/:Allergies/:CreateFile" Method="PUT" Call="InsertPath" Cors="true"/>
 	<Route Url="/updatepath/:PatientID/:FirstName/:MiddleName/:LastName1/:LastName2/:BirthDate/:DNI/:Allergies/:CreateFile" Method="POST" Call="UpdatePath" Cors="true"/>
+	<Route Url="/deletepath/:PatientID" Method="DELETE" Call="DeletePath" Cors="true"/>
 </Routes>
 }
 
@@ -135,6 +136,35 @@ ClassMethod UpdatePath(PatientID As %Integer, FirstName As %String, MiddleName A
 		set output.DNI = request.DNI
 		set output.Allergies = request.Allergies
         set output.CreateFile = request.CreateFile
+
+		write output.%ToJSON()
+	}
+	catch ex {
+		set tSC = ex.AsStatus()
+	}
+	return tSC
+}
+
+ClassMethod DeletePath(PatientID As %Integer) As %Status
+{
+	set tSC = $$$OK
+	try {
+		set tSC = ##class(Ens.Director).CreateBusinessService("DeletePathService",.tService)
+
+		$$$ThrowOnError(tSC)
+
+		set request = ##class(test0305.msg.DeleteProcessRequest).%New()
+		set request.PatientID = PatientID
+		set tSC = tService.ProcessInput(request, .output)
+
+		$$$ThrowOnError(tSC)
+
+		do %response.SetHeader("ContentType", "application/json")
+
+		#Dim output As %Library.DynamicObject
+		set output = {}
+        set output.PatientID = request.PatientID
+
 
 		write output.%ToJSON()
 	}
