@@ -77,6 +77,21 @@ ClassMethod InsertPath(PatientID As %Integer, FirstName As %String, MiddleName A
 		set output.Allergies = request.Allergies
         set output.CreateFile = request.CreateFile
 
+		#; do %response.SetHeader("ContentType", "application/json")
+
+		#; #Dim output As %Library.DynamicObject
+		#; set response = ##class(test0305.msg.InsertProcessRequest).%New()
+		#; set output = {}
+        #; set output.PatientID = response.PatientID
+		#; set output.FirstName = response.FirstName
+		#; set output.MiddleName = response.MiddleName
+		#; set output.LastName1 = response.LastName1
+		#; set output.LastName2 = response.LastName2
+		#; set output.BirthDate = response.BirthDate
+		#; set output.DNI = response.DNI
+		#; set output.Allergies = response.Allergies
+        #; set output.CreateFile = response.CreateFile
+
 		write output.%ToJSON()
 	}
 	catch ex {

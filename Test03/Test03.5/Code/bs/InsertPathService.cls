@@ -17,4 +17,19 @@ Method ProcessInput(pInput As test0305.msg.InsertProcessRequest, Output pOutput 
 	return tSC
 }
 
+Method ProcessOutput(pOutput As test0305.msg.InsertDBResponse) As %Status
+{
+	set tSC = $$$OK
+	try {
+		set tResponse = ##class(test0305.msg.InsertDBResponse).%New()
+
+		set tSC = ..SendRequestSync("InsertPathService", pOutput, .tResponse)
+		$$$ThrowOnError(tSC)
+	}
+	catch ex {
+		set tSC = ex.AsStatus()
+	}
+	return tSC
+}
+
 }
