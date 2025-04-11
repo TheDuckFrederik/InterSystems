@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-03-31 11:34:33">
-<Project name="EnsExportProduction_2025-03-17 16-18-41_386+1" LastModified="2025-03-31 11:34:33.00579">
-  <ProjectDescription><![CDATA[Studio Project generated from Production &apos;test0305.Hospital&apos; at 2025-03-17 15:18:41.386 UTC]]></ProjectDescription>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-04-11 13:34:52">
+<Project name="EnsExportProduction_2025-04-11 13-34-29_631+2" LastModified="2025-04-11 13:34:52.3432391">
+  <ProjectDescription>Studio Project generated from Production 'test0305.Hospital' at 2025-04-11 11:34:29.631 UTC</ProjectDescription>
   <Items>
+    <ProjectItem name="test0305.DeletePathProcess" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.Hospital" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.InsertPathProcess" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.SelectPathProcess" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.UpdatePathProcess" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bo.DeletePathDB" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.InsertPathDB" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.InsertPathFile" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.SelectPathDB" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bo.SelectPathFile" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bo.UpdatePathDB" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bo.UpdatePathFile" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bs.DeletePathService" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bs.InsertPathService" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.bs.SelectPathService" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.bs.UpdatePathService" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.DeleteDBRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.DeleteProcessRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.InsertDBRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.InsertDBResponse" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.InsertFileRequest" type="CLS"></ProjectItem>
@@ -20,9 +29,44 @@
     <ProjectItem name="test0305.msg.SelectDBResponse" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectFileRequest" type="CLS"></ProjectItem>
     <ProjectItem name="test0305.msg.SelectProcessRequest" type="CLS"></ProjectItem>
-    <ProjectItem name="EnsExportNotes.EnsExportProduction_2025-03-17 16-18-41_386+1.PTD" type="PTD"></ProjectItem>
+    <ProjectItem name="test0305.msg.UpdateDBRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.UpdateDBResponse" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.UpdateFileRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="test0305.msg.UpdateProcessRequest" type="CLS"></ProjectItem>
+    <ProjectItem name="EnsExportNotes.EnsExportProduction_2025-04-11 13-34-29_631+2.PTD" type="PTD"></ProjectItem>
   </Items>
 </Project>
+
+
+<Class name="test0305.DeletePathProcess">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>67295,39053.0792708</TimeChanged>
+<TimeCreated>67295,38991.3526423</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='test0305.msg.DeleteDBRequest' response='Ens.Response' height='2000' width='2000' >
+<sequence xend='733' yend='874' >
+<call name='DeletePathDB' target='DeletePathDB' async='1' xpos='739' ypos='606' >
+<request type='test0305.msg.DeleteDBRequest' >
+<assign property="callrequest.PatientID" value="request.PatientID" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
 
 
 <Class name="test0305.Hospital">
@@ -315,6 +359,165 @@ BPL Definition</Description>
 </Class>
 
 
+<Class name="test0305.UpdatePathProcess">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>67306,47722.0262135</TimeChanged>
+<TimeCreated>67292,40717.7916729</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='test0305.msg.UpdateProcessRequest' response='test0305.msg.UpdateDBResponse' height='2000' width='2000' >
+<context>
+<property name='PatientID' type='%Integer' instantiate='0' />
+<property name='FirstName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='MiddleName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName1' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName2' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='BirthDate' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='DNI' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='Allergies' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='CreateFile' type='%Boolean' instantiate='0' />
+</context>
+<sequence xend='200' yend='700' >
+<call name='UpdatePathDB' target='UpdatePathDB' async='0' xpos='200' ypos='250' >
+<request type='test0305.msg.UpdateDBRequest' >
+<assign property="callrequest.PatientID" value="request.PatientID" action="set" languageOverride="" />
+<assign property="callrequest.FirstName" value="request.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="request.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName1" value="request.LastName1" action="set" languageOverride="" />
+<assign property="callrequest.LastName2" value="request.LastName2" action="set" languageOverride="" />
+<assign property="callrequest.BirthDate" value="request.BirthDate" action="set" languageOverride="" />
+<assign property="callrequest.DNI" value="request.DNI" action="set" languageOverride="" />
+<assign property="callrequest.Allergies" value="request.Allergies" action="set" languageOverride="" />
+<assign property="callrequest.CreateFile" value="request.CreateFile" action="set" languageOverride="" />
+</request>
+<response type='test0305.msg.UpdateDBResponse' >
+<assign property="response.PatientID" value="callresponse.PatientID" action="set" languageOverride="" />
+<assign property="response.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="response.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="response.LastName1" value="callresponse.LastName1" action="set" languageOverride="" />
+<assign property="response.LastName2" value="callresponse.LastName2" action="set" languageOverride="" />
+<assign property="response.BirthDate" value="callresponse.BirthDate" action="set" languageOverride="" />
+<assign property="response.DNI" value="callresponse.DNI" action="set" languageOverride="" />
+<assign property="response.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+<assign property="response.CreateFile" value="callresponse.CreateFile" action="set" languageOverride="" />
+<assign property="context.PatientID" value="callresponse.PatientID" action="set" languageOverride="" />
+<assign property="context.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="context.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="context.LastName1" value="callresponse.LastName1" action="set" languageOverride="" />
+<assign property="context.LastName2" value="callresponse.LastName2" action="set" languageOverride="" />
+<assign property="context.BirthDate" value="callresponse.BirthDate" action="set" languageOverride="" />
+<assign property="context.DNI" value="callresponse.DNI" action="set" languageOverride="" />
+<assign property="context.Allergies" value="callresponse.Allergies" action="set" languageOverride="" />
+<assign property="context.CreateFile" value="callresponse.CreateFile" action="set" languageOverride="" />
+<assign property="context.LastName" value="callresponse.LastName1_&quot; &quot;_callresponse.LastName2" action="set" languageOverride="" />
+</response>
+</call>
+<if name='CreateFile' condition='context.CreateFile = 1' xpos='200' ypos='350' xend='200' yend='600' >
+<true>
+<call name='UpdatePathFile' target='UpdatePathFile' async='1' xpos='335' ypos='500' >
+<request type='test0305.msg.UpdateFileRequest' >
+<assign property="callrequest.PatientID" value="context.PatientID" action="set" languageOverride="" />
+<assign property="callrequest.FirstName" value="context.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="context.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName1" value="context.LastName1" action="set" languageOverride="" />
+<assign property="callrequest.LastName2" value="context.LastName2" action="set" languageOverride="" />
+<assign property="callrequest.LastName" value="context.LastName" action="set" languageOverride="" />
+<assign property="callrequest.BirthDate" value="context.BirthDate" action="set" languageOverride="" />
+<assign property="callrequest.DNI" value="context.DNI" action="set" languageOverride="" />
+<assign property="callrequest.Allergies" value="context.Allergies" action="set" languageOverride="" />
+<assign property="callrequest.FileName" value="context.PatientID_&quot;.txt&quot;" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+</true>
+</if>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+
+
+<Class name="test0305.bo.DeletePathDB">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67295,38768.8144355</TimeChanged>
+<TimeCreated>67295,38469.8392201</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.SQL.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCATION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="DeleteData">
+<FormalSpec>pRequest:test0305.msg.DeleteDBRequest,*pResponse:Ens.Response</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set query = "DELETE from SQLUser.MedicalHistory WHERE PatientID = "_pRequest.PatientID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+
+    Quit $$$OK
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+    <MapItem MessageType="test0305.msg.DeleteDBRequest">
+        <Method>DeleteData</Method>
+    </MapItem>
+</MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
 <Class name="test0305.bo.InsertPathDB">
 <Super>Ens.BusinessOperation</Super>
 <TimeChanged>67281,53846.9323227</TimeChanged>
@@ -498,9 +701,123 @@ BPL Definition</Description>
 </Class>
 
 
+<Class name="test0305.bo.UpdatePathDB">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67295,31364.3821768</TimeChanged>
+<TimeCreated>67281,60541.2311116</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.SQL.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCATION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="UpdateData">
+<FormalSpec>pRequest:test0305.msg.UpdateDBRequest,*pResponse:test0305.msg.UpdateDBResponse</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+    set pResponse = ##class(test0305.msg.UpdateDBResponse).%New()
+    
+    set query = "UPDATE MedicalHistory SET FirstName = '"_pRequest.FirstName_"', MiddleName = '"_pRequest.MiddleName_"', FirstLastName = '"_pRequest.LastName1_"', SecondLastName = '"_pRequest.LastName2_"', BirthDate = '"_pRequest.BirthDate_"', DNI = '"_pRequest.DNI_"', Allergies = '"_pRequest.Allergies_"' WHERE PatientID = "_pRequest.PatientID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+
+    set pResponse.PatientID=pRequest.PatientID
+    set pResponse.FirstName=pRequest.FirstName    
+    set pResponse.MiddleName=pRequest.MiddleName
+    set pResponse.LastName1=pRequest.LastName1
+    set pResponse.LastName2=pRequest.LastName2
+    set pResponse.BirthDate=pRequest.BirthDate
+    set pResponse.DNI=pRequest.DNI
+    set pResponse.Allergies=pRequest.Allergies
+    set pResponse.CreateFile=pRequest.CreateFile
+
+    Quit $$$OK
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+    <MapItem MessageType="test0305.msg.UpdateDBRequest">
+        <Method>UpdateData</Method>
+    </MapItem>
+</MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="test0305.bo.UpdatePathFile">
+<Super>Ens.BusinessOperation</Super>
+<TimeChanged>67292,38093.252065</TimeChanged>
+<TimeCreated>67292,38093.252065</TimeCreated>
+
+<Parameter name="ADAPTER">
+<Default>EnsLib.File.OutboundAdapter</Default>
+</Parameter>
+
+<Parameter name="INVOCACION">
+<Default>Queue</Default>
+</Parameter>
+
+<Method name="UpdateFile">
+<FormalSpec>pRequest:test0305.msg.UpdateFileRequest,*pResponse:Ens.Response</FormalSpec>
+<Implementation><![CDATA[
+        set tData = "Patient ID: "_pRequest.PatientID_$CHAR(13,10)_
+            "First Name: "_pRequest.FirstName_$CHAR(13,10)_
+            "Middle Name: "_pRequest.MiddleName_$CHAR(13,10)_
+            "Last Name: "_pRequest.LastName_$CHAR(13,10)_
+            "Birth Date: "_pRequest.BirthDate_$CHAR(13,10)_
+            "DNI: "_pRequest.DNI_$CHAR(13,10)_
+            "Allergies: "_pRequest.Allergies_$CHAR(13,10)
+        set sc = ..Adapter.PutString(pRequest.FileName, tData)
+        $$$TRACE("st = "_$system.Status.DisplayError(sc))
+
+        Quit $$$OK
+]]></Implementation>
+</Method>
+
+<XData name="MessageMap">
+<Data><![CDATA[
+<MapItems>
+        <MapItem MessageType="test0305.msg.UpdateFileRequest">
+            <Method>UpdateFile</Method>
+        </MapItem>
+    </MapItems>
+]]></Data>
+</XData>
+</Class>
+
+
+<Class name="test0305.bs.DeletePathService">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>67295,39258.0523183</TimeChanged>
+<TimeCreated>67295,39258.0523183</TimeCreated>
+
+<Method name="OnProcessInput">
+<FormalSpec>pInput:test0305.msg.DeleteProcessRequest,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set tSC = $$$OK
+	try {
+		set tSC = ..SendRequestSync("DeletePathProcess", pInput, .tResponse)
+		$$$ThrowOnError(tSC)
+	}
+	catch ex {
+		set tSC = ex.AsStatus()
+	}
+	return tSC
+]]></Implementation>
+</Method>
+</Class>
+
+
 <Class name="test0305.bs.InsertPathService">
 <Super>Ens.BusinessService</Super>
-<TimeChanged>67295,33349.2848906</TimeChanged>
+<TimeChanged>67295,42204.5255782</TimeChanged>
 <TimeCreated>67278,50776.5097423</TimeCreated>
 
 <Method name="ProcessInput">
@@ -544,6 +861,78 @@ BPL Definition</Description>
 	return tSC
 ]]></Implementation>
 </Method>
+</Class>
+
+
+<Class name="test0305.bs.UpdatePathService">
+<Super>Ens.BusinessService</Super>
+<TimeChanged>67295,41316.087431</TimeChanged>
+<TimeCreated>67292,42042.903777</TimeCreated>
+
+<Method name="ProcessInput">
+<FormalSpec>pInput:test0305.msg.UpdateProcessRequest,*pOutput:%RegisteredObject</FormalSpec>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	set tSC = $$$OK
+	try {
+		set tRequest = ##class(test0305.msg.UpdateProcessRequest).%New()
+    	//set tRequest.PatientID = pInput.StringValue
+
+        set tSC = ..SendRequestSync("UpdatePathProcess", pInput, .tResponse)
+		$$$ThrowOnError(tSC)
+	}
+	catch ex {
+		set tSC = ex.AsStatus()
+	}
+	return tSC
+]]></Implementation>
+</Method>
+</Class>
+
+
+<Class name="test0305.msg.DeleteDBRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67295,38391.1027257</TimeChanged>
+<TimeCreated>67295,38387.606232</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>DeleteDBRequestDefaultData</DefaultData>
+<Data name="DeleteDBRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"DeleteDBRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0305.msg.DeleteProcessRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67295,38453.1223238</TimeChanged>
+<TimeCreated>67295,38452.4646227</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>DeleteProcessRequestDefaultData</DefaultData>
+<Data name="DeleteProcessRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"DeleteProcessRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+</Data>
+</Storage>
 </Class>
 
 
@@ -1095,7 +1484,330 @@ BPL Definition</Description>
 </Class>
 
 
-<Document name="EnsExportNotes.EnsExportProduction_2025-03-17 16-18-41_386+1.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportProduction_2025-03-17 16-18-41_386+1" description="Export Notes for export EnsExportProduction_2025-03-17 16-18-41_386+1">
+<Class name="test0305.msg.UpdateDBRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67281,60306.1073507</TimeChanged>
+<TimeCreated>67281,60305.6154104</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>UpdateDBRequestDefaultData</DefaultData>
+<Data name="UpdateDBRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"UpdateDBRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>BirthDate</Value>
+</Value>
+<Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
+<Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0305.msg.UpdateDBResponse">
+<Super>Ens.Response</Super>
+<TimeChanged>67281,60316.432722</TimeChanged>
+<TimeCreated>67281,60316.3420306</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>UpdateDBResponseDefaultData</DefaultData>
+<Data name="UpdateDBResponseDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"UpdateDBResponse"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>BirthDate</Value>
+</Value>
+<Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
+<Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0305.msg.UpdateFileRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67281,60355.9635765</TimeChanged>
+<TimeCreated>67281,60355.889002</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="FileName">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>UpdateFileRequestDefaultData</DefaultData>
+<Data name="UpdateFileRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"UpdateFileRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>LastName</Value>
+</Value>
+<Value name="7">
+<Value>BirthDate</Value>
+</Value>
+<Value name="8">
+<Value>DNI</Value>
+</Value>
+<Value name="9">
+<Value>Allergies</Value>
+</Value>
+<Value name="10">
+<Value>FileName</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Class name="test0305.msg.UpdateProcessRequest">
+<Super>Ens.Request</Super>
+<TimeChanged>67292,45293.6882574</TimeChanged>
+<TimeCreated>67281,60363.5901501</TimeCreated>
+
+<Property name="PatientID">
+<Type>%Integer</Type>
+</Property>
+
+<Property name="FirstName">
+<Type>%String</Type>
+</Property>
+
+<Property name="MiddleName">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName1">
+<Type>%String</Type>
+</Property>
+
+<Property name="LastName2">
+<Type>%String</Type>
+</Property>
+
+<Property name="BirthDate">
+<Type>%String</Type>
+</Property>
+
+<Property name="DNI">
+<Type>%String</Type>
+</Property>
+
+<Property name="Allergies">
+<Type>%String</Type>
+</Property>
+
+<Property name="CreateFile">
+<Type>%Boolean</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+<DefaultData>UpdateProcessRequestDefaultData</DefaultData>
+<Data name="UpdateProcessRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"UpdateProcessRequest"</Subscript>
+<Value name="1">
+<Value>PatientID</Value>
+</Value>
+<Value name="2">
+<Value>FirstName</Value>
+</Value>
+<Value name="3">
+<Value>MiddleName</Value>
+</Value>
+<Value name="4">
+<Value>LastName1</Value>
+</Value>
+<Value name="5">
+<Value>LastName2</Value>
+</Value>
+<Value name="6">
+<Value>BirthDate</Value>
+</Value>
+<Value name="7">
+<Value>DNI</Value>
+</Value>
+<Value name="8">
+<Value>Allergies</Value>
+</Value>
+<Value name="9">
+<Value>CreateFile</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+
+
+<Document name="EnsExportNotes.EnsExportProduction_2025-04-11 13-34-29_631+2.PTD"><ProjectTextDocument name="EnsExportNotes.EnsExportProduction_2025-04-11 13-34-29_631+2" description="Export Notes for export EnsExportProduction_2025-04-11 13-34-29_631+2">
 <![CDATA[<Deployment>
 <Creation>
 <Machine>ITMESPC13SEFL</Machine>
@@ -1103,29 +1815,42 @@ BPL Definition</Description>
 <Namespace>PIRIS</Namespace>
 <SourceProduction>test0305.Hospital</SourceProduction>
 <Username>_SYSTEM</Username>
-<UTC>2025-03-31 09:34:33.003</UTC>
+<UTC>2025-04-11 11:34:52.339</UTC>
 </Creation>
 <Notes>
 </Notes>
 <Contents>
-<ExportProject>EnsExportProduction_2025-03-17 16-18-41_386+1</ExportProject>
-<Item num="1">test0305.Hospital.CLS</Item>
-<Item num="2">test0305.InsertPathProcess.CLS</Item>
-<Item num="3">test0305.SelectPathProcess.CLS</Item>
-<Item num="4">test0305.bo.InsertPathDB.CLS</Item>
-<Item num="5">test0305.bo.InsertPathFile.CLS</Item>
-<Item num="6">test0305.bo.SelectPathDB.CLS</Item>
-<Item num="7">test0305.bo.SelectPathFile.CLS</Item>
-<Item num="8">test0305.bs.InsertPathService.CLS</Item>
-<Item num="9">test0305.bs.SelectPathService.CLS</Item>
-<Item num="10">test0305.msg.InsertDBRequest.CLS</Item>
-<Item num="11">test0305.msg.InsertDBResponse.CLS</Item>
-<Item num="12">test0305.msg.InsertFileRequest.CLS</Item>
-<Item num="13">test0305.msg.InsertProcessRequest.CLS</Item>
-<Item num="14">test0305.msg.SelectDBRequest.CLS</Item>
-<Item num="15">test0305.msg.SelectDBResponse.CLS</Item>
-<Item num="16">test0305.msg.SelectFileRequest.CLS</Item>
-<Item num="17">test0305.msg.SelectProcessRequest.CLS</Item>
+<ExportProject>EnsExportProduction_2025-04-11 13-34-29_631+2</ExportProject>
+<Item num="1">test0305.DeletePathProcess.CLS</Item>
+<Item num="2">test0305.Hospital.CLS</Item>
+<Item num="3">test0305.InsertPathProcess.CLS</Item>
+<Item num="4">test0305.SelectPathProcess.CLS</Item>
+<Item num="5">test0305.UpdatePathProcess.CLS</Item>
+<Item num="6">test0305.bo.DeletePathDB.CLS</Item>
+<Item num="7">test0305.bo.InsertPathDB.CLS</Item>
+<Item num="8">test0305.bo.InsertPathFile.CLS</Item>
+<Item num="9">test0305.bo.SelectPathDB.CLS</Item>
+<Item num="10">test0305.bo.SelectPathFile.CLS</Item>
+<Item num="11">test0305.bo.UpdatePathDB.CLS</Item>
+<Item num="12">test0305.bo.UpdatePathFile.CLS</Item>
+<Item num="13">test0305.bs.DeletePathService.CLS</Item>
+<Item num="14">test0305.bs.InsertPathService.CLS</Item>
+<Item num="15">test0305.bs.SelectPathService.CLS</Item>
+<Item num="16">test0305.bs.UpdatePathService.CLS</Item>
+<Item num="17">test0305.msg.DeleteDBRequest.CLS</Item>
+<Item num="18">test0305.msg.DeleteProcessRequest.CLS</Item>
+<Item num="19">test0305.msg.InsertDBRequest.CLS</Item>
+<Item num="20">test0305.msg.InsertDBResponse.CLS</Item>
+<Item num="21">test0305.msg.InsertFileRequest.CLS</Item>
+<Item num="22">test0305.msg.InsertProcessRequest.CLS</Item>
+<Item num="23">test0305.msg.SelectDBRequest.CLS</Item>
+<Item num="24">test0305.msg.SelectDBResponse.CLS</Item>
+<Item num="25">test0305.msg.SelectFileRequest.CLS</Item>
+<Item num="26">test0305.msg.SelectProcessRequest.CLS</Item>
+<Item num="27">test0305.msg.UpdateDBRequest.CLS</Item>
+<Item num="28">test0305.msg.UpdateDBResponse.CLS</Item>
+<Item num="29">test0305.msg.UpdateFileRequest.CLS</Item>
+<Item num="30">test0305.msg.UpdateProcessRequest.CLS</Item>
 </Contents>
 <ProductionClassInExport>test0305.Hospital</ProductionClassInExport>
 </Deployment>
