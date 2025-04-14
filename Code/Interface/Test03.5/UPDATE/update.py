@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 def make_post_request(patient_id, first_name, middle_name, last_name1, last_name2, birth_date, dni, allergies, create_file):
-    url = "http://localhost:52773/csp/test0305/updatepath"
+    url = f"http://localhost:52773/csp/test0305/updatepath/{patient_id}/{first_name}/{middle_name}/{last_name1}/{last_name2}/{birth_date}/{dni}/{allergies}/{create_file}"
     data = {
         "patient_id": patient_id,
         "first_name": first_name,
@@ -27,7 +27,7 @@ def make_post_request(patient_id, first_name, middle_name, last_name1, last_name
         return {"error": f"Error: {e}"}
 
 def main():
-    st.title("Patient Data Insert")
+    st.title("Patient Data Update")
     #
     patient_id = st.number_input("Enter Patient ID:", min_value=1, step=1)
     first_name = st.text_input("Enter First Name:")
