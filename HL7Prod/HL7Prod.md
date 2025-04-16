@@ -1,7 +1,7 @@
 # HL7 Production
 ***
 ## Database
-In this production we will need 2 DBs, one for the RAW HL7 messages, the other for the formatted messages (parsed).
+In this production we will need 2 DBs, one for the RAW HL7 messages, the other for the formatted messages (parsed). The HL7 Version we will use is HL7 VXU - 2.5.1
 ### DB1 - RAW HL7
 #### Create Table
 ```

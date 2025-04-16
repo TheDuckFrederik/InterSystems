@@ -5,7 +5,7 @@ Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
 Parameter INVOCATION = "Queue";
 
-Method InsertToDB1(pRequest As HL7Prod.msg.ProcessToOperationInsert, Output pResponse As Ens.Response)
+Method InsertToDB1(pRequest As HL7Prod.msg.ProcessToOperationInsert, Output pResponse As HL7Prod.msg.ProcessFromOperationInsert)
 {
     set pResponse = ##class(HL7Prod.msg.ProcessToOperationInsert).%New()
 
