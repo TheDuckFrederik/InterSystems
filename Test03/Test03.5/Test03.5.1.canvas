@@ -22,9 +22,9 @@
 		{"id":"12f757f4c3ff24a7","fromNode":"fa4fae48ea4b4977","fromSide":"right","toNode":"cf8ac0e57ad2bdc1","toSide":"left","color":"3","label":"PatientID\nCreateFile"},
 		{"id":"e077d704217a0f27","fromNode":"6ccd305a45710b49","fromSide":"left","toNode":"68b7e54e35e9bf9d","toSide":"right","color":"2","label":"PatientID\nFirstName\nMiddleName\nLastName\nAge\nAllergies\nCreateFile"},
 		{"id":"8b048d9408669eb2","fromNode":"68b7e54e35e9bf9d","fromSide":"bottom","toNode":"c147e0dcd5d4c679","toSide":"top","color":"3","label":"if (CreateFile == 1) {\nPatientID\nFirstName\nMiddleName\nLastName\nAge\nAllergies}\n"},
-		{"id":"09197644bf604274","fromNode":"c147e0dcd5d4c679","fromSide":"right","toNode":"787b80b37de3d65a","toSide":"left","color":"3","label":"PatientID\nFirstName\nMiddleName\nLastName\nAge\nAllergies"},
 		{"id":"e3e471ace1035fc2","fromNode":"787b80b37de3d65a","fromSide":"right","toNode":"72ac36e4467a3451","toSide":"left","color":"2"},
 		{"id":"5722efb2270eab1a","fromNode":"01491b44909d6323","fromSide":"right","toNode":"ab0fb88c3770caaa","toSide":"left","fromEnd":"arrow","color":"1"},
-		{"id":"68eb9a99a4d672fc","fromNode":"ec56e8c0661fefbd","fromSide":"right","toNode":"54c4149f7d2d8c2e","toSide":"left","color":"4","label":"PatientID\nCreateFile"}
+		{"id":"68eb9a99a4d672fc","fromNode":"ec56e8c0661fefbd","fromSide":"right","toNode":"54c4149f7d2d8c2e","toSide":"left","color":"4","label":"PatientID\nCreateFile"},
+		{"id":"09197644bf604274","fromNode":"c147e0dcd5d4c679","fromSide":"right","toNode":"787b80b37de3d65a","toSide":"left","color":"3","label":"PatientID\nFirstName\nMiddleName\nFirstLastName\nAge\nAllergies"}
 	]
 }
