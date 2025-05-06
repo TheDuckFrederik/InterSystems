@@ -1,4 +1,4 @@
-Class HL7Prod.RestDispHL7Procudction Extends %CSP.REST
+Class HL7Prod.RestDispHL7Production Extends %CSP.REST
 {
 
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
