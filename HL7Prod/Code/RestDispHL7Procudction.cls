@@ -8,7 +8,7 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 </Routes>
 }
 
-ClassMethod RestToProcess(HL7Message As %String(MAXLEN=5000)) As %Status
+ClassMethod RestToProcess(HL7Message As %String(MAXLEN=500000000)) As %Status
 {
 	set tSC = $$$OK
 	try {
