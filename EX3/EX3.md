@@ -119,7 +119,7 @@ CREATE TABLE Professionals (
 |13|3|2|Dr. Shellie Cathleen Mathews|
 |14|3|5|Dr. Nayda Hedda Colon|
 |15|3|6|Dr. Damon Fitzgerald Castaneda|
-|16|4|4|Dr. Madaline Adena Mclean|
+|16|4|9|Dr. Madaline Adena Mclean|
 |17|5|7|Dr. Sheila Candace Moran|
 ## 7. AppointmentTypes
 ```
@@ -155,6 +155,7 @@ CREATE TABLE Appointments (
     ProfessionalID INT,
     AppointmentTypeID INT,
     InsuranceCompanyID INT,
+    Reason VARCHAR(5000),
     AppointmentDate VARCHAR(150),
     AppointmentTime VARCHAR(150),
     FOREIGN KEY (PatientID) REFERENCES Patients(ID),
@@ -165,6 +166,9 @@ CREATE TABLE Appointments (
     FOREIGN KEY (InsuranceCompanyID) REFERENCES InsuranceCompanies(ID)
 )
 ```
-|ID|PatientID|HospitalID|SpecialtyID|ProfessionalID|AppointmentTypeID|InsuranceCompanyID|AppointmentDate|AppointmentTime|
-|---|---|---|---|---|---|---|---|---|
-|1|1|3|1|11|2|2|19-5-2025|17:12|
+|ID|PatientID|HospitalID|SpecialtyID|ProfessionalID|AppointmentTypeID|InsuranceCompanyID|Reason|AppointmentDate|AppointmentTime|
+|---|---|---|---|---|---|---|---|---|---|
+|1|1|3|1|11|2|2|I have been experiencing a sharp chest pain on top of general fatigue.|19-5-2025|17:12|
+|2|4|1|1|1|2|1|This is a preiodic checkup|01-10-2025|10:45|
+|3|2|2|3|6|2|1|A rash on my right elbow that has persisted for almost a month now.|10-5-2025|08:45|
+|4|3|4|9|16|1||I am experiencing a slight balck spot on my sight, appearing from both sides.|10-5-2025|12:03|
