@@ -1,14 +1,125 @@
 # Productions
-## 1. MCAB - Medical Center Appointment Booking
+## 1. AB - Appointment Booking
 ### BS
-#### 1. WADS - Web Appointment Data Service
-This Business Service uses a REST Disp to get the data from the web interfaces to 
+#### 1. PAUS - Periodic Appointment Update Service
+This Business Service starts periodically the production.
 ### BP
-#### 1. WADP - Web Appointment Data Process
+#### 1. ADMP - Appointment Data Management Process
+Takes the data from the Service and makes the calls to the 2 Business Operations on top of managing and directing the data.
 ### BO
-#### 1. WADBO - Web Appointment Data Base Operation 
-#### 2. WAFO - Web Appointment File Operation 
-## 2. AS - Appointment Scheduling
+#### 1. ULIDO - Update Last ID Operation
+#### 2. GLIDO - Get Last ID Operation
+#### 3. ADBO - Appointment Data Base Operation 
+Sends a query into the Database and responds with the appropriate data.
+```
+Class IRIS1.bo.ADBO Extends Ens.BusinessOperation
+{
+
+Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
+
+Parameter INVOCATION = "Queue";
+
+Method DBComm(pRequest As IRIS1.msg.DFQM, Output pResponse As IRIS1.msg.DFDBM)
+{
+    set pResponse=##class(IRIS1.msg.DFDBM).%New()
+
+    set query = "Select PatientID, HospitalID, SpecialtyID, ProfessionalID, AppointmentTypeID, InsuranceCompanyID, Reason, AppointmentDate, AppointmentTime from SQLUser.Appointments where ID = "_pRequest.ID
+    set st =..Adapter.ExecuteQuery(.tResult,query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    set pResponse.PatientID=tResult.Get("PatientID")
+    set pResponse.HospitalID=tResult.Get("HospitalID")
+    set pResponse.SpecialtyID=tResult.Get("SpecialtyID")
+    set pResponse.ProfessionalID=tResult.Get("ProfessionalID")
+    set pResponse.AppointmentTypeID=tResult.Get("AppointmentTypeID")
+    set pResponse.InsuranceCompanyID=tResult.Get("InsuranceCompanyID")
+    set pResponse.Reason=tResult.Get("Reason")
+    set pResponse.AppointmentDate=tResult.Get("AppointmentDate")
+    set pResponse.AppointmentTime=tResult.Get("AppointmentTime")
+
+    Quit $$$OK
+
+}
+
+XData MessageMap
+{
+<MapItems>
+        <MapItem MessageType="IRIS1.msg.DFQM">
+            <Method>DBComm</Method>
+        </MapItem>
+    </MapItems>
+}
+
+}
+```
+#### 4. AFO - Appointment File Operation
+Creates a file with the data.
+### MSG
+#### 1. ULIDM - Update Last ID Message
+```
+
+```
+#### 2. NFQM - Number For Query Message
+```
+```
+#### 3. GLIDM - Get Last ID Message
+```
+
+```
+#### 4. DFQM - Data For Query Message
+```
+Class IRIS1.msg.DQFM Extends Ens.Request
+{
+	Property ID As %Integer;
+}
+```
+#### 5. DFDBM - Data From Database Message
+```
+Class IRIS1.msg.DFDBM Extends Ens.Response
+{
+	Property ID As %Integer;
+	Property PatientID As %Integer;
+	Property HospitalID As %Integer;
+	Property SpecialtyID As %Integer;
+	Property ProfessionalID As %Integer;
+	Property AppointmentTypeID As %Integer;
+	Property InsuranceCompanyID As %Integer;
+	Property Reason As %String(MAXLEN = 5000);
+	Property AppointmentDate As %String;
+	Property AppointmentTime As %String;
+}
+```
+#### 6. DFFM - Data For File Message
+```
+Class IRIS1.msg.DDFM Extends Ens.Response
+{
+	Property ID As %Integer;
+	Property PatientID As %Integer;
+	Property HospitalID As %Integer;
+	Property SpecialtyID As %Integer;
+	Property ProfessionalID As %Integer;
+	Property AppointmentTypeID As %Integer;
+	Property InsuranceCompanyID As %Integer;
+	Property Reason As %String(MAXLEN = 5000);
+	Property AppointmentDate As %String;
+	Property AppointmentTime As %String;
+}
+```
+## 2. MC - Medical Center
+### BS
+#### 1. RFS - Receive File Service
+Receives the files and sends the data to the Process.
+### BP
+#### 1. MRDP - Manage Received Data Process
+Makes a call to the Operation and sends the received data.
+### BO
+#### 1. IRDO - Insert Received Data Operation
+Sends a query and the data to the Database.
+### MSG
+#### 1. RDM - Received Data Message
+#### 2. DFQM - Data For Query Message
+#### 3. DFDBM - Data From Database Message
 # DB
 ## 1. Patients
 ```
@@ -172,3 +283,27 @@ CREATE TABLE Appointments (
 |2|4|1|1|1|2|1|This is a preiodic checkup|01-10-2025|10:45|
 |3|2|2|3|6|2|1|A rash on my right elbow that has persisted for almost a month now.|10-5-2025|08:45|
 |4|3|4|9|16|1||I am experiencing a slight balck spot on my sight, appearing from both sides.|10-5-2025|12:03|
+## 10. IDC
+```
+CREATE TABLE IDC (
+	ID INT AUTO_INCREMENT PRIMARY KEY,
+	LastID INT,
+)
+```
+|ID|LastID|
+|---|---|
+|1|0|
+## 11. HIS
+```
+CREATE TABLE HIS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    PatientID INT,
+    HospitalID INT,
+    SpecialtyID INT,
+    ProfessionalID INT,
+    AppointmentTypeID INT,
+    InsuranceCompanyID INT,
+    Reason VARCHAR(5000),
+    AppointmentDate VARCHAR(150),
+    AppointmentTime VARCHAR(150)
+)
