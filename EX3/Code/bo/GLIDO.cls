@@ -5,7 +5,7 @@ Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
 Parameter INVOCATION = "Queue";
 
-Method GetLastID(pRequest As IRIS1.msg.NFQM, Output pResponse As IRIS1.msg.GLIDM) As %Status
+Method GetID(pRequest As IRIS1.msg.NFQM, Output pResponse As IRIS1.msg.GLIDM) As %Status
 {
     set pResponse = ##class(IRIS1.msg.GLIDM).%New()
     
@@ -14,7 +14,7 @@ Method GetLastID(pRequest As IRIS1.msg.NFQM, Output pResponse As IRIS1.msg.GLIDM
     $$$TRACE("st = "_st)
     do tResult.Next()
 
-    set pResponse.LastID=pRequest.LastID
+    set pResponse.LastID=tResult.Get("LastID")
 
     Quit $$$OK
 }
@@ -23,7 +23,7 @@ XData MessageMap
 {
 <MapItems>
     <MapItem MessageType="IRIS1.msg.NFQM">
-        <Method>GetLastID</Method>
+        <Method>GetID</Method>
     </MapItem>
 </MapItems>
 }
