@@ -14,6 +14,7 @@ Method DBComm(pRequest As IRIS1.msg.DFQM, Output pResponse As IRIS1.msg.DFDBM)
     $$$TRACE("st = "_st) 
     do tResult.Next()
 
+    set pResponse.ID=pRequest.ID
     set pResponse.PatientID=tResult.Get("PatientID")
     set pResponse.HospitalID=tResult.Get("HospitalID")
     set pResponse.SpecialtyID=tResult.Get("SpecialtyID")

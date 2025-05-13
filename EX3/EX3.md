@@ -56,6 +56,10 @@ XData MessageMap
 #### 4. AFO - Appointment File Operation
 Creates a file with the data.
 ### MSG
+#### 1. SPM - Start Production Message
+```
+
+```
 #### 1. ULIDM - Update Last ID Message
 ```
 
@@ -104,6 +108,7 @@ Class IRIS1.msg.DDFM Extends Ens.Response
 	Property Reason As %String(MAXLEN = 5000);
 	Property AppointmentDate As %String;
 	Property AppointmentTime As %String;
+	Property FileName As %String;
 }
 ```
 ## 2. MC - Medical Center
