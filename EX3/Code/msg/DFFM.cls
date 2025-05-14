@@ -1,64 +1,69 @@
 Class IRIS1.msg.DFFM Extends Ens.Request
 {
 
-Property ID As %Integer;
+Property FirstName As %String;
 
-Property PatientID As %Integer;
+Property MiddleName As %String;
 
-Property HospitalID As %Integer;
+Property LastName As %String;
 
-Property SpecialtyID As %Integer;
+Property SSN As %String;
 
-Property ProfessionalID As %Integer;
+Property hHospitalName As %String;
 
-Property AppointmentTypeID As %Integer;
+Property sSpecialty As %String;
 
-Property InsuranceCompanyID As %Integer;
+Property prProfessionalName As %String;
 
-Property Reason As %String(MAXLEN = 5000);
+Property atAppointmentType As %String;
 
-Property AppointmentDate As %String;
+Property icInsuranceCompany As %String;
 
-Property AppointmentTime As %String;
+Property aReason As %String(MAXLEN = 5000);
 
-Property FileName As %String;
+Property aAppointmentDate As %String;
+
+Property aAppointmentTime As %String;
 
 Storage Default
 {
 <Data name="DFFMDefaultData">
 <Subscript>"DFFM"</Subscript>
 <Value name="1">
-<Value>ID</Value>
+<Value>FirstName</Value>
 </Value>
 <Value name="2">
-<Value>PatientID</Value>
+<Value>MiddleName</Value>
 </Value>
 <Value name="3">
-<Value>HospitalID</Value>
+<Value>LastName</Value>
 </Value>
 <Value name="4">
-<Value>SpecialtyID</Value>
+<Value>SSN</Value>
 </Value>
 <Value name="5">
-<Value>ProfessionalID</Value>
+<Value>hHospitalName</Value>
 </Value>
 <Value name="6">
-<Value>AppointmentTypeID</Value>
+<Value>sSpecialty</Value>
 </Value>
 <Value name="7">
-<Value>InsuranceCompanyID</Value>
+<Value>prProfessionalName</Value>
 </Value>
 <Value name="8">
-<Value>Reason</Value>
+<Value>atAppointmentType</Value>
 </Value>
 <Value name="9">
-<Value>AppointmentDate</Value>
+<Value>icInsuranceCompany</Value>
 </Value>
 <Value name="10">
-<Value>AppointmentTime</Value>
+<Value>aReason</Value>
 </Value>
 <Value name="11">
-<Value>FileName</Value>
+<Value>aAppointmentDate</Value>
+</Value>
+<Value name="12">
+<Value>aAppointmentTime</Value>
 </Value>
 </Data>
 <DefaultData>DFFMDefaultData</DefaultData>

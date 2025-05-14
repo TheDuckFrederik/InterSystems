@@ -1,7 +1,0 @@
-Patient ID: 15
-First Name: Quinn
-Middle Name: Ursa
-Last Name: Maynard Figueroa
-Birth Date: 27-02-2004
-DNI: 58828071V
-Allergies: Dust, Wheat, Mustard, Soy

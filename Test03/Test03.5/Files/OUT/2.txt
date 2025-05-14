@@ -1,7 +1,0 @@
-Patient ID: 2
-First Name: Leo
-Middle Name: Yeo
-Last Name: Strickland Velasquez
-Birth Date: 11-12-2016
-DNI: 66533939Q
-Allergies: Naproxen, Iboprufen

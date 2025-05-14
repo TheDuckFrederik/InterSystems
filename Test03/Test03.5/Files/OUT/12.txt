@@ -1,7 +1,0 @@
-Patient ID: 12
-First Name: Victor
-Middle Name: Jemima
-Last Name: Malone Blackwell
-Birth Date: 6-04-2012
-DNI: 44787844T
-Allergies: Amoxicilin, Sesame

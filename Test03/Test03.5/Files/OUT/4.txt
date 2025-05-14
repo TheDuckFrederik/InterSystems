@@ -1,7 +1,0 @@
-Patient ID: 4
-First Name: Kevin
-Middle Name: Cristian
-Last Name: Riese Asensio
-Birth Date: 16-07-2004
-DNI: 45758695G
-Allergies: Amoxicilin

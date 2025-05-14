@@ -1,7 +1,0 @@
-Patient ID: 9
-First Name: Brett
-Middle Name: Steel
-Last Name: Mathis Noble
-Birth Date: 16-11-2013
-DNI: 63064381R
-Allergies: Wheat

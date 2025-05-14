@@ -1,7 +1,0 @@
-Patient ID: 10
-First Name: Conan
-Middle Name: Neve
-Last Name: Pittman Vance
-Birth Date: 5-11-2016
-DNI: 85183676C
-Allergies: Fish, Aspirin, Dust

@@ -1,7 +1,0 @@
-Patient ID: 8
-First Name: Amela
-Middle Name: Maite
-Last Name: Irwin Francis
-Birth Date: 6-06-2016
-DNI: 61796754V
-Allergies: Eggs, Mold, Soy
