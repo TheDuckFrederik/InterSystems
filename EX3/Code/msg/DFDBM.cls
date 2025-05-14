@@ -1,6 +1,8 @@
 Class IRIS1.msg.DFDBM Extends Ens.Response
 {
 
+Property ID As %Integer;
+
 Property FirstName As %String;
 
 Property MiddleName As %String;
@@ -30,39 +32,42 @@ Storage Default
 <Data name="DFDBMDefaultData">
 <Subscript>"DFDBM"</Subscript>
 <Value name="1">
-<Value>FirstName</Value>
+<Value>ID</Value>
 </Value>
 <Value name="2">
-<Value>MiddleName</Value>
+<Value>FirstName</Value>
 </Value>
 <Value name="3">
-<Value>LastName</Value>
+<Value>MiddleName</Value>
 </Value>
 <Value name="4">
-<Value>SSN</Value>
+<Value>LastName</Value>
 </Value>
 <Value name="5">
-<Value>hHospitalName</Value>
+<Value>SSN</Value>
 </Value>
 <Value name="6">
-<Value>sSpecialty</Value>
+<Value>hHospitalName</Value>
 </Value>
 <Value name="7">
-<Value>prProfessionalName</Value>
+<Value>sSpecialty</Value>
 </Value>
 <Value name="8">
-<Value>atAppointmentType</Value>
+<Value>prProfessionalName</Value>
 </Value>
 <Value name="9">
-<Value>icInsuranceCompany</Value>
+<Value>atAppointmentType</Value>
 </Value>
 <Value name="10">
-<Value>aReason</Value>
+<Value>icInsuranceCompany</Value>
 </Value>
 <Value name="11">
-<Value>aAppointmentDate</Value>
+<Value>aReason</Value>
 </Value>
 <Value name="12">
+<Value>aAppointmentDate</Value>
+</Value>
+<Value name="13">
 <Value>aAppointmentTime</Value>
 </Value>
 </Data>

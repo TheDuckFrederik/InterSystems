@@ -25,6 +25,8 @@ Property aAppointmentDate As %String;
 
 Property aAppointmentTime As %String;
 
+Property FileName As %String;
+
 Storage Default
 {
 <Data name="DFFMDefaultData">
@@ -64,6 +66,9 @@ Storage Default
 </Value>
 <Value name="12">
 <Value>aAppointmentTime</Value>
+</Value>
+<Value name="13">
+<Value>FileName</Value>
 </Value>
 </Data>
 <DefaultData>DFFMDefaultData</DefaultData>
