@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2024.3 (Build 217U)" ts="2025-05-16 10:16:10">
+<Class name="IRIS1.bp.ADMP">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>67341,32109.9009783</TimeChanged>
+<TimeCreated>67334,49647.6178674</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='IRIS1.msg.SPM' response='IRIS1.msg.DFDBM' height='2000' width='2000' >
+<context>
+<property name='LastID' type='%Integer' instantiate='0' />
+<property name='ID' type='%Integer' instantiate='0' />
+<property name='FirstName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='MiddleName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='LastName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='SSN' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='hHospitalName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='sSpecialty' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='prProfessionalName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='atAppointmentType' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='icInsuranceCompany' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='aReason' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='5000' />
+</parameters>
+</property>
+<property name='aAppointmentDate' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='aAppointmentTime' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='150' />
+</parameters>
+</property>
+<property name='STOP' type='%Boolean' instantiate='0' />
+<property name='CNT' type='%Integer' instantiate='0' />
+</context>
+<sequence xend='200' yend='550' >
+<call name='GLID' target='GLIDO' async='0' xpos='200' ypos='250' >
+<request type='IRIS1.msg.NFQM' >
+<assign property="callrequest.ID" value="1" action="set" languageOverride="" />
+</request>
+<response type='IRIS1.msg.GLIDM' >
+<assign property="context.LastID" value="callresponse.LastID + 1" action="set" languageOverride="" />
+</response>
+</call>
+<assign name="Start" property="context.CNT" value="1" action="set" languageOverride="" xpos='200' ypos='350' />
+<while name='GetLoop' condition='context.CNT = 1' xpos='200' ypos='450' xend='195' yend='705' >
+<call name='ADBO' target='ADBO' async='0' xpos='200' ypos='250' >
+<request type='IRIS1.msg.DFQM' >
+<assign property="callrequest.ID" value="context.LastID" action="set" languageOverride="" />
+</request>
+<response type='IRIS1.msg.DFDBM' >
+<assign property="context.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="context.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="context.LastName" value="callresponse.LastName" action="set" languageOverride="" />
+<assign property="context.SSN" value="callresponse.SSN" action="set" languageOverride="" />
+<assign property="context.hHospitalName" value="callresponse.hHospitalName" action="set" languageOverride="" />
+<assign property="context.sSpecialty" value="callresponse.sSpecialty" action="set" languageOverride="" />
+<assign property="context.prProfessionalName" value="callresponse.prProfessionalName" action="set" languageOverride="" />
+<assign property="context.atAppointmentType" value="callresponse.atAppointmentType" action="set" languageOverride="" />
+<assign property="context.icInsuranceCompany" value="callresponse.icInsuranceCompany" action="set" languageOverride="" />
+<assign property="context.aReason" value="callresponse.aReason" action="set" languageOverride="" />
+<assign property="context.aAppointmentDate" value="callresponse.aAppointmentDate" action="set" languageOverride="" />
+<assign property="context.aAppointmentTime" value="callresponse.aAppointmentTime" action="set" languageOverride="" />
+<assign property="response.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="response.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="response.LastName" value="callresponse.LastName" action="set" languageOverride="" />
+<assign property="response.SSN" value="callresponse.SSN" action="set" languageOverride="" />
+<assign property="response.hHospitalName" value="callresponse.hHospitalName" action="set" languageOverride="" />
+<assign property="response.sSpecialty" value="callresponse.sSpecialty" action="set" languageOverride="" />
+<assign property="response.prProfessionalName" value="callresponse.prProfessionalName" action="set" languageOverride="" />
+<assign property="response.atAppointmentType" value="callresponse.atAppointmentType" action="set" languageOverride="" />
+<assign property="response.icInsuranceCompany" value="callresponse.icInsuranceCompany" action="set" languageOverride="" />
+<assign property="response.aReason" value="callresponse.aReason" action="set" languageOverride="" />
+<assign property="response.aAppointmentDate" value="callresponse.aAppointmentDate" action="set" languageOverride="" />
+<assign property="response.aAppointmentTime" value="callresponse.aAppointmentTime" action="set" languageOverride="" />
+<assign property="context.ID" value="callresponse.ID" action="set" languageOverride="" />
+</response>
+</call>
+<call name='ULIDO' target='ULIDO' async='0' xpos='200' ypos='350' >
+<request type='IRIS1.msg.ULIDM' >
+<assign property="callrequest.LastID" value="context.LastID" action="set" languageOverride="" />
+<assign property="callrequest.ID" value="context.ID" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+<call name='AFO' target='AFO' async='0' xpos='200' ypos='450' >
+<request type='IRIS1.msg.DFFM' >
+<assign property="callrequest.FirstName" value="context.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="context.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName" value="context.LastName" action="set" languageOverride="" />
+<assign property="callrequest.SSN" value="context.SSN" action="set" languageOverride="" />
+<assign property="callrequest.hHospitalName" value="context.hHospitalName" action="set" languageOverride="" />
+<assign property="callrequest.sSpecialty" value="context.sSpecialty" action="set" languageOverride="" />
+<assign property="callrequest.prProfessionalName" value="context.prProfessionalName" action="set" languageOverride="" />
+<assign property="callrequest.atAppointmentType" value="context.atAppointmentType" action="set" languageOverride="" />
+<assign property="callrequest.icInsuranceCompany" value="context.icInsuranceCompany" action="set" languageOverride="" />
+<assign property="callrequest.aReason" value="context.aReason" action="set" languageOverride="" />
+<assign property="callrequest.aAppointmentDate" value="context.aAppointmentDate" action="set" languageOverride="" />
+<assign property="callrequest.aAppointmentTime" value="context.aAppointmentTime" action="set" languageOverride="" />
+<assign property="callrequest.FileName" value="&quot;data.csv&quot;" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+<assign name="Increment" property="context.CNT" value="context.CNT + 1" action="set" languageOverride="" xpos='200' ypos='550' />
+</while>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+</Export>
