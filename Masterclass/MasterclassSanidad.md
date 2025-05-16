@@ -137,3 +137,6 @@
 		- Condition - Diagnosticos.
 		- Encounter.
 		- Medication - Tratamientos.
+- EX3
+	- BPMN
+	- [Productions](/EX3/EX3.md)
