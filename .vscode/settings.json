@@ -2,6 +2,6 @@
     "objectscript.conn": {
         "server": "healthconnect",
         "ns": "MASTERCLASS",
-        "active": true
+        "active": false
     }
 }
