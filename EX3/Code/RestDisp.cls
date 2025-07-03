@@ -4,16 +4,26 @@ Class IRIS1.RestDisp Extends %CSP.REST
 // This file is used used to create calls to a Web Application in IRIS. To make the call you need to get the route from the Web App and add the "URL" to the end of the Web App URL.
 
 // First the UrlMap.
+
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
-
 <Routes>
-	// Here we declare the calls, you can declare one or more.
-	<Route Url="/start/:num" Method="GET" Call="sterter" Cors="true"/> // First we declare the URL, this is the "path" for the call (After the one in the web application). The ":num" means a variable, in the sense that the ":num" is where the number will be placed and processed to the call. Now the method, in this case it's a GET. Then "Call="sterter"" is a call to the name of the class and "Cors="true"".
+	<Route Url="/start/:num" Method="GET" Call="sterter" Cors="true"/>
 </Routes>
 }
 
+// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+// Here we declare the calls, you can declare one or more.
+
+// First we declare the URL, this is the "path" for the call (After the one in the web application). The ":num" means a variable, in the sense that the ":num" is where the number will be placed and processed to the call. Now the method, in this case it's a GET. Then "Call="sterter"" is a call to the name of the class and "Cors="true"".
+
+// ---------------------------------------------------------------------
+
 // This is the class for the call. First we declare the variables and their type "(num As %Integer)" and add "As %Status" to the end.
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
 ClassMethod starter(num As %Integer) As %Status
 {
 	// We add a try catch.
@@ -42,7 +52,7 @@ ClassMethod starter(num As %Integer) As %Status
 	catch ex {
 		set tSC = ex.AsStatus() // If there is an error, we catch it and set the status code to the error.
 	}
-	return tSC
+	return tSC // Finally we return the status code.
 }
 
 }

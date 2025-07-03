@@ -1,7 +1,18 @@
 {
     "objectscript.conn": {
-        "server": "healthconnect",
-        "ns": "MASTERCLASS",
-        "active": false
+        "server": "test",
+        "ns": "TESTPRODS",
+        "active": true
+    },
+    "intersystems.servers": {
+        "test": {
+            "webServer": {
+                "scheme": "http",
+                "host": "localhost",
+                "port": 52773
+            },
+            "description": "Local Test Server",
+            "username": "Admin"
+        }
     }
 }
