@@ -142,54 +142,38 @@ CREATE TABLE Patients (
 | 2  | Ramon     |            | Fernandez Roig       | FERO2050702305 |
 | 3  | Ricard    |            | Ferrando Paredes     | FEPA5010503601 |
 | 4  | Eugenio   | Rafael     | Fernandez Gonzalez   | FEGO1010209506 |
-## 2. Provinces
-```
-CREATE TABLE Provinces (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    Province VARCHAR(150)
-)
-```
-|ID|Province|
-|---|---|
-|1|Barcelona|
-|2|Tarragona|
-|3|Zaragoza|
-|4|Valencia|
-## 3. Cities
+## 2. Cities
 ```
 CREATE TABLE Cities (
 	ID INT AUTO_INCREMENT PRIMARY KEY,
-	ProvinceID INT,
-	City VARCHAR(150),
-	FOREIGN KEY (ProvinceID) REFERENCES Provinces(ID)
+	City VARCHAR(150)
 )
 ```
-|ID|ProvinceID|City|
-|---|---|---|
-|1|1|Barcelona|
-|2|2|Tarragona|
-|3|2|Reus|
-|4|3|Zaragoza|
-|5|4|Valencia|
-## 4. Hospitals
+|ID|City|
+|---|---|
+|1|Barcelona|
+|2|Tarragona|
+|3|Reus|
+|4|Zaragoza|
+|5|Valencia|
+## 3. Hospitals
 ```
 CREATE TABLE Hospitals (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     HospitalName VARCHAR(150),
     CityID INT,
     PostalCode INT,
-    Location VARCHAR(150),
     FOREIGN KEY (CityID) REFERENCES Cities(ID)
 )
 ```
-|ID|HospitalName|CityID|PostalCode|Location|
-|---|---|---|---|---|
-|1|Valle de Hebron|1|8035|Pg. de la Vall dHebron, 119, Horta-Guinardo|
-|2|Juan XXIII|2|43005|Carrer Dr. Mallafré Guasch, 4|
-|3|Sant Joan de Reus|3|43204|Avinguda del Doctor Josep Laporte, 2|
-|4|Miguel Servet|4|50009|P.º de Isabel la Catolica, 1-3|
-|5|Consorcio Hospital General Universitario de València|5|46014|Av. de les Tres Creus, 2|
-## 5. Specialties
+|ID|HospitalName|CityID|PostalCode|
+|---|---|---|---|
+|1|Valle de Hebron|1|8035|
+|2|Juan XXIII|2|43005|
+|3|Sant Joan de Reus|3|43204|
+|4|Miguel Servet|4|50009|
+|5|Consorcio Hospital General Universitario de València|5|46014|
+## 4. Specialties
 ```
 CREATE TABLE Specialties (
 	ID INT AUTO_INCREMENT PRIMARY KEY, 
@@ -207,7 +191,7 @@ CREATE TABLE Specialties (
 |7|Orthopedics|
 |8|Gynecology|
 |9|Ophthalmology|
-## 6. Professionals
+## 5. Professionals
 ```
 CREATE TABLE Professionals (
 	ID INT AUTO_INCREMENT PRIMARY KEY, 
@@ -237,7 +221,7 @@ CREATE TABLE Professionals (
 |15|3|6|Dr. Damon Fitzgerald Castaneda|
 |16|4|9|Dr. Madaline Adena Mclean|
 |17|5|7|Dr. Sheila Candace Moran|
-## 7. AppointmentTypes
+## 6. AppointmentTypes
 ```
 CREATE TABLE AppointmentTypes (
 	ID INT AUTO_INCREMENT PRIMARY KEY, 
@@ -248,7 +232,7 @@ CREATE TABLE AppointmentTypes (
 |---|---|
 |1|Private|
 |2|Insured|
-## 8. InsuranceCompanies
+## 7. InsuranceCompanies
 ```
 CREATE TABLE InsuranceCompanies (
 	ID INT AUTO_INCREMENT PRIMARY KEY, 
@@ -261,7 +245,7 @@ CREATE TABLE InsuranceCompanies (
 |2|Sanitas|
 |3|Asisa|
 |4|Generali|
-## 9. Appointments
+## 8. Appointments
 ```
 CREATE TABLE Appointments (
     ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -288,17 +272,17 @@ CREATE TABLE Appointments (
 |2|4|1|1|1|2|1|This is a preiodic checkup|01-10-2025|10:45|
 |3|2|2|3|6|2|1|A rash on my right elbow that has persisted for almost a month now.|10-5-2025|08:45|
 |4|3|4|9|16|1||I am experiencing a slight balck spot on my sight, appearing from both sides.|10-5-2025|12:03|
-## 10. IDC
+## 9. IDC
 ```
 CREATE TABLE IDC (
 	ID INT AUTO_INCREMENT PRIMARY KEY,
-	LastID INT,
+	LastID INT
 )
 ```
 |ID|LastID|
 |---|---|
 |1|0|
-## 11. HIS
+## 10. HIS
 ```
 CREATE TABLE HIS (
     ID INT AUTO_INCREMENT PRIMARY KEY,

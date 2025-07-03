@@ -14,5 +14,21 @@
             "description": "Local Test Server",
             "username": "Admin"
         }
-    }
+    },
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "EX3",
+            "database": "EX3",
+            "username": "Admin",
+            "askForPassword": true
+        }
+    ]
 }
