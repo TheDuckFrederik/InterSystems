@@ -17,7 +17,7 @@ Method PatientInfo(pRequest As TestProds.TestProd01.MSG.RPIM, Output pResponse A
     set pResponse=##class(TestProds.TestProd01.MSG.GPIM).%New()
 
     // Here we first make the query to the database, then we assign the result to the variable tResult.
-    set query = "Select * from testprods.patients where PatientID = "_pRequest.PatientID
+    set query = "Select FirstName, MiddleName, LastName, BirthDate, Phone, Email, Address, ResidenceCiry, ResidencRegion, ResidencCountry, PostalZip from testprods.patients where PatientID = "_pRequest.PID
     set st =..Adapter.ExecuteQuery(.tResult,query)
     $$$TRACE("st = "_st)
     do tResult.Next()
