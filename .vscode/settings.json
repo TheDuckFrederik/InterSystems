@@ -25,7 +25,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "EX3",
+            "name": "PHPMyAdmin",
             "database": "EX3",
             "username": "Admin",
             "askForPassword": true
