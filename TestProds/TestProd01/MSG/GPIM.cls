@@ -21,7 +21,7 @@ Property PResidenceRegion As %String;
 
 Property PResidenceCountry As %String;
 
-Property PostalZip As %String;
+Property PPostalZip As %String;
 
 Storage Default
 {
@@ -58,7 +58,7 @@ Storage Default
 <Value>PResidenceCountry</Value>
 </Value>
 <Value name="11">
-<Value>PostalZip</Value>
+<Value>PPostalZip</Value>
 </Value>
 </Data>
 <DefaultData>GPIMDefaultData</DefaultData>
