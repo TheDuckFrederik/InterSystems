@@ -25,7 +25,7 @@ Method PatientInfo(pRequest As TestProds.TestProd01.MSG.RPIM, Output pResponse A
     // To the left we declare the value of the poperties inside the request message. On the right we assign it to the different fields of the database response.
     set pResponse.PID=pRequest.PID
     set pResponse.PFirstName=tResult.Get("FirstName")
-    set pResponse.PMiddleName=tResult.Get("MiddleName")
+    set pResponse.PMiddleNane=tResult.Get("MiddleName")
     set pResponse.PLastName=tResult.Get("LastName")
     set pResponse.PBirthDate=tResult.Get("BirthDate")
     set pResponse.PPhone=tResult.Get("Phone")
@@ -34,7 +34,7 @@ Method PatientInfo(pRequest As TestProds.TestProd01.MSG.RPIM, Output pResponse A
     set pResponse.PResidenceCity=tResult.Get("ResidenceCity")
     set pResponse.PResidenceRegion=tResult.Get("ResidencRegion")
     set pResponse.PResidenceCountry=tResult.Get("ResidencCountry")
-    set pResponse.PostalZip=tResult.Get("PostalZip")
+    set pResponse.PPostalZip=tResult.Get("PostalZip")
 
     Quit $$$OK
 }
