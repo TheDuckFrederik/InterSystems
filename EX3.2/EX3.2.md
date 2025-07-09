@@ -65,25 +65,36 @@ Creates a file with the data.
 ```
 #### 1. ULIDM - Update Last ID Message
 ```
-
+Class EX32.MSG.ULIDM Extends Ens.Request
+{
+	Property ID As %Integer; 
+	Property LastID As %Integer;
+}
 ```
 #### 2. NFQM - Number For Query Message
 ```
+Class EX32.MSG.NFQM Extends Ens.Request
+{
+	Property ID As %Integer;
+}
 ```
 #### 3. GLIDM - Get Last ID Message
 ```
-
+Class EX32.MSG.GLIDM Extends Ens.Response
+{
+	Property LastID As %Integer;
+}
 ```
 #### 4. DFQM - Data For Query Message
 ```
-Class IRIS1.msg.DQFM Extends Ens.Request
+Class EX32.MSG.DQFM Extends Ens.Request
 {
 	Property ID As %Integer;
 }
 ```
 #### 5. DFDBM - Data From Database Message
 ```
-Class IRIS1.msg.DFDBM Extends Ens.Response
+Class EX32.MSG.DFDBM Extends Ens.Response
 {
 	Property ID As %Integer;
 	Property PatientID As %Integer;
@@ -99,7 +110,7 @@ Class IRIS1.msg.DFDBM Extends Ens.Response
 ```
 #### 6. DFFM - Data For File Message
 ```
-Class IRIS1.msg.DDFM Extends Ens.Response
+Class EX32.MSG.DDFM Extends Ens.Request
 {
 	Property ID As %Integer;
 	Property PatientID As %Integer;
