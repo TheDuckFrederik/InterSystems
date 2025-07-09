@@ -1,6 +1,8 @@
 Class TestProds.TestProd01.MSG.GPIM Extends Ens.Response
 {
 
+Property PID As %Integer;
+
 Property PFirstName As %String;
 
 Property PMiddleNane As %String;
@@ -28,36 +30,39 @@ Storage Default
 <Data name="GPIMDefaultData">
 <Subscript>"GPIM"</Subscript>
 <Value name="1">
-<Value>PFirstName</Value>
+<Value>PID</Value>
 </Value>
 <Value name="2">
-<Value>PMiddleNane</Value>
+<Value>PFirstName</Value>
 </Value>
 <Value name="3">
-<Value>PLastName</Value>
+<Value>PMiddleNane</Value>
 </Value>
 <Value name="4">
-<Value>PBirthDate</Value>
+<Value>PLastName</Value>
 </Value>
 <Value name="5">
-<Value>PPhone</Value>
+<Value>PBirthDate</Value>
 </Value>
 <Value name="6">
-<Value>PEmail</Value>
+<Value>PPhone</Value>
 </Value>
 <Value name="7">
-<Value>PAdress</Value>
+<Value>PEmail</Value>
 </Value>
 <Value name="8">
-<Value>PResidenceCity</Value>
+<Value>PAdress</Value>
 </Value>
 <Value name="9">
-<Value>PResidenceRegion</Value>
+<Value>PResidenceCity</Value>
 </Value>
 <Value name="10">
-<Value>PResidenceCountry</Value>
+<Value>PResidenceRegion</Value>
 </Value>
 <Value name="11">
+<Value>PResidenceCountry</Value>
+</Value>
+<Value name="12">
 <Value>PPostalZip</Value>
 </Value>
 </Data>
