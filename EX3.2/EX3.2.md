@@ -11,50 +11,53 @@ This Business Service starts periodically the production.
 Takes the data from the Service and makes the calls to the 2 Business Operations on top of managing and directing the data.
 ### BO
 #### 1. ULIDO - Update Last ID Operation
+
 #### 2. GLIDO - Get Last ID Operation
-#### 3. ADBO - Appointment Data Base Operation 
-Sends a query into the Database and responds with the appropriate data.
+Sends a ID number to the [IDC](####9.idc) DB, Selects the number in the LastID field and returns said field's value.
 ```
-Class IRIS1.bo.ADBO Extends Ens.BusinessOperation
+Class EX32.BO.GLIDO Extends Ens.BusinessOperation
 {
 
+// Declare the adapter class that is going to be used for the business operation, in this case we use the SQL Outbound Adapter because we are connecting to a database.
 Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
+// Mandatory parameter to state the invocation type of the business operation.
 Parameter INVOCATION = "Queue";
 
-Method DBComm(pRequest As IRIS1.msg.DFQM, Output pResponse As IRIS1.msg.DFDBM)
+// Here you state the method name and in the parenthesis the request and response messages.
+Method GetLastID(pRequest As EX32.MSG.NFQM, Output pResponse As EX32.MSG.GLIDM) As %Status
 {
-    set pResponse=##class(IRIS1.msg.DFDBM).%New()
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.GLIDM).%New()
 
-    set query = "Select PatientID, HospitalID, SpecialtyID, ProfessionalID, AppointmentTypeID, InsuranceCompanyID, Reason, AppointmentDate, AppointmentTime from SQLUser.Appointments where ID = "_pRequest.ID
-    set st =..Adapter.ExecuteQuery(.tResult,query)
-    $$$TRACE("st = "_st)
-    do tResult.Next()
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "Select * from idc where ID = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
 
-    set pResponse.PatientID=tResult.Get("PatientID")
-    set pResponse.HospitalID=tResult.Get("HospitalID")
-    set pResponse.SpecialtyID=tResult.Get("SpecialtyID")
-    set pResponse.ProfessionalID=tResult.Get("ProfessionalID")
-    set pResponse.AppointmentTypeID=tResult.Get("AppointmentTypeID")
-    set pResponse.InsuranceCompanyID=tResult.Get("InsuranceCompanyID")
-    set pResponse.Reason=tResult.Get("Reason")
-    set pResponse.AppointmentDate=tResult.Get("AppointmentDate")
-    set pResponse.AppointmentTime=tResult.Get("AppointmentTime")
+    // To the left we declare the value of the poperties inside the request message. On the right we assign it to the different fields of the database response.
+    set pResponse.LastID = tResult.Get("LastID")
 
-    Quit $$$OK
-
+    // Here we end the method and return the status code.
+    Quit $$$OK
 }
 
+// Inside the message map we declare the different methods and assign the request message.
 XData MessageMap
 {
 <MapItems>
-        <MapItem MessageType="IRIS1.msg.DFQM">
-            <Method>DBComm</Method>
-        </MapItem>
-    </MapItems>
+    <MapItem MessageType="EX32.MSG.NFQM">
+        <Method>GetLastID</Method>
+    </MapItem>
+</MapItems>
 }
+}
+```
+#### 3. ADBO - Appointment Data Base Operation 
+Sends a query into the Database and responds with the appropriate data.
+```
 
-}
 ```
 #### 4. AFO - Appointment File Operation
 Creates a file with the data.
