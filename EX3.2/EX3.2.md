@@ -2,10 +2,12 @@
 This has the same purpose as the regular EX3 but this is a 2.0 version, hence the EX3.2 name.
 
 # Productions
-## 1. AB - Appointment Booking
+## 1. AB
+### Appointment Booking
+---
 ### BS
 #### 1. DBITS - DB Insert Trigger Service
-This Business Service starts when it detects a INSERT in the  [Appointments](####8.appointments).
+This Business Service starts when it detects a INSERT in the [Appointments](####8.appointments) table.
 ### BP
 #### 1. ADMP - Appointment Data Management Process
 Takes the data from the Service and makes the calls to the 2 Business Operations on top of managing and directing the data.
@@ -103,7 +105,13 @@ Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response
     Quit $$$OK
 }
 ```
-#### 2. ADBO - Appointment Data Base Operation 
+#### 2. ADMO - Appointment Data Management Operation
+This gets the data tin the table [Appointments](####8.appointments) and makes a file with the data to send to [MC](##2.mc).
+
+
+
+
+##### 1.ADBO - Appointment Data Base Operation 
 Sends a query into the Database and responds with the appropriate data.
 ```
 
@@ -320,7 +328,9 @@ CREATE TABLE IDC (
 |---|---|
 |1|0|
 
-## 2. MC - Medical Center
+## 2. MC
+### Medical Center
+---
 ### BS
 #### 1. RFS - Receive File Service
 Receives the files and sends the data to the Process.
