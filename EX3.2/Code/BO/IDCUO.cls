@@ -1,4 +1,4 @@
-Class EX32.BO.IDUO Extends Ens.BusinessOperation
+Class EX32.BO.IDCUO Extends Ens.BusinessOperation
 {
 
 // Declare the adapter class that is going to be used for the business operation, in this case we use the SQL Outbound Adapter because we are connecting to a database.
@@ -17,12 +17,13 @@ Method GetLastID(pRequest As EX32.MSG.NFQM, Output pResponse As EX32.MSG.GLIDM) 
     set pResponse = ##class(EX32.MSG.GLIDM).%New()
 
     // Here we first make the query to the database, then we assign the result to the variable tResult.
-    set query = "Select * from idc where ID="_pRequest.ID
-    set st =..Adapter.ExecuteQuery(.tResult,query)
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
     do tResult.Next()
 
-    // To the left we declare the value of the poperties inside the request message. On the right we assign it to the different fields of the database response.
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
     set pResponse.LastID = tResult.Get("LastID")
 
     // Here we end the method and return the status code.
@@ -35,10 +36,9 @@ Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response
 {
     // Here we first make the query to the database, then we assign the result to the variable tResult.
     set query = "UPDATE IDC SET LastID = "_pRequest.LastID_" WHERE ID = "_pRequest.ID
-    set st =..Adapter.ExecuteQuery(.tResult,query)
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
-    // do tResult.Next()
-
+    
     // Here we end the method and return the status code.
     Quit $$$OK
 }

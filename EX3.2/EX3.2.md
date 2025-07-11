@@ -11,7 +11,7 @@ This Business Service starts when it detects a INSERT in the  [Appointments](###
 Takes the data from the Service and makes the calls to the 2 Business Operations on top of managing and directing the data.
 ### BO
 #### 1. IDCUO - ID Count & Update Operation
-**GetLastID**: sends a ID number to the [IDC](####9.idc) DB, Selects the number in the LastID field and returns said field's value. **UpdateLastID**: sends a ID and a LastID that happens to be the last ID used and updates is in the [IDC](####9.idc) DB.
+Manages and uses the DB table [IDC](####9.idc).
 ```
 Class EX32.BO.IDUO Extends Ens.BusinessOperation
 {
@@ -65,6 +65,42 @@ XData MessageMap
     </MapItem>
 </MapItems>
 }
+}
+```
+##### 1.GetLastID 
+Sends a ID number to the [IDC](####9.idc) DB, Selects the number in the LastID field and returns said field's value. 
+```
+Method GetLastID(pRequest As EX32.MSG.NFQM, Output pResponse As EX32.MSG.GLIDM) As %Status
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.GLIDM).%New()
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.LastID = tResult.Get("LastID")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+```
+##### 2.UpdateLastID 
+Sends a ID and a LastID that happens to be the last ID used and updates is in the [IDC](####9.idc) DB.
+```
+Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response) As %Status
+{
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "UPDATE IDC SET LastID = "_pRequest.LastID_" WHERE ID = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    
+    // Here we end the method and return the status code.
+    Quit $$$OK
 }
 ```
 #### 2. ADBO - Appointment Data Base Operation 
