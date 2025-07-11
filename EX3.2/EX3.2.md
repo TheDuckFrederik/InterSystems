@@ -4,18 +4,16 @@ This has the same purpose as the regular EX3 but this is a 2.0 version, hence th
 # Productions
 ## 1. AB - Appointment Booking
 ### BS
-#### 1. PAUS - Periodic Appointment Update Service
-This Business Service starts periodically the production.
+#### 1. DBITS - DB Insert Trigger Service
+This Business Service starts when it detects a INSERT in the  [Appointments](####8.appointments).
 ### BP
 #### 1. ADMP - Appointment Data Management Process
 Takes the data from the Service and makes the calls to the 2 Business Operations on top of managing and directing the data.
 ### BO
-#### 1. ULIDO - Update Last ID Operation
-
-#### 2. GLIDO - Get Last ID Operation
-Sends a ID number to the [IDC](####9.idc) DB, Selects the number in the LastID field and returns said field's value.
+#### 1. IDCUO - ID Count & Update Operation
+**GetLastID**: sends a ID number to the [IDC](####9.idc) DB, Selects the number in the LastID field and returns said field's value. **UpdateLastID**: sends a ID and a LastID that happens to be the last ID used and updates is in the [IDC](####9.idc) DB.
 ```
-Class EX32.BO.GLIDO Extends Ens.BusinessOperation
+Class EX32.BO.IDUO Extends Ens.BusinessOperation
 {
 
 // Declare the adapter class that is going to be used for the business operation, in this case we use the SQL Outbound Adapter because we are connecting to a database.
@@ -31,13 +29,25 @@ Method GetLastID(pRequest As EX32.MSG.NFQM, Output pResponse As EX32.MSG.GLIDM) 
     set pResponse = ##class(EX32.MSG.GLIDM).%New()
 
     // Here we first make the query to the database, then we assign the result to the variable tResult.
-    set query = "Select * from idc where ID = "_pRequest.ID
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID
     set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
     do tResult.Next()
 
     // To the left we declare the value of the poperties inside the request message. On the right we assign it to the different fields of the database response.
     set pResponse.LastID = tResult.Get("LastID")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+
+// Here you state the method name and in the parenthesis the request and response messages.
+Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response) As %Status
+{
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "UPDATE IDC SET LastID = "_pRequest.LastID_" WHERE ID = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
 
     // Here we end the method and return the status code.
     Quit $$$OK
@@ -50,16 +60,19 @@ XData MessageMap
     <MapItem MessageType="EX32.MSG.NFQM">
         <Method>GetLastID</Method>
     </MapItem>
+    <MapItem MessageType="EX32.MSG.ULIDM">
+        <Method>UpdateLastID</Method>
+    </MapItem>
 </MapItems>
 }
 }
 ```
-#### 3. ADBO - Appointment Data Base Operation 
+#### 2. ADBO - Appointment Data Base Operation 
 Sends a query into the Database and responds with the appropriate data.
 ```
 
 ```
-#### 4. AFO - Appointment File Operation
+#### 3. AFO - Appointment File Operation
 Creates a file with the data.
 ### MSG
 #### 1. SPM - Start Production Message
