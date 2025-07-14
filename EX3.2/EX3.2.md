@@ -17,7 +17,6 @@ Manages and uses the DB table [IDC](####9.idc).
 ```
 Class EX32.BO.IDUO Extends Ens.BusinessOperation
 {
-
 // Declare the adapter class that is going to be used for the business operation, in this case we use the SQL Outbound Adapter because we are connecting to a database.
 Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
@@ -105,49 +104,107 @@ Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response
     Quit $$$OK
 }
 ```
-#### 2. ADMO - Appointment Data Management Operation
-This gets the data in the table [Appointments](####8.appointments) and makes a file with the data to send to [MC](##2.mc).
-```
-
-```
-##### 1.AppointmentDataBaseDataGathereing 
+#### 2. ADBDGO - Appointment Data Base Data Gathering Operation
 Sends a query into the Database and responds with the appropriate data.
 ```
-Method AppointmentDataBaseDataGathereing(pRequest As EX32.MSG.DQFM, Output pResponse As EX32.MSG.DFDBM)
+Class EX32.BO.ADBDGO Extends Ens.BusinessOperation
 {
-    // Here we create a new class that is tied to the response message.
-    set pResponse = ##class(EX32.MSG.DFDBM).%New()
+    // Declare the adapter class that is going to be used for the business operation,
+    // in this case we use the SQL Outbound Adapter because we are connecting to a database.
+    Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
-    // Here we first make the query to the database, then we assign the result to the variable tResult.
-    set query = "SELECT a.id AS AppointmentID, p.FirstName, p.MiddleName, p.LastName, p.SSN, h.HospitalName, s.Specialty, pr.Professional AS ProfessionalName, t.AppointmentType, ic.InsuranceCompany, a.Reason, a.AppointmentDate, a.AppointmentTime FROM Appointments a JOIN Patients p ON a.PatientID = p.id JOIN Hospitals h ON a.HospitalID = h.id JOIN Specialties s ON a.SpecialtyID = s.id JOIN Professionals pr ON a.ProfessionalID = pr.id JOIN AppointmentTypes t ON a.AppointmentTypeID = t.id LEFT JOIN InsuranceCompanies ic ON a.InsuranceCompanyID = ic.id WHERE a.id = "_pRequest.ID
-    set st = ..Adapter.ExecuteQuery(.tResult, query)
-    $$$TRACE("st = "_st)
-    do tResult.Next()
+    // Mandatory parameter to state the invocation type of the business operation.
+    Parameter INVOCATION = "Queue";
 
-    // To the left we declare the value of the properties inside the request message. 
-    // On the right we assign it to the different fields of the database response.
-    set pResponse.ID = pRequest.ID
-    set pResponse.FirstName = tResult.Get("FirstName")
-    set pResponse.MiddleName = tResult.Get("MiddleName")
-    set pResponse.LastName = tResult.Get("LastName")
-    set pResponse.SSN = tResult.Get("SSN")
-    set pResponse.HospitalName = tResult.Get("HospitalName")
-    set pResponse.Specialty = tResult.Get("Specialty")
-    set pResponse.ProfessionalName = tResult.Get("ProfessionalName")
-    set pResponse.AppointmentType = tResult.Get("AppointmentType")
-    set pResponse.InsuranceCompany = tResult.Get("InsuranceCompany")
-    set pResponse.Reason = tResult.Get("Reason")
-    set pResponse.AppointmentDate = tResult.Get("AppointmentDate")
-    set pResponse.AppointmentTime = tResult.Get("AppointmentTime")
+    // Here you state the method name and in the parenthesis the request and response messages.
+    Method AppointmentDataBaseDataGathereing(pRequest As EX32.MSG.DQFM, Output pResponse As EX32.MSG.DFDBM)
+    {
+        // Here we create a new class that is tied to the response message.
+        set pResponse = ##class(EX32.MSG.DFDBM).%New()
 
-    // Here we end the method and return the status code.
-    Quit $$$OK
+        // Here we first make the query to the database, then we assign the result to the variable tResult.
+        set query = "SELECT a.id AS AppointmentID, p.FirstName, p.MiddleName, p.LastName, p.SSN, h.HospitalName, s.Specialty, pr.Professional AS ProfessionalName, t.AppointmentType, ic.InsuranceCompany, a.Reason, a.AppointmentDate, a.AppointmentTime FROM Appointments a JOIN Patients p ON a.PatientID = p.id JOIN Hospitals h ON a.HospitalID = h.id JOIN Specialties s ON a.SpecialtyID = s.id JOIN Professionals pr ON a.ProfessionalID = pr.id JOIN AppointmentTypes t ON a.AppointmentTypeID = t.id LEFT JOIN InsuranceCompanies ic ON a.InsuranceCompanyID = ic.id WHERE a.id = "_pRequest.ID
+        set st = ..Adapter.ExecuteQuery(.tResult, query)
+        $$$TRACE("st = "_st)
+        do tResult.Next()
+
+        // Assign values from the query result to the response properties.
+        set pResponse.ID = pRequest.ID
+        set pResponse.FirstName = tResult.Get("FirstName")
+        set pResponse.MiddleName = tResult.Get("MiddleName")
+        set pResponse.LastName = tResult.Get("LastName")
+        set pResponse.SSN = tResult.Get("SSN")
+        set pResponse.hHospitalName = tResult.Get("HospitalName")
+        set pResponse.sSpecialty = tResult.Get("Specialty")
+        set pResponse.prProfessionalName = tResult.Get("ProfessionalName")
+        set pResponse.atAppointmentType = tResult.Get("AppointmentType")
+        set pResponse.icInsuranceCompany = tResult.Get("InsuranceCompany")
+        set pResponse.aReason = tResult.Get("Reason")
+        set pResponse.aAppointmentDate = tResult.Get("AppointmentDate")
+        set pResponse.aAppointmentTime = tResult.Get("AppointmentTime")
+
+        // Here we end the method and return the status code.
+        Quit $$$OK
+    }
+
+    // Inside the message map we declare the different methods and assign the request message.
+    XData MessageMap
+    {
+    <MapItems>
+            <MapItem MessageType="EX32.MSG.DQFM">
+                <Method>AppointmentDataBaseDataGathereing</Method>
+            </MapItem>
+        </MapItems>
+    }
 }
 ```
-#### 2. CreateAppointmentDataFileOperation
+#### 3. CADFO - Create Appointment Data File Operation
 Creates a file with the data harvested with [ADBDG](#1.appointmentdatabasedatagathereing) .
 ```
+Class EX32.BO.CADFO Extends Ens.BusinessOperation
+{
+    // Declare the adapter class that is going to be used for the business operation, in this case we use the SQL Outbound Adapter because we are connecting to a database.
+    Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
+    // Mandatory parameter to state the invocation type of the business operation.
+    Parameter INVOCATION = "Queue";
+
+    // Here you state the method name and in the parenthesis the request and response messages.
+    Method CreateAppointmentDataFileOperation(pRequest As EX32.MSG.DDFM, Output pResponse As Ens.Response)
+    {
+        // Here we create the data string that will be written to the file.
+        // At the same time giving it a format and structure.
+        set tData = pRequest.FirstName_","_
+                    pRequest.MiddleName_","_
+                    pRequest.LastName_","_
+                    pRequest.SSN_","_
+                    pRequest.hHospitalName_","_
+                    pRequest.sSpecialty_","_
+                    pRequest.prProfessionalName_","_
+                    pRequest.atAppointmentType_","_
+                    pRequest.icInsuranceCompany_","_
+                    pRequest.aReason_","_
+                    pRequest.aAppointmentDate_","_
+                    pRequest.aAppointmentTime_$CHAR(13,10)
+
+        // Here we write the data to the file using the adapter.
+        set sc = ..Adapter.PutString(pRequest.FileName, tData)
+        $$$TRACE("st = "_$system.Status.DisplayError(sc))
+
+        // Here we end the method and return the status code.
+        Quit $$$OK
+    }
+
+    // Inside the message map we declare the different methods and assign the request message.
+    XData MessageMap
+    {
+    <MapItems>
+            <MapItem MessageType="EX32.MSG.DDFM">
+                <Method>CreateAppointmentDataFileOperation</Method>
+            </MapItem>
+        </MapItems>
+    }
+}
 ```
 ### MSG
 #### 1. SPM - Start Production Message
