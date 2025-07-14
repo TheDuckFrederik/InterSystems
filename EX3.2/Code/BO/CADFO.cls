@@ -1,9 +1,9 @@
 Class EX32.BO.CADFO Extends Ens.BusinessOperation
 {
 
-// Declare the adapter class that is going to be used for the business operation, in this case we use the SQL Outbound Adapter because we are connecting to a database.
+// Declare the adapter class that is going to be used for the business operation, in this case we use the File Outbound Adapter because we are sending the data into a file.
 
-Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
+Parameter ADAPTER = "EnsLib.File.OutboundAdapter";
 
 // Mandatory parameter to state the invocation type of the business operation.
 
