@@ -106,18 +106,49 @@ Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response
 }
 ```
 #### 2. ADMO - Appointment Data Management Operation
-This gets the data tin the table [Appointments](####8.appointments) and makes a file with the data to send to [MC](##2.mc).
+This gets the data in the table [Appointments](####8.appointments) and makes a file with the data to send to [MC](##2.mc).
+```
 
-
-
-
-##### 1.ADBO - Appointment Data Base Operation 
+```
+##### 1.AppointmentDataBaseDataGathereing 
 Sends a query into the Database and responds with the appropriate data.
 ```
+Method AppointmentDataBaseDataGathereing(pRequest As EX32.MSG.DQFM, Output pResponse As EX32.MSG.DFDBM)
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.DFDBM).%New()
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT a.id AS AppointmentID, p.FirstName, p.MiddleName, p.LastName, p.SSN, h.HospitalName, s.Specialty, pr.Professional AS ProfessionalName, t.AppointmentType, ic.InsuranceCompany, a.Reason, a.AppointmentDate, a.AppointmentTime FROM Appointments a JOIN Patients p ON a.PatientID = p.id JOIN Hospitals h ON a.HospitalID = h.id JOIN Specialties s ON a.SpecialtyID = s.id JOIN Professionals pr ON a.ProfessionalID = pr.id JOIN AppointmentTypes t ON a.AppointmentTypeID = t.id LEFT JOIN InsuranceCompanies ic ON a.InsuranceCompanyID = ic.id WHERE a.id = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.ID = pRequest.ID
+    set pResponse.FirstName = tResult.Get("FirstName")
+    set pResponse.MiddleName = tResult.Get("MiddleName")
+    set pResponse.LastName = tResult.Get("LastName")
+    set pResponse.SSN = tResult.Get("SSN")
+    set pResponse.HospitalName = tResult.Get("HospitalName")
+    set pResponse.Specialty = tResult.Get("Specialty")
+    set pResponse.ProfessionalName = tResult.Get("ProfessionalName")
+    set pResponse.AppointmentType = tResult.Get("AppointmentType")
+    set pResponse.InsuranceCompany = tResult.Get("InsuranceCompany")
+    set pResponse.Reason = tResult.Get("Reason")
+    set pResponse.AppointmentDate = tResult.Get("AppointmentDate")
+    set pResponse.AppointmentTime = tResult.Get("AppointmentTime")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+```
+#### 2. CreateAppointmentDataFileOperation
+Creates a file with the data harvested with [ADBDG](#1.appointmentdatabasedatagathereing) .
+```
 
 ```
-#### 3. AFO - Appointment File Operation
-Creates a file with the data.
 ### MSG
 #### 1. SPM - Start Production Message
 ```
@@ -157,12 +188,15 @@ Class EX32.MSG.DQFM Extends Ens.Request
 Class EX32.MSG.DFDBM Extends Ens.Response
 {
 	Property ID As %Integer;
-	Property PatientID As %Integer;
-	Property HospitalID As %Integer;
-	Property SpecialtyID As %Integer;
-	Property ProfessionalID As %Integer;
-	Property AppointmentTypeID As %Integer;
-	Property InsuranceCompanyID As %Integer;
+	Property FirstName As %String;
+	Property MiddleName As %String;
+	Property LastName As %String;
+	Property SSN As %String;
+	Property HospitalName As %String;
+	Property Specialty As %String;
+	Property ProfessionalName As %String;
+	Property AppointmentType As %String;
+	Property InsuranceCompany As %String;
 	Property Reason As %String(MAXLEN = 5000);
 	Property AppointmentDate As %String;
 	Property AppointmentTime As %String;
@@ -172,16 +206,18 @@ Class EX32.MSG.DFDBM Extends Ens.Response
 ```
 Class EX32.MSG.DDFM Extends Ens.Request
 {
-	Property ID As %Integer;
-	Property PatientID As %Integer;
-	Property HospitalID As %Integer;
-	Property SpecialtyID As %Integer;
-	Property ProfessionalID As %Integer;
-	Property AppointmentTypeID As %Integer;
-	Property InsuranceCompanyID As %Integer;
-	Property Reason As %String(MAXLEN = 5000);
-	Property AppointmentDate As %String;
-	Property AppointmentTime As %String;
+	Property FirstName As %String;
+	Property MiddleName As %String;
+	Property LastName As %String;
+	Property SSN As %String;
+	Property hHospitalName As %String;
+	Property sSpecialty As %String;
+	Property prProfessionalName As %String;
+	Property atAppointmentType As %String;
+	Property icInsuranceCompany As %String;
+	Property aReason As %String(MAXLEN = 5000);
+	Property aAppointmentDate As %String;
+	Property aAppointmentTime As %String;
 	Property FileName As %String;
 }
 ```

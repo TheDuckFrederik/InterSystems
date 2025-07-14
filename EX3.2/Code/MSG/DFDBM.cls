@@ -3,23 +3,29 @@ Class EX32.MSG.DFDBM Extends Ens.Response
 
 Property ID As %Integer;
 
-Property PatientID As %Integer;
+Property FirstName As %String;
 
-Property HospitalID As %Integer;
+Property MiddleName As %String;
 
-Property SpecialtyID As %Integer;
+Property LastName As %String;
 
-Property ProfessionalID As %Integer;
+Property SSN As %String;
 
-Property AppointmentTypeID As %Integer;
+Property hHospitalName As %String;
 
-Property InsuranceCompanyID As %Integer;
+Property sSpecialty As %String;
 
-Property Reason As %String(MAXLEN = 5000);
+Property prProfessionalName As %String;
 
-Property AppointmentDate As %String;
+Property atAppointmentType As %String;
 
-Property AppointmentTime As %String;
+Property icInsuranceCompany As %String;
+
+Property aReason As %String(MAXLEN = 5000);
+
+Property aAppointmentDate As %String;
+
+Property aAppointmentTime As %String;
 
 Storage Default
 {
@@ -29,31 +35,40 @@ Storage Default
 <Value>ID</Value>
 </Value>
 <Value name="2">
-<Value>PatientID</Value>
+<Value>FirstName</Value>
 </Value>
 <Value name="3">
-<Value>HospitalID</Value>
+<Value>MiddleName</Value>
 </Value>
 <Value name="4">
-<Value>SpecialtyID</Value>
+<Value>LastName</Value>
 </Value>
 <Value name="5">
-<Value>ProfessionalID</Value>
+<Value>SSN</Value>
 </Value>
 <Value name="6">
-<Value>AppointmentTypeID</Value>
+<Value>hHospitalName</Value>
 </Value>
 <Value name="7">
-<Value>InsuranceCompanyID</Value>
+<Value>sSpecialty</Value>
 </Value>
 <Value name="8">
-<Value>Reason</Value>
+<Value>prProfessionalName</Value>
 </Value>
 <Value name="9">
-<Value>AppointmentDate</Value>
+<Value>atAppointmentType</Value>
 </Value>
 <Value name="10">
-<Value>AppointmentTime</Value>
+<Value>icInsuranceCompany</Value>
+</Value>
+<Value name="11">
+<Value>aReason</Value>
+</Value>
+<Value name="12">
+<Value>aAppointmentDate</Value>
+</Value>
+<Value name="13">
+<Value>aAppointmentTime</Value>
 </Value>
 </Data>
 <DefaultData>DFDBMDefaultData</DefaultData>
