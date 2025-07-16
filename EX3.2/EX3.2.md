@@ -9,7 +9,7 @@ This has the same purpose as the regular EX3 but this is a 2.0 version, hence th
 #### 1. DBITS - DB Insert Trigger Service
 This Business Service starts when it detects a INSERT in the [Appointments](####8.appointments) table.
 ### BP
-#### 1. ADMP - Appointment Data Management Process
+#### 1. NADPM - New Appointment Data Manager Process
 Takes the data from the Service and makes the calls to the 2 Business Operations on top of managing and directing the data.
 ### BO
 #### 1. IDCUO - ID Count & Update Operation
@@ -259,7 +259,21 @@ Class EX32.MSG.DFDBM Extends Ens.Response
 	Property AppointmentTime As %String;
 }
 ```
-#### 6. DFFM - Data For File Message
+#### 6. FNRM - FileName Request Message
+```
+Class EX32.MSG.FNRM Extends Ens.Request
+{
+	Property ID As %Integer;
+}
+```
+#### 7. FNFDB - FileName From Database
+```
+Class EX32.MSG.FNFDB Extends Ens.Response
+{
+	Property FileName As %String;
+}
+```
+#### 8. DFFM - Data For File Message
 ```
 Class EX32.MSG.DDFM Extends Ens.Request
 {
@@ -282,14 +296,14 @@ Class EX32.MSG.DDFM Extends Ens.Request
 #### 1. Patients
 ```
 CREATE TABLE Patients (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(150),
     MiddleName VARCHAR(150),
     LastName VARCHAR(150),
     SSN VARCHAR(150)
 )
 ```
-| ID | FirstName | MiddleName | LastName             | SSN           |
+| id | FirstName | MiddleName | LastName             | SSN           |
 |----|-----------|------------|----------------------|---------------|
 |1|Gareth|Maryam|Morgan|3084314411|
 |2|Nolan|Zena|Cole|4332328269|
@@ -298,11 +312,11 @@ CREATE TABLE Patients (
 #### 2. Cities
 ```
 CREATE TABLE Cities (
-	ID INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT PRIMARY KEY,
 	City VARCHAR(150)
 )
 ```
-|ID|City|
+|id|City|
 |---|---|
 |1|A Coruña|
 |2|Ávila|
@@ -312,14 +326,14 @@ CREATE TABLE Cities (
 #### 3. Hospitals
 ```
 CREATE TABLE Hospitals (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     HospitalName VARCHAR(150),
     CityID INT,
     PostalCode INT,
     FOREIGN KEY (CityID) REFERENCES Cities(ID)
 )
 ```
-|ID|HospitalName|CityID|PostalCode|
+|id|HospitalName|CityID|PostalCode|
 |---|---|---|---|
 |1|Hospital A Coruña Del Mar|1|23032|
 |2|Hospital A Coruña General|1|37425|
@@ -329,11 +343,11 @@ CREATE TABLE Hospitals (
 #### 4. Specialties
 ```
 CREATE TABLE Specialties (
-	ID INT AUTO_INCREMENT PRIMARY KEY, 
+	id INT AUTO_INCREMENT PRIMARY KEY, 
 	Specialty VARCHAR(150)
 )
 ```
-|ID|Specialty|
+|id|Specialty|
 |---|---|
 |1|Allergy and Immunology|
 |2|Anesthesiology|
@@ -343,7 +357,7 @@ CREATE TABLE Specialties (
 #### 5. Professionals
 ```
 CREATE TABLE Professionals (
-	ID INT AUTO_INCREMENT PRIMARY KEY, 
+	id INT AUTO_INCREMENT PRIMARY KEY, 
 	HospitalID INT,
 	SpecialtyID INT,
 	Professional VARCHAR(150),
@@ -351,7 +365,7 @@ CREATE TABLE Professionals (
 	FOREIGN KEY (SpecialtyID) REFERENCES Specialties(ID)
 )
 ```
-|ID|HospitalID|SpecialtyID|Professional|
+|id|HospitalID|SpecialtyID|Professional|
 |---|---|---|---|
 |1|170|22|Dr. Clark Fuller Butler|
 |2|178|47|Dr. Sigourney Steel Pittman|
@@ -361,22 +375,22 @@ CREATE TABLE Professionals (
 #### 6. AppointmentTypes
 ```
 CREATE TABLE AppointmentTypes (
-	ID INT AUTO_INCREMENT PRIMARY KEY, 
+	id INT AUTO_INCREMENT PRIMARY KEY, 
 	AppointmentType VARCHAR(150)
 )
 ```
-|ID|AppointmentType|
+|id|AppointmentType|
 |---|---|
 |1|Private|
 |2|Insured|
 #### 7. InsuranceCompanies
 ```
 CREATE TABLE InsuranceCompanies (
-	ID INT AUTO_INCREMENT PRIMARY KEY, 
+	id INT AUTO_INCREMENT PRIMARY KEY, 
 	InsuranceCompany VARCHAR(150)
 )
 ```
-|ID|InsuranceCompany|
+|id|InsuranceCompany|
 |---|---|
 |1|Mafre|
 |2|Sanitas|
@@ -385,7 +399,7 @@ CREATE TABLE InsuranceCompanies (
 #### 8. Appointments
 ```
 CREATE TABLE Appointments (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     PatientID INT,
     HospitalID INT,
     SpecialtyID INT,
@@ -403,7 +417,7 @@ CREATE TABLE Appointments (
     FOREIGN KEY (InsuranceCompanyID) REFERENCES InsuranceCompanies(ID)
 )
 ```
-|ID|PatientID|HospitalID|SpecialtyID|ProfessionalID|AppointmentTypeID|InsuranceCompanyID|Reason|AppointmentDate|AppointmentTime|
+|id|PatientID|HospitalID|SpecialtyID|ProfessionalID|AppointmentTypeID|InsuranceCompanyID|Reason|AppointmentDate|AppointmentTime|
 |---|---|---|---|---|---|---|---|---|---|
 |1|238|28|72|470|2|2|metus vitae velit egestas lacinia. Sed congue, eli...|10-09-2024|12:04|
 |2|418|18|45|129|2|1|Mauris nulla. Integer urna. Vivamus molestie dapib...|09-11-2025|15:49|
@@ -413,14 +427,27 @@ CREATE TABLE Appointments (
 #### 9. IDC
 ```
 CREATE TABLE IDC (
-	ID INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT PRIMARY KEY,
 	LastID INT
 )
 ```
-|ID|LastID|
+|id|LastID|
 |---|---|
 |1|0|
-
+#### 10. FileNames
+```
+CREATE TABLE FileNames (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	FileName VARCHAR(255)
+)
+```
+|id|FileName|
+|---|---|
+|1|
+|2|
+|3|
+|4|
+|5|
 ## 2. MC
 ### Medical Center
 ---

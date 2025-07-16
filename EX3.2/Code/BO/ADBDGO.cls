@@ -31,12 +31,33 @@ Method AppointmentDataBaseDataGathereing(pRequest As EX32.MSG.DQFM, Output pResp
     set pResponse.SSN=tResult.Get("SSN")
     set pResponse.hHospitalName=tResult.Get("HospitalName")
     set pResponse.sSpecialty=tResult.Get("Specialty")
-    set pResponse.prProfessionalName=tResult.Get("ProfessionalName")
+    set pResponse.prProfessionalName=tResult.Get("ProfessionalName") 
     set pResponse.atAppointmentType=tResult.Get("AppointmentType")
     set pResponse.icInsuranceCompany=tResult.Get("InsuranceCompany")
     set pResponse.aReason=tResult.Get("Reason")
     set pResponse.aAppointmentDate=tResult.Get("AppointmentDate")
     set pResponse.aAppointmentTime=tResult.Get("AppointmentTime")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+
+// Here you state the method name and in the parenthesis the request and response messages.
+
+Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG.FNFDB)
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.FNFDB).%New()
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * from FileNames where id = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.FileName=tResult.Get("FileName")
 
     // Here we end the method and return the status code.
     Quit $$$OK
@@ -49,6 +70,9 @@ XData MessageMap
 <MapItems>
         <MapItem MessageType="EX32.MSG.DQFM">
             <Method>AppointmentDataBaseDataGathereing</Method>
+        </MapItem>
+        <MapItem MessageType="EX32.MSG.FNRM">
+            <Method>FileNameGathering</Method>
         </MapItem>
     </MapItems>
 }
