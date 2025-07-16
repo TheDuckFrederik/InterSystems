@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for Windows (x86-64) 2025.1 (Build 223U)" ts="2025-07-16 15:50:02">
+<Class name="EX32.BP.CADPM.CADPM">
+<Description>
+</Description>
+<Super>Ens.BusinessProcessBPL</Super>
+<TimeChanged>67402,49675.8314064</TimeChanged>
+<TimeCreated>67402,49223.3364972</TimeCreated>
+
+<XData name="BPL">
+<Description>
+BPL Definition</Description>
+<XMLNamespace>http://www.intersystems.com/bpl</XMLNamespace>
+<Data><![CDATA[
+<process language='objectscript' request='EX32.MSG.NFQM' response='EX32.MSG.GLIDM' height='2000' width='2000' >
+<context>
+<property name='LastID' type='%Integer' instantiate='0' />
+<property name='ID' type='%Integer' instantiate='0' />
+<property name='FirstName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='MiddleName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='LastName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='SSN' type='%Integer' instantiate='0' />
+<property name='HospitalName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='Specialty' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='ProfessionalName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='AppointmentType' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='InsurenceCompany' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='AppointmentDate' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='AppointmentTime' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='FileName' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='250' />
+</parameters>
+</property>
+<property name='Reason' type='%String' instantiate='0' >
+<parameters>
+<parameter name='MAXLEN'  value='2500' />
+</parameters>
+</property>
+</context>
+<sequence xend='200' yend='750' >
+<while name='CADM' condition='context.ID &lt; 500' xpos='762' ypos='445' xend='202' yend='734' >
+<call name='GLID' target='IDCUO' async='0' xpos='574' ypos='251' >
+<request type='EX32.MSG.NFQM' >
+<assign property="callrequest.ID" value="1" action="set" languageOverride="" />
+</request>
+<response type='EX32.MSG.GLIDM' >
+<assign property="context.LastID" value="callresponse.LastID" action="set" languageOverride="" />
+<assign property="response.LastID" value="callresponse.LastID" action="set" languageOverride="" />
+</response>
+</call>
+<call name='GPD' target='ADBDGO' async='0' xpos='202' ypos='352' >
+<request type='EX32.MSG.DQFM' >
+<assign property="callrequest.ID" value="context.LastID" action="set" languageOverride="" />
+</request>
+<response type='EX32.MSG.DFDBM' >
+<assign property="context.ID" value="callresponse.ID" action="set" languageOverride="" />
+<assign property="context.FirstName" value="callresponse.FirstName" action="set" languageOverride="" />
+<assign property="context.MiddleName" value="callresponse.MiddleName" action="set" languageOverride="" />
+<assign property="context.LastName" value="callresponse.LastName" action="set" languageOverride="" />
+<assign property="context.SSN" value="callresponse.SSN" action="set" languageOverride="" />
+<assign property="context.HospitalName" value="callresponse.hHospitalName" action="set" languageOverride="" />
+<assign property="context.Specialty" value="callresponse.sSpecialty" action="set" languageOverride="" />
+<assign property="context.ProfessionalName" value="callresponse.prProfessionalName" action="set" languageOverride="" />
+<assign property="context.AppointmentType" value="callresponse.atAppointmentType" action="set" languageOverride="" />
+<assign property="context.InsurenceCompany" value="callresponse.icInsuranceCompany" action="set" languageOverride="" />
+<assign property="context.Reason" value="callresponse.aReason" action="set" languageOverride="" />
+<assign property="context.AppointmentDate" value="callresponse.aAppointmentDate" action="set" languageOverride="" />
+<assign property="context.AppointmentTime" value="callresponse.aAppointmentTime" action="set" languageOverride="" />
+</response>
+</call>
+<call name='GFN' target='ADBDGO' async='0' xpos='575' ypos='446' >
+<request type='EX32.MSG.FNRM' >
+<assign property="callrequest.ID" value="context.ID" action="set" languageOverride="" />
+</request>
+<response type='EX32.MSG.FNFDB' >
+<assign property="context.FileName" value="callresponse.FileName" action="set" languageOverride="" />
+</response>
+</call>
+<call name='CDF' target='CADFO' async='1' xpos='200' ypos='546' >
+<request type='EX32.MSG.DDFM' >
+<assign property="callrequest.FirstName" value="context.FirstName" action="set" languageOverride="" />
+<assign property="callrequest.MiddleName" value="context.MiddleName" action="set" languageOverride="" />
+<assign property="callrequest.LastName" value="context.LastName" action="set" languageOverride="" />
+<assign property="callrequest.SSN" value="context.SSN" action="set" languageOverride="" />
+<assign property="callrequest.hHospitalName" value="context.HospitalName" action="set" languageOverride="" />
+<assign property="callrequest.sSpecialty" value="context.Specialty" action="set" languageOverride="" />
+<assign property="callrequest.prProfessionalName" value="context.ProfessionalName" action="set" languageOverride="" />
+<assign property="callrequest.atAppointmentType" value="context.AppointmentType" action="set" languageOverride="" />
+<assign property="callrequest.icInsuranceCompany" value="context.InsurenceCompany" action="set" languageOverride="" />
+<assign property="callrequest.aReason" value="context.Reason" action="set" languageOverride="" />
+<assign property="callrequest.aAppointmentDate" value="context.AppointmentDate" action="set" languageOverride="" />
+<assign property="callrequest.aAppointmentTime" value="context.AppointmentTime" action="set" languageOverride="" />
+<assign property="callrequest.FileName" value="context.FileName_&quot;.txt&quot;" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+<call name='ULID' target='IDCUO' async='1' xpos='577' ypos='643' >
+<request type='EX32.MSG.ULIDM' >
+<assign property="callrequest.ID" value="request.ID" action="set" languageOverride="" />
+<assign property="callrequest.LastID" value="context.LastID + 1" action="set" languageOverride="" />
+</request>
+<response type='Ens.Response' />
+</call>
+</while>
+</sequence>
+</process>
+]]></Data>
+</XData>
+
+<Storage name="Default">
+<Type>%Storage.Persistent</Type>
+</Storage>
+</Class>
+</Export>

@@ -10,7 +10,11 @@ This has the same purpose as the regular EX3 but this is a 2.0 version, hence th
 This Business Service starts when it detects a INSERT in the [Appointments](####8.appointments) table.
 ### BP
 #### 1. NADPM - New Appointment Data Manager Process
-Takes the data from the Service and makes the calls to the 2 Business Operations on top of managing and directing the data.
+Takes the data from an specific field that was inserted in the [Appointments](####7.Appointments) table, extract the data and create a file.
+#### 2. UADPM - Updated Appointment Data Manager Process
+Takes the data from an specific field that was updated in the [Appointments](####7.Appointments) table, extract the data and create a file.
+#### 3. CADPM - Cyclic Appointment Data Manager Process
+Takes the data from a given to comb and extract the data and create files for a certain range of  the [Appointments](####7.Appointments) table's fields. 
 ### BO
 #### 1. IDCUO - ID Count & Update Operation
 Manages and uses the DB table [IDC](####9.idc).
@@ -68,7 +72,7 @@ XData MessageMap
 }
 }
 ```
-##### 1.GetLastID 
+##### 1. GetLastID 
 Sends a ID number to the [IDC](####9.idc) DB, Selects the number in the LastID field and returns said field's value. 
 ```
 Method GetLastID(pRequest As EX32.MSG.NFQM, Output pResponse As EX32.MSG.GLIDM) As %Status
@@ -90,7 +94,7 @@ Method GetLastID(pRequest As EX32.MSG.NFQM, Output pResponse As EX32.MSG.GLIDM) 
     Quit $$$OK
 }
 ```
-##### 2.UpdateLastID 
+##### 2. UpdateLastID 
 Sends a ID and a LastID that happens to be the last ID used and updates is in the [IDC](####9.idc) DB.
 ```
 Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response) As %Status
@@ -109,6 +113,7 @@ Sends a query into the Database and responds with the appropriate data.
 ```
 Class EX32.BO.ADBDGO Extends Ens.BusinessOperation
 {
+
     // Declare the adapter class that is going to be used for the business operation,
     // in this case we use the SQL Outbound Adapter because we are connecting to a database.
     Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
@@ -116,7 +121,7 @@ Class EX32.BO.ADBDGO Extends Ens.BusinessOperation
     // Mandatory parameter to state the invocation type of the business operation.
     Parameter INVOCATION = "Queue";
 
-    // Here you state the method name and in the parenthesis the request and response messages.
+    // Method that gathers appointment information from the database.
     Method AppointmentDataBaseDataGathereing(pRequest As EX32.MSG.DQFM, Output pResponse As EX32.MSG.DFDBM)
     {
         // Here we create a new class that is tied to the response message.
@@ -128,7 +133,7 @@ Class EX32.BO.ADBDGO Extends Ens.BusinessOperation
         $$$TRACE("st = "_st)
         do tResult.Next()
 
-        // Assign values from the query result to the response properties.
+        // Map query results to response object.
         set pResponse.ID = pRequest.ID
         set pResponse.FirstName = tResult.Get("FirstName")
         set pResponse.MiddleName = tResult.Get("MiddleName")
@@ -136,26 +141,104 @@ Class EX32.BO.ADBDGO Extends Ens.BusinessOperation
         set pResponse.SSN = tResult.Get("SSN")
         set pResponse.hHospitalName = tResult.Get("HospitalName")
         set pResponse.sSpecialty = tResult.Get("Specialty")
-        set pResponse.prProfessionalName = tResult.Get("ProfessionalName")
+        set pResponse.prProfessionalName = tResult.Get("ProfessionalName") 
         set pResponse.atAppointmentType = tResult.Get("AppointmentType")
         set pResponse.icInsuranceCompany = tResult.Get("InsuranceCompany")
         set pResponse.aReason = tResult.Get("Reason")
         set pResponse.aAppointmentDate = tResult.Get("AppointmentDate")
         set pResponse.aAppointmentTime = tResult.Get("AppointmentTime")
 
-        // Here we end the method and return the status code.
+        // Return OK status.
         Quit $$$OK
     }
 
-    // Inside the message map we declare the different methods and assign the request message.
+    // Method that retrieves the file name from the database.
+    Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG.FNFDB)
+    {
+        // Here we create a new class that is tied to the response message.
+        set pResponse = ##class(EX32.MSG.FNFDB).%New()
+
+        // Here we first make the query to the database, then we assign the result to the variable tResult.
+        set query = "SELECT * from FileNames where id = "_pRequest.ID
+        set st = ..Adapter.ExecuteQuery(.tResult, query)
+        $$$TRACE("st = "_st)
+        do tResult.Next()
+
+        // Map result to response.
+        set pResponse.FileName = tResult.Get("FileName")
+
+        // Return OK status.
+        Quit $$$OK
+    }
+
+    // Message map for routing requests to methods.
     XData MessageMap
     {
-    <MapItems>
+        <MapItems>
             <MapItem MessageType="EX32.MSG.DQFM">
                 <Method>AppointmentDataBaseDataGathereing</Method>
             </MapItem>
+            <MapItem MessageType="EX32.MSG.FNRM">
+                <Method>FileNameGathering</Method>
+            </MapItem>
         </MapItems>
     }
+}
+```
+##### 1. AppointmentDataBaseDataGathereing
+This connects to the table [Appointments](####7.Appointments) to get all of the data from the different tables.
+```
+Method AppointmentDatabaseDataGathering(pRequest As EX32.MSG.DQFM, Output pResponse As EX32.MSG.DFDBM)
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.DFDBM).%New()
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT a.id AS AppointmentID, p.FirstName, p.MiddleName, p.LastName, p.SSN, h.HospitalName, s.Specialty, pr.Professional AS ProfessionalName, t.AppointmentType, ic.InsuranceCompany, a.Reason, a.AppointmentDate, a.AppointmentTime FROM Appointments a JOIN Patients p ON a.PatientID = p.id JOIN Hospitals h ON a.HospitalID = h.id JOIN Specialties s ON a.SpecialtyID = s.id JOIN Professionals pr ON a.ProfessionalID = pr.id JOIN AppointmentTypes t ON a.AppointmentTypeID = t.id LEFT JOIN InsuranceCompanies ic ON a.InsuranceCompanyID = ic.id WHERE a.id = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.ID=pRequest.ID
+    set pResponse.FirstName=tResult.Get("FirstName")
+    set pResponse.MiddleName=tResult.Get("MiddleName")
+    set pResponse.LastName=tResult.Get("LastName")
+    set pResponse.SSN=tResult.Get("SSN")
+    set pResponse.hHospitalName=tResult.Get("HospitalName")
+    set pResponse.sSpecialty=tResult.Get("Specialty")
+    set pResponse.prProfessionalName=tResult.Get("ProfessionalName") 
+    set pResponse.atAppointmentType=tResult.Get("AppointmentType")
+    set pResponse.icInsuranceCompany=tResult.Get("InsuranceCompany")
+    set pResponse.aReason=tResult.Get("Reason")
+    set pResponse.aAppointmentDate=tResult.Get("AppointmentDate")
+    set pResponse.aAppointmentTime=tResult.Get("AppointmentTime")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+```
+##### 2. FileNameGathering
+This connects to the [FileNames](####10.filenames) table to get the randomly generated file names.
+```
+Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG.FNFDB)
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.FNFDB).%New()
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM FileNames WHERE id = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.FileName=tResult.Get("FileName")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
 }
 ```
 #### 3. CADFO - Create Appointment Data File Operation
@@ -443,11 +526,11 @@ CREATE TABLE FileNames (
 ```
 |id|FileName|
 |---|---|
-|1|
-|2|
-|3|
-|4|
-|5|
+|1|CA91VXV6VT774OQ27|
+|2|ON35MNK4UA235WR75|
+|3|SP31JII3AQ415XC93|
+|4|LS83WDH7WE564YU43|
+|5|KP27MKY6GJ802BT89|
 ## 2. MC
 ### Medical Center
 ---
