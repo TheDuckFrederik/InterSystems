@@ -78,6 +78,39 @@ Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG
     Quit $$$OK
 }
 
+// Here you state the method name and in the parenthesis the request and response messages.
+Method GetRangeIDs(pRequest As EX32.MSG.NFRM, Output pResponse As EX32.MSG.GRIDSM) As %Status
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.GRIDSM).%New()
+
+    // ID1 is always 1 and ID2 is always 2 for this Method.
+    set pRequest.ID1 = 1
+    set pRequest.ID2 = 2
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID1
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.FirstRangeID = tResult.Get("Identifier")
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID2
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.LastRangeID = tResult.Get("Identifier")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
 
 // Inside the message map we declare the different methods and assign the request message.
 XData MessageMap
@@ -91,6 +124,9 @@ XData MessageMap
     </MapItem>
     <MapItem MessageType="EX32.MSG.UIDRM">
         <Method>UpdateIDRange</Method>
+    </MapItem>
+    <MapItem MessageType="EX32.MSG.NFRM">
+        <Method>GetRangeIDs</Method>
     </MapItem>
 </MapItems>
 }
@@ -135,20 +171,21 @@ Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response
 ##### 3. UpdateIDRange
 Sends a ID1, a FirstRangeID, a ID2 and a LastRangeID that happens to be the first and last ID used to add a range of patients.
 ```
-Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG.FNFDB)
+Method UpdateIDRange(pRequest As EX32.MSG.UIDRM, Output pResponse As Ens.Response) As %Status
 {
-    // Here we create a new class that is tied to the response message.
-    set pResponse = ##class(EX32.MSG.FNFDB).%New()
+    // ID1 is always 1 and ID2 is always 2 for this Method.
+    set pRequest.ID1 = 1
+    set pRequest.ID2 = 2
 
     // Here we first make the query to the database, then we assign the result to the variable tResult.
-    set query = "SELECT * FROM FileNames WHERE id = "_pRequest.ID
+    set query = "UPDATE IDC SET Identifier = "_pRequest.FirstRangeID_" WHERE ID = "_pRequest.ID1
     set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
-    do tResult.Next()
-
-    // To the left we declare the value of the properties inside the request message. 
-    // On the right we assign it to the different fields of the database response.
-    set pResponse.FileName=tResult.Get("FileName")
+    
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "UPDATE IDC SET Identifier = "_pRequest.LastRangeID_" WHERE ID = "_pRequest.ID2
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
 
     // Here we end the method and return the status code.
     Quit $$$OK
@@ -157,7 +194,38 @@ Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG
 ##### 4. GetRangeIDs
 Gets FirstRangeID and  LastRangeID that happens to be the first and last ID used to add a range of patients.
 ```
+Method GetRangeIDs(pRequest As EX32.MSG.NFRM, Output pResponse As EX32.MSG.GRIDSM) As %Status
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.GRIDSM).%New()
 
+    // ID1 is always 1 and ID2 is always 2 for this Method.
+    set pRequest.ID1 = 1
+    set pRequest.ID2 = 2
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID1
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.FirstRangeID = tResult.Get("Identifier")
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID2
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.LastRangeID = tResult.Get("Identifier")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
 ```
 #### 2. ADBDGO - Appointment Data Base Data Gathering Operation
 Sends a query into the Database and responds with the appropriate data.
