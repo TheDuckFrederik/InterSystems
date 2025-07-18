@@ -58,6 +58,27 @@ Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response
     Quit $$$OK
 }
 
+// Here you state the method name and in the parenthesis the request and response messages.
+Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG.FNFDB)
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.FNFDB).%New()
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM FileNames WHERE id = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.FileName=tResult.Get("FileName")
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+
+
 // Inside the message map we declare the different methods and assign the request message.
 XData MessageMap
 {
@@ -67,6 +88,9 @@ XData MessageMap
     </MapItem>
     <MapItem MessageType="EX32.MSG.ULIDM">
         <Method>UpdateLastID</Method>
+    </MapItem>
+    <MapItem MessageType="EX32.MSG.UIDRM">
+        <Method>UpdateIDRange</Method>
     </MapItem>
 </MapItems>
 }
@@ -104,6 +128,28 @@ Method UpdateLastID(pRequest As EX32.MSG.ULIDM, Output pResponse As Ens.Response
     set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
     
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+```
+##### 3. UpdateIDRange
+Sends a ID1, a FirstRangeID, a ID2 and a LastRangeID that happens to be the first and last ID used to add a range of patients.
+```
+Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG.FNFDB)
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.FNFDB).%New()
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM FileNames WHERE id = "_pRequest.ID
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.FileName=tResult.Get("FileName")
+
     // Here we end the method and return the status code.
     Quit $$$OK
 }
@@ -302,28 +348,38 @@ Class EX32.MSG.ULIDM Extends Ens.Request
 	Property LastID As %Integer;
 }
 ```
-#### 2. NFQM - Number For Query Message
+#### 2. UIDRM - Update ID Range Message
+```
+Class EX32.MSG.UIDRM Extends Ens.Request
+{
+	Property ID1 As %Integer;
+	Property FirstRangeID As %Integer;
+	Property ID2 As %Integer;
+	Property LastRangeID As %Integer;
+}
+```
+#### 3. NFQM - Number For Query Message
 ```
 Class EX32.MSG.NFQM Extends Ens.Request
 {
 	Property ID As %Integer;
 }
 ```
-#### 3. GLIDM - Get Last ID Message
+#### 4. GLIDM - Get Last ID Message
 ```
 Class EX32.MSG.GLIDM Extends Ens.Response
 {
 	Property LastID As %Integer;
 }
 ```
-#### 4. DFQM - Data For Query Message
+#### 5. DFQM - Data For Query Message
 ```
 Class EX32.MSG.DQFM Extends Ens.Request
 {
 	Property ID As %Integer;
 }
 ```
-#### 5. DFDBM - Data From Database Message
+#### 6. DFDBM - Data From Database Message
 ```
 Class EX32.MSG.DFDBM Extends Ens.Response
 {
@@ -342,21 +398,21 @@ Class EX32.MSG.DFDBM Extends Ens.Response
 	Property AppointmentTime As %String;
 }
 ```
-#### 6. FNRM - FileName Request Message
+#### 7. FNRM - FileName Request Message
 ```
 Class EX32.MSG.FNRM Extends Ens.Request
 {
 	Property ID As %Integer;
 }
 ```
-#### 7. FNFDB - FileName From Database
+#### 8. FNFDB - FileName From Database
 ```
 Class EX32.MSG.FNFDB Extends Ens.Response
 {
 	Property FileName As %String;
 }
 ```
-#### 8. DFFM - Data For File Message
+#### 9. DFFM - Data For File Message
 ```
 Class EX32.MSG.DDFM Extends Ens.Request
 {
@@ -511,12 +567,14 @@ CREATE TABLE Appointments (
 ```
 CREATE TABLE IDC (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	LastID INT
+	Identifier INT
 )
 ```
-|id|LastID|
+|id|Identifier|
 |---|---|
-|1|0|
+|1|1|
+|2|500|
+|3|69|
 #### 10. FileNames
 ```
 CREATE TABLE FileNames (
