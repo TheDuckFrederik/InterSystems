@@ -58,10 +58,50 @@ Method UpdateIDRange(pRequest As EX32.MSG.UIDRM, Output pResponse As Ens.Respons
     set pRequest.ID2 = 2
 
     // Here we first make the query to the database, then we assign the result to the variable tResult.
-    set query = "UPDATE idc"_$char(13,10)_"SET"_$char(13,10)_"  Identifier = CASE"_$char(13,10)_"       WHEN id = "_pRequest.ID1_" THEN "_pRequest.FirstRangeID_$char(13,10)_"       WHEN id = "_pRequest.ID2_" THEN "_pRequest.LastRangeID_$char(13,10)_"       ELSE Identifier"_$char(13,10)_"  END"_$char(13,10)_"WHERE id IN ("_pRequest.ID1_", "_pRequest.ID2_")"
+    set query = "UPDATE IDC SET Identifier = "_pRequest.FirstRangeID_" WHERE ID = "_pRequest.ID1
     set st = ..Adapter.ExecuteQuery(.tResult, query)
     $$$TRACE("st = "_st)
     
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "UPDATE IDC SET Identifier = "_pRequest.LastRangeID_" WHERE ID = "_pRequest.ID2
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+
+    // Here we end the method and return the status code.
+    Quit $$$OK
+}
+
+// Here you state the method name and in the parenthesis the request and response messages.
+
+Method GetRangeIDs(pRequest As EX32.MSG.NFRM, Output pResponse As EX32.MSG.GRIDSM) As %Status
+{
+    // Here we create a new class that is tied to the response message.
+    set pResponse = ##class(EX32.MSG.GRIDSM).%New()
+
+    // ID1 is always 1 and ID2 is always 2 for this Method.
+    set pRequest.ID1 = 1
+    set pRequest.ID2 = 2
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID1
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.FirstRangeID = tResult.Get("Identifier")
+
+    // Here we first make the query to the database, then we assign the result to the variable tResult.
+    set query = "SELECT * FROM IDC WHERE ID = "_pRequest.ID2
+    set st = ..Adapter.ExecuteQuery(.tResult, query)
+    $$$TRACE("st = "_st)
+    do tResult.Next()
+
+    // To the left we declare the value of the properties inside the request message. 
+    // On the right we assign it to the different fields of the database response.
+    set pResponse.LastRangeID = tResult.Get("Identifier")
+
     // Here we end the method and return the status code.
     Quit $$$OK
 }
@@ -79,6 +119,9 @@ XData MessageMap
         </MapItem>
         <MapItem MessageType="EX32.MSG.UIDRM">
             <Method>UpdateIDRange</Method>
+        </MapItem>
+        <MapItem MessageType="EX32.MSG.NFRM">
+            <Method>GetRangeIDs</Method>
         </MapItem>
     </MapItems>
 }

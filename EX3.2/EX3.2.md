@@ -154,6 +154,11 @@ Method FileNameGathering(pRequest As EX32.MSG.FNRM, Output pResponse As EX32.MSG
     Quit $$$OK
 }
 ```
+##### 4. GetRangeIDs
+Gets FirstRangeID and  LastRangeID that happens to be the first and last ID used to add a range of patients.
+```
+
+```
 #### 2. ADBDGO - Appointment Data Base Data Gathering Operation
 Sends a query into the Database and responds with the appropriate data.
 ```
@@ -370,6 +375,22 @@ Class EX32.MSG.NFQM Extends Ens.Request
 Class EX32.MSG.GLIDM Extends Ens.Response
 {
 	Property LastID As %Integer;
+}
+```
+#### 5. NFRM - Number For Range Message
+```
+Class EX32.MSG.NFRM Extends Ens.Request
+{
+	Property ID1 As %Integer;
+	Property ID2 As %Integer;
+}
+```
+#### 6. GRIDSM - Get Range IDs Message
+```
+Class EX32.MSG.GRIDSM Extends Ens.Response
+{
+	Property FirstRangeID As %Integer;
+	Property LastRangeID As %Integer;
 }
 ```
 #### 5. DFQM - Data For Query Message
